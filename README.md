@@ -2,7 +2,7 @@
 
 博客直接放github pages上了！
 
-利用github的自定义域名功能将 wuuconix.github.io 转到了 wuuconix.link
+利用github的自定义域名功能将 [wuuconix.github.io](wuuconix.github.io) 转到了 [wuuconix.link](wuuconix.link)
 
 本来是想用github action 自动部署的，只要上传源码就能够自动build更新pages。
 
