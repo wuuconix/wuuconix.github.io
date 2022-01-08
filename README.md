@@ -1,4 +1,4 @@
-2021.1.7号更新
+## 2021.1.7号更新
 
 博客直接放github pages上了！
 
@@ -13,3 +13,7 @@
 目前还是用的 hexo自带的deploy插件。
 
 之后希望能够直接用github action自动部署，只需要上传源码即可，本地都不需要build。
+
+## 2021.1.8号更新
+
+成功实现github actions自动部署，效果见 [https://wuuconix.link/2022/01/08/actions/](https://wuuconix.link/2022/01/08/actions/)
