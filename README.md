@@ -26,6 +26,6 @@
 
 > 阿里云服务器提供http服务
 
-国外用户可以访问 [https://wuuconix.tk](https://wuuconix.tk)
+国外用户可以访问 [https://wuuconix.github.io](https://wuuconix.github.io)
 
-> 原生Github Pages 绑定自定义域名
+> 原生Github Pages
