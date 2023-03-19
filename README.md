@@ -29,3 +29,11 @@
 国外用户可以访问 [https://wuuconix.github.io](https://wuuconix.github.io)
 
 > 原生Github Pages
+
+## 2023.3.19号更新
+
+新增vercel部署
+
+> 国内vercel.app域名貌似被干扰了，悲 🤧
+
+https://wuuconix.vercel.app
