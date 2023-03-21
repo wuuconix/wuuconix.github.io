@@ -1,0 +1,850 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://sina.wuuconix.link/large/007YVyKcly1h1w9ogawmvj30jg0jgtdg.jpg">
+  <link rel="icon" href="https://sina.wuuconix.link/large/007YVyKcly1h1w9ogawmvj30jg0jgtdg.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="wuuconix">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="背景 之前因为家里是移动的宽带，不给你分配公网ip，所以你无法实现类似在逛街的时候远程连接家里的电脑之类的操作。 相比于移动，我哥家里的宽带是电信的，他一个电话过去，电信立马给了公网ip，所以他可以随时随地远程控制他的电脑，这令我很羡慕。  内网穿透之旅 当然了，在过去一个学期里，随着知识和经验的进步，我学会了内网穿透。简单的理解起来，它干的工作类似于端口转发，只不过我们把本地的服">
+<meta property="og:type" content="article">
+<meta property="og:title" content="天降公网ip">
+<meta property="og:url" content="https://wuuconix.link/2022/02/18/ipv6/index.html">
+<meta property="og:site_name" content="wuuconix&#39;s blog">
+<meta property="og:description" content="背景 之前因为家里是移动的宽带，不给你分配公网ip，所以你无法实现类似在逛街的时候远程连接家里的电脑之类的操作。 相比于移动，我哥家里的宽带是电信的，他一个电话过去，电信立马给了公网ip，所以他可以随时随地远程控制他的电脑，这令我很羡慕。  内网穿透之旅 当然了，在过去一个学期里，随着知识和经验的进步，我学会了内网穿透。简单的理解起来，它干的工作类似于端口转发，只不过我们把本地的服">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o17giosjj30xc0hiwlr.jpg">
+<meta property="article:published_time" content="2022-02-18T17:02:38.000Z">
+<meta property="article:modified_time" content="2022-02-18T17:02:38.000Z">
+<meta property="article:author" content="wuuconix">
+<meta property="article:tag" content="ipv6">
+<meta property="article:tag" content="公网ip">
+<meta property="article:tag" content="移动">
+<meta property="article:tag" content="内网穿透">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o17giosjj30xc0hiwlr.jpg">
+  
+  
+  
+  <title>天降公网ip - wuuconix&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/toubudaziji.css">
+<link rel="stylesheet" href="/css/gundongtiao.css">
+<link rel="stylesheet" href="/css/APlayer.min.css">
+<link rel="stylesheet" href="/css/scrollbar.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_3317131_6niuojsefqt.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"wuuconix.link","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"Tpnm8c3kMWvXEXe6TN9JQnvb-gzGzoHsz","app_key":"1I9i7nfFTc4ulrrtGwfite4s","server_url":"https://tpnm8c3k.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="wuuconix's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wuuconix</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://sina.wuuconix.link/large/007YVyKcly1h3o17ul76oj31hc0u043h.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="天降公网ip"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-02-18 17:02" pubdate>
+          2022年2月18日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">天降公网ip</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <header><meta name="referrer" content="never"></header>
+
+    <div id="aplayer-qjWBZGxB" class="aplayer aplayer-tag-marker meting-tag-marker"
+         data-id="27198348" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
+    ></div>
+<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
+<p>之前因为家里是移动的宽带，不给你分配公网ip，所以你无法实现类似在逛街的时候远程连接家里的电脑之类的操作。</p>
+<p>相比于移动，我哥家里的宽带是电信的，他一个电话过去，电信立马给了公网ip，所以他可以随时随地远程控制他的电脑，这令我很羡慕。</p>
+<h2 id="内网穿透之旅"><a class="markdownIt-Anchor" href="#内网穿透之旅"></a> 内网穿透之旅</h2>
+<p>当然了，在过去一个学期里，随着知识和经验的进步，我学会了内网穿透。简单的理解起来，它干的工作类似于端口转发，只不过我们把本地的服务转发到了一台有公网ip的云服务器上。</p>
+<p>上个学期我购买了一台阿里云轻量级应用服务器，然后利用开源的内网穿透工具 <a target="_blank" rel="noopener" href="https://github.com/fatedier/frp">fatedier/frp: A fast reverse proxy to help you expose a local server behind a NAT or firewall to the internet. (github.com)</a> ，我可以实现将局域网里的服务进行公网访问。</p>
+<p>frp虽好，但是一个问题也一直困扰着我，这便是由于服务的传输完全经过云服务器，相当于云服务器担当了中间人，安全性我倒是不担心，因为是自己的，但是速度就非常慢了。众所周知，国内的云服务器带宽都十分感人，我的服务器**5Mb/s(0.625MB/s)**的带宽已经 鸡立鸡群了。</p>
+<p>然后在这个寒假我又发现了一个基于Ngork的内网穿透软件 <a target="_blank" rel="noopener" href="https://github.com/open-dingtalk/pierced">open-dingtalk/pierced: 钉钉内网穿透 (github.com)</a>。它的服务端部署在钉钉的国内高速机房里，带宽实测在<strong>3MB/s</strong>左右，已经非常快了。</p>
+<h2 id="突然发现的ipv6"><a class="markdownIt-Anchor" href="#突然发现的ipv6"></a> 突然发现的IPV6</h2>
+<p>昨天我在瞎玩的时候，突然发现我家的移动宽带是有公网ipv6的。</p>
+<p>现在我教大家如何快速判断你所在的网络有没有IPV6。直接在powershell中输入<strong>ipconfig</strong>。</p>
+<p><img src="https://upyun.wuuconix.link/image-20220218154619969.png" srcset="/img/loading.gif" lazyload alt="ipconfig" /></p>
+<p>如果有IPv6 Address，并且开头不是<strong>fe80</strong>的话，那就说明你很幸运的拥有了一个公网ipv6，这意味着你的电脑完全提供服务并在公网中访问。</p>
+<p>还可以访问此网站 <a target="_blank" rel="noopener" href="https://ipw.cn/ipv6/">IPv6地址查询 | IP查询(ipw.cn)</a> 如果出现以下类似画面，说明你确实拥有一个公网ipv6。</p>
+<blockquote>
+<p>注意访问此网站请关闭代理工具，不然会得到代理服务器的ip，而一般的代理服务器都是不支持ipv6的。</p>
+</blockquote>
+<p><img src="https://upyun.wuuconix.link/image-20220218155702274.png" srcset="/img/loading.gif" lazyload alt="ipv6地址查询工具" /></p>
+<h2 id="ipv6的特点"><a class="markdownIt-Anchor" href="#ipv6的特点"></a> IPV6的特点</h2>
+<p>也许大家会有个疑惑，按理说我的笔记本连在一个路由器下，得到的ip应该是一个内网ip，比如<code>192.168.1.60</code>。而为什么我笔记本上的ipv6能够直接是公网ip呢？</p>
+<p>这大概是由于ipv6的数量实在是太多了。我们来简单算一笔账，我们知道ipv4一共是32位。</p>
+<p><img src="https://upyun.wuuconix.link/image-20220218164742159.png" srcset="/img/loading.gif" lazyload alt="ipv4的数量" /></p>
+<p>所以总共ipv4的数量是43亿个，这对于这个信息化的世界来说，一个人可能有数台设备，一个公司里面可能有数百台设备，如果每台设备分配一个ip，这个ipv4是完全不够的，所以出现了NAT这种方式来缓解这种资源的紧张感，一台路由器下的所有设备都会被分到一个内网ip，这个内网ip是无法在公网中被访问的。</p>
+<p>而ipv6是64位。</p>
+<p><img src="https://upyun.wuuconix.link/image-20220218165048480.png" srcset="/img/loading.gif" lazyload alt="ipv6的数量" /></p>
+<p>它的数量我大概数了一下，应该是1844亿亿个。按全球人口70亿人来算，每个人都能分到263亿个ip。</p>
+<p><img src="https://upyun.wuuconix.link/image-20220218165452735.png" srcset="/img/loading.gif" lazyload alt="每个人能分到的ipv6个数" /></p>
+<p>所以公网ip一下子从一个稀缺资源，变成了一个人唾手可得的资源。所以对于ipv6而言，NAT这种方式已经没有意义了，所以局域网下的所有设备都会被分到一个公网ipv6。</p>
+<h2 id="手机流量也有ipv6"><a class="markdownIt-Anchor" href="#手机流量也有ipv6"></a> 手机流量也有IPV6</h2>
+<p>昨天下午在发现家里宽带有公网ipv6后已经非常高兴了，晚上睡觉前又试了一下，发现我的移动卡也有IPV6！</p>
+<p><img src="https://upyun.wuuconix.link/image-20220218160358771.png" srcset="/img/loading.gif" lazyload alt="移动ipv6" /></p>
+<p>可以看到因为我有两张移动卡，这里直接有两个ipv6。</p>
+<p>没想到ipv6的推广如此迅速又如此悄无声息，大部分普通用户都没有意识到它手里掌握着许多公网ip。</p>
+<h2 id="ipv6-wsl2"><a class="markdownIt-Anchor" href="#ipv6-wsl2"></a> IPV6 + WSL2</h2>
+<p>有了公网ip，实际上我们已经能实现一开始说的情景了，不用内网穿透，直接在任何地点远程连接我的笔记本。由于比较简单，这里就不放图了。</p>
+<p>平常我都用<strong>WSL2</strong>来作为生产力环境。我们都知道，windows对wsl2做了很强的适配，wsl2按理说是一个虚拟机，如果我们需要访问wsl2中的8081端口上的服务，按理说得到windows主机的浏览器输入<code>http://wsl2-ip:8081</code>的url才能访问到。</p>
+<p>但是微软帮我们自动做了一层端口转发，wsl2内部的任意端口都会被转发到windows主机的对应端口上，所以，我们只需要在浏览器中输入<code>http://127.0.0.1:8081</code>就能访问到wsl2 8081端口上的的服务。</p>
+<p><img src="https://upyun.wuuconix.link/image-20220218162638691.png" srcset="/img/loading.gif" lazyload alt="8081" /></p>
+<p>我在8081端口开了一个nextcloud。</p>
+<p>所以我们现在能否直接通过<code>http://[ipv6]:8081</code>的方式来访问这个服务呢？</p>
+<p>可以，但是需要以下两步设置。</p>
+<ol>
+<li>
+<p>在高级防火墙设置中添加8081端口的入站规则</p>
+<p><img src="https://upyun.wuuconix.link/image-20220218163124126.png" srcset="/img/loading.gif" lazyload alt="入站规则" /></p>
+</li>
+<li>
+<p>在poweshell将ipv6的端口的请求转发到ipv4对应端口</p>
+<blockquote>
+<p>这里有点绕，大概原因就是wsl2给我们的端口转发只是ipv4层面的，我们无法通过ipv6来访问对应服务，所以我们需要把ipv6对应端口的请求转发到ipv4对应的端口。</p>
+<p>如果你的服务不是wsl2上的，而是直接在windows主机中开启的服务，按理说该服务会同时相应ipv4和ipv6的请求，你就不用干这一步了，只需要执行第一步的增加入栈规则。</p>
+</blockquote>
+<p>在powershell中以管理员方式执行以下指令</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">netsh interface portproxy add v6tov4 listenport=<span class="hljs-number">8081</span> connectport=<span class="hljs-number">8081</span><br></code></pre></td></tr></table></figure>
+<p>然后你可以通过以下指令查看转发是否成功</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">netsh interface portproxy show all<br></code></pre></td></tr></table></figure>
+<p><img src="https://upyun.wuuconix.link/image-20220218163650430.png" srcset="/img/loading.gif" lazyload alt="show all" /></p>
+</li>
+</ol>
+<p><img src="https://upyun.wuuconix.link/image-20220218164002538.png" srcset="/img/loading.gif" lazyload alt="ipv6访问" /></p>
+<p>可以看到，成功使用ipv6访问服务。</p>
+<p>用手机尝试下载文件时，可以看到速度达到<code>7MB/s</code>。这应该受限于我家的宽带的带宽，如果你家是千兆宽带，那就直接起飞了。</p>
+<p><img src="https://upyun.wuuconix.link/image-20220218164123210.png" srcset="/img/loading.gif" lazyload alt="速度" /></p>
+<h2 id="美中不足"><a class="markdownIt-Anchor" href="#美中不足"></a> 美中不足</h2>
+<p>受到国家政策的限制，运营商都对80/443端口进行了封锁，应对服务器满天飞而造成监管难度过大的困境。</p>
+<p>所以我们暂时只能用其他的端口提供服务。</p>
+<p>丑是丑了点，但是想到这美妙的带宽，一切都是值得的，而且，白嫖的公网ip嘛！要什么摩托车。</p>
+<h2 id="写在最后"><a class="markdownIt-Anchor" href="#写在最后"></a> 写在最后</h2>
+<p>后天就去学校了，我希望校园网也有ipv6，之前没有注意过，如果真的有，真的就可以告别内网穿透了。</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ipv6/">#ipv6</a>
+      
+        <a href="/tags/%E5%85%AC%E7%BD%91ip/">#公网ip</a>
+      
+        <a href="/tags/%E7%A7%BB%E5%8A%A8/">#移动</a>
+      
+        <a href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">#内网穿透</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>天降公网ip</div>
+      <div>https://wuuconix.link/2022/02/18/ipv6/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>wuuconix</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年2月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/24/raidrive/" title="Raidrive Pro? NonProfit!">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Raidrive Pro? NonProfit!</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/30/pwn/" title="PWN PWN PWN！">
+                        <span class="hidden-mobile">PWN PWN PWN！</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tHbt1wElFiuw8zrDBIEUsNIv-gzGzoHsz","appKey":"ztzeLh1CDeUvYk1YrI8bK8kW","path":"window.location.pathname","placeholder":"留下一条友善的评论吧","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.13.10/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('mermaid' in window) {
+        mermaid.init();
+      }
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://upyun.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      浙ICP备2021025197号-1
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33048202000536"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>浙公网安备33048202000536号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/caidai.js"></script>
+<script src="//paste.vaala.cloud/raw/siqopubiwi.js"></script>
+<script src="/js/APlayer.min.js"></script>
+<script src="//url.wuuconix.link/live2d.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

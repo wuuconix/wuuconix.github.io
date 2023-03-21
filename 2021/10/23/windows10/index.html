@@ -1,0 +1,844 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://sina.wuuconix.link/large/007YVyKcly1h1w9ogawmvj30jg0jgtdg.jpg">
+  <link rel="icon" href="https://sina.wuuconix.link/large/007YVyKcly1h1w9ogawmvj30jg0jgtdg.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="wuuconix">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="背景 昨天将实验室的主机重装成win10了。现在我就是在实验室远程连接寝室的笔记本来写博客。 在配置好远程连接并且深刻体会到远程带来的方便与快捷后，我已经离不开它了。 进入实验室也快半年了，就没来过几次2333，我觉得很大部分原因是，每次来实验室都要备上沉重的笔记本。 有时候突然想要去实验室了，但是想到要拿笔记本，拿充电器，拿键盘，拿鼠标，背着沉重的包走过来。想想就放弃了。 于是昨">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实验室机器安装Windows 10记录">
+<meta property="og:url" content="https://wuuconix.link/2021/10/23/windows10/index.html">
+<meta property="og:site_name" content="wuuconix&#39;s blog">
+<meta property="og:description" content="背景 昨天将实验室的主机重装成win10了。现在我就是在实验室远程连接寝室的笔记本来写博客。 在配置好远程连接并且深刻体会到远程带来的方便与快捷后，我已经离不开它了。 进入实验室也快半年了，就没来过几次2333，我觉得很大部分原因是，每次来实验室都要备上沉重的笔记本。 有时候突然想要去实验室了，但是想到要拿笔记本，拿充电器，拿键盘，拿鼠标，背着沉重的包走过来。想想就放弃了。 于是昨">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o1qpwd03j31hc0u04qp.jpg">
+<meta property="article:published_time" content="2021-10-23T04:14:05.000Z">
+<meta property="article:modified_time" content="2021-10-23T04:14:05.000Z">
+<meta property="article:author" content="wuuconix">
+<meta property="article:tag" content="wol">
+<meta property="article:tag" content="远程连接">
+<meta property="article:tag" content="win10">
+<meta property="article:tag" content="powershell">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o1qpwd03j31hc0u04qp.jpg">
+  
+  
+  
+  <title>实验室机器安装Windows 10记录 - wuuconix&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/toubudaziji.css">
+<link rel="stylesheet" href="/css/gundongtiao.css">
+<link rel="stylesheet" href="/css/APlayer.min.css">
+<link rel="stylesheet" href="/css/scrollbar.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_3317131_6niuojsefqt.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"wuuconix.link","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"Tpnm8c3kMWvXEXe6TN9JQnvb-gzGzoHsz","app_key":"1I9i7nfFTc4ulrrtGwfite4s","server_url":"https://tpnm8c3k.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="wuuconix's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wuuconix</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://sina.wuuconix.link/large/007YVyKcly1h3o1qyilt0j31hc0u0h4m.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="实验室机器安装Windows 10记录"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-10-23 04:14" pubdate>
+          2021年10月23日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          28 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">实验室机器安装Windows 10记录</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <header><meta name="referrer" content="never"></header>
+
+    <div id="aplayer-jaLOZfhn" class="aplayer aplayer-tag-marker meting-tag-marker"
+         data-id="1436910579" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
+    ></div>
+<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
+<p>昨天将实验室的主机重装成win10了。现在我就是在实验室远程连接寝室的笔记本来写博客。</p>
+<p>在配置好远程连接并且深刻体会到远程带来的方便与快捷后，我已经离不开它了。</p>
+<p>进入实验室也快半年了，就没来过几次2333，我觉得很大部分原因是，每次来实验室都要备上沉重的笔记本。</p>
+<p>有时候突然想要去实验室了，但是想到要拿笔记本，拿充电器，拿键盘，拿鼠标，背着沉重的包走过来。想想就放弃了。</p>
+<p>于是昨天我打算把用了快3个月的Ubuntu Server刷成win10，这样就能不用带笔记本了，而远程连接。或者不远程，直接用实验室的主机也能干很多事了。不像以前，如果什么都不带就来实验室，虽然有屏幕，有主机，但是打开屏幕，里面只有命令行，字体还没有显示完全2333。</p>
+<p>但是我对过去3个月的实验室主机的Ubuntu Server是十分满意的，我已经很久没有用wsl了，因为只要一句ssh命令就能连接到实验室主机。我也不用在笔记本上开着Dokcer for Desktop，忍受它轰鸣的风扇声了。这让我感受到了一台实体Linux主机的好处。</p>
+<p>但是慢慢得，我购买了两台云服务器，貌似实验室主机的工作云服务器也能胜任。</p>
+<p>实验室的主机也长期处在性能过剩的情况，毕竟linux机器资源占用本来就少。一开始开了很多docker服务，之后因为使用不频繁，也删掉了许多。</p>
+<p>我也意识到，如果以后要打比赛的话，还是得用wsl，因为到时候可能会断网。</p>
+<p>这一些因素都让我决定重装系统。</p>
+<h2 id="下载微软最新iso镜像"><a class="markdownIt-Anchor" href="#下载微软最新iso镜像"></a> 下载微软最新ISO镜像</h2>
+<p>我的u盘里装着ventory，它可以在机器u盘启动的时候，选择众多iso文件中选择一个进行启动。</p>
+<p>所以我只需要下载windows 最新的iso文件即可。</p>
+<p>我们在搜索引擎上搜索关键词后发现了这个网址。 <a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/software-download/windows10">https://www.microsoft.com/zh-cn/software-download/windows10</a></p>
+<p>结果发现狗比微软官网只提供了下载工具而没有直接下载iso镜像的选项。</p>
+<p><img src="https://upyun.wuuconix.link/image-20211023105412679.png" srcset="/img/loading.gif" lazyload alt="下载工具" /></p>
+<p>后来发现只要改为手机端的UA即可，edge浏览器直接在F12里点一下一个切换按钮即可以各种手机端ua进行模拟。切换后刷新一下界面，就能看到页面变成了iso下载界面啦！</p>
+<p><img src="https://upyun.wuuconix.link/image-20211023105636856.png" srcset="/img/loading.gif" lazyload alt="iso" /></p>
+<p>这里提供了两个选择，<code>windows 10</code>和<code>windows 家庭版</code>。第一个我怀疑是专业版。但是为了保险起见，我选择了熟悉的家庭版。</p>
+<p>之后就是正常u盘启动然后重装啦，不多说了。</p>
+<h2 id="激活windows"><a class="markdownIt-Anchor" href="#激活windows"></a> 激活windows</h2>
+<p>因为这台主机肯定是没有自带激活的，不像我们的笔记本，出场的时候有正版windows会自动激活。</p>
+<p>这里我使用了github上的一个工具。十分好用，将这个windows数字激活了，应该是永久的，因为不是以kms方式。</p>
+<p>软件链接 <a target="_blank" rel="noopener" href="https://github.com/zbezj/HEU_KMS_Activator">https://github.com/zbezj/HEU_KMS_Activator</a></p>
+<h2 id="rdpwrap找不到对应rdpwrapini"><a class="markdownIt-Anchor" href="#rdpwrap找不到对应rdpwrapini"></a> rdpwrap找不到对应rdpwrap.ini</h2>
+<p>安装完系统后第一件事我就开始着手远程连接，因为能在实验室外面连接主机也是一件非常重要的事情。</p>
+<p>然后用RDPWRAP发现找不到我的系统版本的<code>rdpwrap.ini</code>。我记得当时的版本号是<code>10.0.19043.789</code>。</p>
+<p>我非常郁闷，想明明是微软官网下的最新iso镜像安装的系统，不至于找不到ini啊。</p>
+<p>后来我更新了一下系统就好了2333。</p>
+<p>原来更新是会变版本号的（</p>
+<p><img src="https://upyun.wuuconix.link/rdp%20configure.png" srcset="/img/loading.gif" lazyload alt="rdp configure" /></p>
+<p>更新后版本号的数值下降了，这个版本就很容易在github上找到对应ini文件了。</p>
+<h2 id="配置powershell-oh-my-posh"><a class="markdownIt-Anchor" href="#配置powershell-oh-my-posh"></a> 配置Powershell Oh-My-Posh</h2>
+<p>配置完远程连接，我便着手开始美化Powershell，装个Oh-My-Posh。</p>
+<p>简单来说，Oh-My-Posh就是和Linux里Oh-My-Zsh一样的存在。</p>
+<p>这是vaala的配置文档。<a target="_blank" rel="noopener" href="https://docs.vaala.cloud/s/C4JK2n9-J">https://docs.vaala.cloud/s/C4JK2n9-J</a></p>
+<p>这是vaala很久之前写的了，现在仍然适用。</p>
+<p>但是随着windows官方包管理工具<code>winget</code>的出现，vaala文档中利用第三方包管理工具choco的步骤可以用winget来代替。</p>
+<ol>
+<li>
+<p>让powershell使用<code>sudo</code>，可以用winget安装gsudo这个工具。</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">winget install gsudo -e <span class="hljs-comment">--rainbow</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>git也可以用winget来安装</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">winget install Git<span class="hljs-selector-class">.Git</span> -e <span class="hljs-attr">--rainbow</span><br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>然后我将vaala的powershell配置文件精简了一下，去掉了我平时用不到的功能。虽然每次启动powershell还是很慢（</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">Import-Module</span> posh<span class="hljs-literal">-git</span> <br><span class="hljs-built_in">Import-Module</span> <span class="hljs-built_in">oh</span><span class="hljs-literal">-my-posh</span> <br><span class="hljs-built_in">Import-Module</span> <span class="hljs-built_in">Get-ChildItemColor</span><br><br><span class="hljs-built_in">Set-PoshPrompt</span> <span class="hljs-literal">-Theme</span> M365Princess<br><br><span class="hljs-variable">$env:PYTHONIOENCODING</span>=<span class="hljs-string">&quot;utf-8&quot;</span><br><br><span class="hljs-comment"># Remove curl alias</span><br><span class="hljs-keyword">If</span> (<span class="hljs-built_in">Test-Path</span> Alias:<span class="hljs-built_in">curl</span>) &#123;<span class="hljs-built_in">Remove-Item</span> Alias:<span class="hljs-built_in">curl</span>&#125;<br><span class="hljs-keyword">If</span> (<span class="hljs-built_in">Test-Path</span> Alias:<span class="hljs-built_in">curl</span>) &#123;<span class="hljs-built_in">Remove-Item</span> Alias:<span class="hljs-built_in">curl</span>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">GoBack</span></span> &#123;<span class="hljs-built_in">Set-Location</span> ..&#125;<br><br><span class="hljs-comment"># Remove-Item alias:ls -force</span><br><span class="hljs-built_in">Set-Alias</span> l <span class="hljs-built_in">Get-ChildItemColor</span> <span class="hljs-literal">-option</span> AllScope<br><span class="hljs-built_in">Set-Alias</span> <span class="hljs-built_in">ls</span> <span class="hljs-built_in">Get-ChildItemColorFormatWide</span> <span class="hljs-literal">-option</span> AllScope<br><br><span class="hljs-built_in">Set-Alias</span> open <span class="hljs-built_in">Invoke-Item</span><br><span class="hljs-built_in">Set-Alias</span> .. GoBack<br><br><span class="hljs-built_in">Set-PSReadlineKeyHandler</span> <span class="hljs-literal">-Key</span> Tab <span class="hljs-literal">-Function</span> Complete <span class="hljs-comment"># 设置 Tab 键补全</span><br><span class="hljs-built_in">Set-PSReadLineKeyHandler</span> <span class="hljs-literal">-Key</span> <span class="hljs-string">&quot;Ctrl+d&quot;</span> <span class="hljs-literal">-Function</span> MenuComplete <span class="hljs-comment"># 设置 Ctrl+d 为菜单补全和 Intellisense</span><br><span class="hljs-built_in">Set-PSReadLineKeyHandler</span> <span class="hljs-literal">-Key</span> <span class="hljs-string">&quot;Ctrl+z&quot;</span> <span class="hljs-literal">-Function</span> Undo <span class="hljs-comment"># 设置 Ctrl+z 为撤销</span><br><span class="hljs-built_in">Set-PSReadLineKeyHandler</span> <span class="hljs-literal">-Key</span> UpArrow <span class="hljs-literal">-Function</span> HistorySearchBackward <span class="hljs-comment"># 设置向上键为后向搜索历史记录</span><br><span class="hljs-built_in">Set-PSReadLineKeyHandler</span> <span class="hljs-literal">-Key</span> DownArrow <span class="hljs-literal">-Function</span> HistorySearchForward <span class="hljs-comment"># 设置向下键为前向搜索历史纪录</span><br><span class="hljs-built_in">Set-PSReadLineKeyHandler</span> <span class="hljs-literal">-Key</span> <span class="hljs-string">&quot;Ctrl+f&quot;</span> <span class="hljs-literal">-Function</span> ForwardWord<br><span class="hljs-built_in">Set-PSReadLineOption</span> <span class="hljs-literal">-PredictionSource</span> <span class="hljs-built_in">History</span><br><br><span class="hljs-built_in">Set-PSReadLineOption</span> <span class="hljs-literal">-Colors</span> <span class="hljs-selector-tag">@</span>&#123;<br>  InlinePrediction         = <span class="hljs-string">&quot;#acacac&quot;</span><br>&#125;<br><br>[<span class="hljs-type">System.Console</span>]::OutputEncoding=[<span class="hljs-type">System.Text.Encoding</span>]::GetEncoding(<span class="hljs-number">65001</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="实现远程唤醒"><a class="markdownIt-Anchor" href="#实现远程唤醒"></a> 实现远程唤醒</h2>
+<p>这台机器非常神奇，它bios和windows 网卡的设置貌似都是默认支持wol的。我第一次试就成功了。相比之下，可怜的smooth的联想拯救者y7000 2019的bios里连个wol的选项都没有。</p>
+<p>然后因为实验室主机的是连在路由器下的，不是直接连着校园网，要想实现校园网内唤醒，势必需要端口转发。</p>
+<p>之前试过，用dmz，直接将主机的所有端口全部转发的话，是能够实现唤醒的，但是因为vaala有个猫盘连接着我的路由器，我就不能用dmz了。</p>
+<p>实际上也非常简单，因为魔术包的发送都是用的udp的9号端口，只要在路由器里转发一下就行。</p>
+<p><img src="https://upyun.wuuconix.link/image-20211023112809110.png" srcset="/img/loading.gif" lazyload alt="udp" /></p>
+<p>注意一定要选为udp，tcp的9号端口是不行的。</p>
+<h2 id="漂亮的桌面展示"><a class="markdownIt-Anchor" href="#漂亮的桌面展示"></a> 漂亮的桌面展示</h2>
+<p>实验室主机本身的壁纸。这个壁纸我非常喜欢。</p>
+<p><img src="https://sina.wuuconix.link/large/007YVyKcly1h2b97ntpsjj31hc0u04qp.jpg" srcset="/img/loading.gif" lazyload alt="win10" /></p>
+<p>以下是远程连接我的笔记本，win11原皮yyds！</p>
+<p><img src="https://sina.wuuconix.link/large/007YVyKcly1h2b97zczwqj31hc0u01e8.jpg" srcset="/img/loading.gif" lazyload alt="win11" /></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/wol/">#wol</a>
+      
+        <a href="/tags/%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/">#远程连接</a>
+      
+        <a href="/tags/win10/">#win10</a>
+      
+        <a href="/tags/powershell/">#powershell</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>实验室机器安装Windows 10记录</div>
+      <div>https://wuuconix.link/2021/10/23/windows10/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>wuuconix</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年10月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/07/FA/" title="形式语言笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">形式语言笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/21/think1/" title="武丑兄杂想——2021年10月21日">
+                        <span class="hidden-mobile">武丑兄杂想——2021年10月21日</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tHbt1wElFiuw8zrDBIEUsNIv-gzGzoHsz","appKey":"ztzeLh1CDeUvYk1YrI8bK8kW","path":"window.location.pathname","placeholder":"留下一条友善的评论吧","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.13.10/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('mermaid' in window) {
+        mermaid.init();
+      }
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://upyun.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      浙ICP备2021025197号-1
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33048202000536"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>浙公网安备33048202000536号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/caidai.js"></script>
+<script src="//paste.vaala.cloud/raw/siqopubiwi.js"></script>
+<script src="/js/APlayer.min.js"></script>
+<script src="//url.wuuconix.link/live2d.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

