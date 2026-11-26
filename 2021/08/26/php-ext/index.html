@@ -24,8 +24,8 @@
 <meta property="og:description" content="背景 很久之前，有一个ctf比赛，大家都在俱乐部里使劲。当时我做到了一道php的题目，里面需要用到php插件中的压缩，但是当时我不知道如何开启插件，当时非常苦恼，想着一定要解决一下这个问题，不然以后再遇到这个问题就麻烦了。 今天在做sql盲注的时候，想现在本地实践一番，写出个脚本再开题目。结果本地上来就给我一个mysqli找不到。我便花了很长时间去寻找开启插件的方法。在php.in">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o1fkhhg9j31460nw11k.jpg">
-<meta property="article:published_time" content="2021-08-26T12:58:09.000Z">
-<meta property="article:modified_time" content="2021-08-26T12:58:09.000Z">
+<meta property="article:published_time" content="2021-08-26T04:58:09.000Z">
+<meta property="article:modified_time" content="2021-08-26T04:58:09.000Z">
 <meta property="article:author" content="wuuconix">
 <meta property="article:tag" content="docker">
 <meta property="article:tag" content="php">
@@ -314,7 +314,7 @@
                 
                 <header><meta name="referrer" content="never"></header>
 
-    <div id="aplayer-jUkpVixS" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-qesgJhCZ" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="423314244" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
     ></div>
 <h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
@@ -322,17 +322,17 @@
 <p>今天在做sql盲注的时候，想现在本地实践一番，写出个脚本再开题目。结果本地上来就给我一个<code>mysqli找不到</code>。我便花了很长时间去寻找开启插件的方法。在<code>php.ini</code>里试了一下，但是都没有成果，最终我开了一眼dockerhub的<a target="_blank" rel="noopener" href="https://hub.docker.com/_/php">php镜像说明</a>，豁然开朗，原来镜像开始拓展如此简单。</p>
 <h2 id="解决办法"><a class="markdownIt-Anchor" href="#解决办法"></a> 解决办法</h2>
 <p>官方原话。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210826204044527.png" srcset="/img/loading.gif" lazyload alt="docker-php-ext" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210826204044527.png" srcset="/img/loading.gif" lazyload alt="docker-php-ext" /></p>
 <p>官方提供了几个命令，<code>docker-php-ext-configure</code>、<code>docker-php-ext-install</code>、<code>docker-php-ext-enalbe</code>来轻松地安装拓展。</p>
 <p>但是官方给地例子都是需要在Dockerfile里先运行然后生成镜像的，这貌似有点麻烦。</p>
 <p>然后我在github上发现了这位<a target="_blank" rel="noopener" href="https://github.com/docker-library/php/issues/391#issuecomment-346590029">老哥</a>的留言，它说这些命令其实完全可以在容器内部使用。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210826204502118.png" srcset="/img/loading.gif" lazyload alt="牛逼的老哥" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210826204502118.png" srcset="/img/loading.gif" lazyload alt="牛逼的老哥" /></p>
 <p>其实我应该想到的，毕竟Dockerfile中的RUN实际上就是执行内部的命令然后生成一个新的镜像。</p>
 <p>这样安装mysqli拓展就显得无比简单了，只需在容器内部执行</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker-php-ext-install mysqli<br>docker-php-ext-enable mysqli <span class="hljs-comment">#实际测试这句话可以不写，会自动应用</span><br>apachectl restart<br></code></pre></td></tr></table></figure>
-<p><img src="https://upyun.wuuconix.link/image-20210826205257334.png" srcset="/img/loading.gif" lazyload alt="运行结果" /></p>
-<p><img src="https://upyun.wuuconix.link/image-20210826205455803.png" srcset="/img/loading.gif" lazyload alt="phpinfo中出现mysqlil" /></p>
-<p><img src="https://upyun.wuuconix.link/image-20210826205620602.png" srcset="/img/loading.gif" lazyload alt="成功利用mysqli连接" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210826205257334.png" srcset="/img/loading.gif" lazyload alt="运行结果" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210826205455803.png" srcset="/img/loading.gif" lazyload alt="phpinfo中出现mysqlil" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210826205620602.png" srcset="/img/loading.gif" lazyload alt="成功利用mysqli连接" /></p>
 <h2 id="战术总结"><a class="markdownIt-Anchor" href="#战术总结"></a> 战术总结</h2>
 <p>这次算是解决了一个重大历史遗留问题。</p>
 <p>以后php的时候就可以更加游刃有余了。</p>
@@ -567,7 +567,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://upyun.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://r2.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
     </div>
   
   

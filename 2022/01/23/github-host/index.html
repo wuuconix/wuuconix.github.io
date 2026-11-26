@@ -24,8 +24,8 @@
 <meta property="og:description" content="背景 我在去年7月底的博文 个人图床的搭建 - wuuconix’s blog 中谈到了我的博客图床的搭建。 当时我用gitee来搭建图床，实现快速的图片访问，这个图床是成功的，到目前，我也一直沿用着那个gitee图床。 但是在这几个月中我也发现了一些问题。gitee对图片大小进行了限制，如果你上传的图片大小大于了1MB，那么是无法在线访问的。效果如下。  之前我对大图的解决办法是">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o13t2i0ij313o0kltl2.jpg">
-<meta property="article:published_time" content="2022-01-23T22:07:00.000Z">
-<meta property="article:modified_time" content="2022-01-23T22:07:00.000Z">
+<meta property="article:published_time" content="2022-01-23T14:07:00.000Z">
+<meta property="article:modified_time" content="2022-01-23T14:07:00.000Z">
 <meta property="article:author" content="wuuconix">
 <meta property="article:tag" content="github">
 <meta property="article:tag" content="jsDelivr">
@@ -315,19 +315,19 @@
                 
                 <header><meta name="referrer" content="never"></header>
 
-    <div id="aplayer-zlHbaACQ" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-SFJYgFNN" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1885190399" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
     ></div>
 <h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
 <p>我在去年7月底的博文 <a href="https://wuuconix.link/2021/07/27/image-host/">个人图床的搭建 - wuuconix’s blog</a> 中谈到了我的博客图床的搭建。</p>
 <p>当时我用gitee来搭建图床，实现快速的图片访问，这个图床是成功的，到目前，我也一直沿用着那个gitee图床。</p>
 <p>但是在这几个月中我也发现了一些问题。gitee对图片大小进行了限制，如果你上传的图片大小大于了1MB，那么是无法在线访问的。效果如下。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220123212905670.png" srcset="/img/loading.gif" lazyload alt="提示" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220123212905670.png" srcset="/img/loading.gif" lazyload alt="提示" /></p>
 <p>之前我对大图的解决办法是上传到qq空间，然后用qq空间的直链，但是你很有可能遇到下面的情况。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220123213206217.png" srcset="/img/loading.gif" lazyload alt="不可引用" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220123213206217.png" srcset="/img/loading.gif" lazyload alt="不可引用" /></p>
 <p>这个还算容易解决，最怕的一种情况是你无法确定这张qq空间图片的链接是不是永久链接，万一哪天qq空间不给你访问了就凉了。</p>
 <p>我还有一个解决办法是上传到我搭建在国外服务器的chreveto项目，它是一个开源的图床项目。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220123213506918.png" srcset="/img/loading.gif" lazyload alt="chvereto" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220123213506918.png" srcset="/img/loading.gif" lazyload alt="chvereto" /></p>
 <p>很多图床网站都是基于此项目二次开发的。但是我的国外服务器面临着到期的困扰，而且据说最近服务商可能要跑路，所以我对存在我自己的chvereto上的图片也忧心忡忡。</p>
 <p>当然了，我完全可以存在一些大型的图床上面，比如SM.MS之类的，但是图片不掌握在自己手里感觉又有些害怕。</p>
 <h2 id="解决"><a class="markdownIt-Anchor" href="#解决"></a> 解决</h2>
@@ -341,14 +341,14 @@
 <p>它的url格式就是把域名换掉，然后把仓库的分支从<code>containter/branch</code>的形式写为了<code>container@branch</code>的形式。</p>
 <p>而且最关键的是，github不像抠门的gitee，有1MB的限制。</p>
 <p>同时配合上我们一直在用的picgo，就可以实现快速上传大图啦！</p>
-<p><img src="https://upyun.wuuconix.link/image-20220123215326199.png" srcset="/img/loading.gif" lazyload alt="picgo" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220123215326199.png" srcset="/img/loading.gif" lazyload alt="picgo" /></p>
 <h2 id="效果演示"><a class="markdownIt-Anchor" href="#效果演示"></a> 效果演示</h2>
 <p>以下是一张4MB的大图，分别在github with jsDelivr和gitee上的表现</p>
 <p><img src="https://gitee.wuuconix.link/95635319_p0.png" srcset="/img/loading.gif" lazyload alt="gitee的表现" /></p>
 <p>哈哈，我宣布gitee完败。</p>
 <p>当然了，以后我小于1MB的图片仍然会存储在gitee上，毕竟是国内的托管厂商，速度还是更快的。</p>
 <p>而面对大图也不用慌啦。</p>
-<p>目前wuuconix’s blog中所有大图已经替换为jsDelivr链接，<a target="_blank" rel="noopener" href="https://upyun.wuuconix.link">img.wuuconix.link</a> 也将停止服务。</p>
+<p>目前wuuconix’s blog中所有大图已经替换为jsDelivr链接，<a target="_blank" rel="noopener" href="https://r2.wuuconix.link">img.wuuconix.link</a> 也将停止服务。</p>
 <p>我用必应快照记录下了它最后的样子。 <a target="_blank" rel="noopener" href="https://cc.bingj.com/cache.aspx?q=img.wuuconix.link&amp;d=4643959447291400&amp;mkt=zh-CN&amp;setlang=zh-CN&amp;w=7xcoUrpA5bs_1DfTiF-EG2iUmVlbUXWK">必应快照</a></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
@@ -583,7 +583,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://upyun.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://r2.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
     </div>
   
   

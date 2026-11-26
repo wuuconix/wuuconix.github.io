@@ -24,8 +24,8 @@
 <meta property="og:description" content="背景 之前实现了校园网内的笔记本远程唤醒。当时确实以为自己成功了，直到第二天。 第二天一醒来我就拿出平板准备远程唤醒床下的笔记本，开始过上小康生活。但是却失败了。这让我非常纳闷。 查询资料过后，推测原因应该是学校的路由器没有将笔记本的mac和ip进行绑定，即没有进行arp绑定。 这就导致笔记本睡眠或者关机超过两分钟，ip和mac的信息就从路由器的缓存中删除了，之后想要唤醒也就不可能">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o1e4ek9zj30wq0l0wm0.jpg">
-<meta property="article:published_time" content="2021-09-08T16:05:00.000Z">
-<meta property="article:modified_time" content="2021-09-08T16:05:00.000Z">
+<meta property="article:published_time" content="2021-09-08T08:05:00.000Z">
+<meta property="article:modified_time" content="2021-09-08T08:05:00.000Z">
 <meta property="article:author" content="wuuconix">
 <meta property="article:tag" content="route">
 <meta property="article:tag" content="breed">
@@ -315,7 +315,7 @@
                 
                 <header><meta name="referrer" content="never"></header>
 
-    <div id="aplayer-eQIxxxsr" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-CjmsiboN" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="4940920" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
     ></div>
 <h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
@@ -352,13 +352,13 @@
 <li>
 <p>然后去这个这个 仓库里下载 Openwrt 的breed直装版 <a target="_blank" rel="noopener" href="https://github.com/ababwbq/Actions-OpenWrt-Xiaomi-R4A/actions">Actions · ababwbq/Actions-OpenWrt-Xiaomi-R4A (github.com)</a> 。直接装官网的版本会出错，估计官网是给你直接刷的，而不是通过breed来刷的。</p>
 <p>下载以下文件，然后解压后就可以得到Openwrt的breed直装固件了。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210908235705985.png" srcset="/img/loading.gif" lazyload alt="zip" /></p>
-<p><img src="https://upyun.wuuconix.link/image-20210908235803358.png" srcset="/img/loading.gif" lazyload alt="openwrt bin" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210908235705985.png" srcset="/img/loading.gif" lazyload alt="zip" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210908235803358.png" srcset="/img/loading.gif" lazyload alt="openwrt bin" /></p>
 <p>这里我记得刷<code>sysupgrade</code>的固件即可。</p>
 </li>
 <li>
 <p>openwrt的页面非常好看，功能也非常丰富，但是它有一个非常奇怪的特性。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210909190938360.png" srcset="/img/loading.gif" lazyload alt="openwrt" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210909190938360.png" srcset="/img/loading.gif" lazyload alt="openwrt" /></p>
 <p>因为学校上网首先需要过一遍锐捷的校园网认证。那路由器怎么过认证呢？</p>
 <p>正常情况下，我们可以用一台设备连接路由器的网络，然后点开一个网页，这是网页就会自动跳转到认证界面，输入账号密码过后就能认证成功。而学校的网络只能识别到一个路由器完成了校园网认证，它没法检测到路由器下的内网。所以我们这样一干实际上就把路由器给认证了。</p>
 <p>但是openwrt特立独行，我从LAN口接出一条网线给笔记本，结果笔记本无法跳出认证界面。如果用wifi连，能跳出来，但是一看ip，好家伙，ip是校园网的，认证的是笔记本，而不是路由器。</p>
@@ -368,7 +368,7 @@
 </li>
 <li>
 <p>padavan在breed里直接刷就行。固件我是用的恩山论坛这位老哥分享的 <a target="_blank" rel="noopener" href="https://www.right.com.cn/forum/thread-4317222-1-1.html">小米路由器4A千兆版刷Padavan(WIN10刷,含刷死救砖)</a></p>
-<p><img src="https://upyun.wuuconix.link/image-20210909192139371.png" srcset="/img/loading.gif" lazyload alt="padanvan固件" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210909192139371.png" srcset="/img/loading.gif" lazyload alt="padanvan固件" /></p>
 <p>padavan比openwrt好驯服多了，刷完笔记本连上LAN口网线，直接弹出了校园网认证界面，直接就把路由器给认证了。</p>
 <p>以下是padavan默认的信息</p>
 <blockquote>
@@ -381,21 +381,21 @@
 </ul>
 </blockquote>
 <p>后台访问界面用的是HTTP Basic认证。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210909192426664.png" srcset="/img/loading.gif" lazyload alt="my.router" /></p>
-<p><img src="https://upyun.wuuconix.link/image-20210909192525402.png" srcset="/img/loading.gif" lazyload alt="padavan管理界面" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210909192426664.png" srcset="/img/loading.gif" lazyload alt="my.router" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210909192525402.png" srcset="/img/loading.gif" lazyload alt="padavan管理界面" /></p>
 <p>界面没有openwrt和小米原rom好看，但是功能十分丰富。我一开始买路由器就是为了解决远程唤醒笔记本的问题，我惊喜地发现它在管理界面可以直接唤醒设备。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210909192740888.png" srcset="/img/loading.gif" lazyload alt="网络唤醒功能" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210909192740888.png" srcset="/img/loading.gif" lazyload alt="网络唤醒功能" /></p>
 <p>这就十分方便了，那我们就不需要什么WOL软件，更不需要什么麻烦的端口转发了，我们唯一需要干的事就是保持我们可以访问到路由器管理界面。</p>
 <p>我们首先打开 <code>高级设置-&gt;防火墙-&gt;允许从互联网设置MT7621_7603_7612_128M</code>的开关，这样就能在校园网内访问到管理界面了。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210909193337738.png" srcset="/img/loading.gif" lazyload alt="允许从互联网设置MT7621_7603_7612_128M" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210909193337738.png" srcset="/img/loading.gif" lazyload alt="允许从互联网设置MT7621_7603_7612_128M" /></p>
 <p>然后我又用了实验室的主机做了管理界面的反代，再把服务内网穿透给阿里云服务器，最终实现了公网打开管理界面。</p>
 <p>但是这样还是不够方便，于是我用Burp抓了个包。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210909193853415.png" srcset="/img/loading.gif" lazyload alt="burp抓包" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210909193853415.png" srcset="/img/loading.gif" lazyload alt="burp抓包" /></p>
 <p>也就是说我们唤醒笔记本只需要发送这样一个HTTP报文就可以了，那我们如何借助手机或者平板来实现这个功能了。</p>
 <p>这里就要介绍无敌Burpsuite的强大功能了，分别是<code>Copy as requests</code>和<code>Copy as curl command</code>，前者可以把HTTP报文转化为python的requests请求，后者可以直接转化为shell中的curl方式。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210909194254871.png" srcset="/img/loading.gif" lazyload alt="Copy as" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210909194254871.png" srcset="/img/loading.gif" lazyload alt="Copy as" /></p>
 <p>这样我就得到了两个脚本。运行任意一个就可以在公网唤醒我的笔记本。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210909194402015.png" srcset="/img/loading.gif" lazyload alt="两个牛逼的脚本" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210909194402015.png" srcset="/img/loading.gif" lazyload alt="两个牛逼的脚本" /></p>
 </li>
 </ol>
 <h2 id="视频演示"><a class="markdownIt-Anchor" href="#视频演示"></a> 视频演示</h2>
@@ -637,7 +637,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://upyun.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://r2.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
     </div>
   
   

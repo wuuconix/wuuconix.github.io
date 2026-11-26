@@ -24,8 +24,8 @@
 <meta property="og:description" content="背景 vaala的机器人小vaala已经做好很久了，功能也十分丰富。当时看了vaala的仓库，了解到qq机器人是用mirai这个框架实现的。 寒假放假后，7att1ce也很快写了一个机器人，主要实现了setu模块（ 以下图片节选至530开车群。  我便也着手准备起来。  成果 在昨晚搞了一会儿MCL以及今天用Ariadne写了几个小功能后，我的机器人大概是这样的。    当输入#h">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o1cjsn6ij30l509rjw0.jpg">
-<meta property="article:published_time" content="2022-01-04T12:15:18.000Z">
-<meta property="article:modified_time" content="2022-01-04T12:15:18.000Z">
+<meta property="article:published_time" content="2022-01-04T04:15:18.000Z">
+<meta property="article:modified_time" content="2022-01-04T04:15:18.000Z">
 <meta property="article:author" content="wuuconix">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="mirai">
@@ -313,20 +313,20 @@
                 
                 <header><meta name="referrer" content="never"></header>
 
-    <div id="aplayer-DSWdxePl" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-VRXfbBRz" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1862798463" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
     ></div>
 <h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
 <p>vaala的机器人小vaala已经做好很久了，功能也十分丰富。当时看了vaala的仓库，了解到qq机器人是用mirai这个框架实现的。</p>
 <p>寒假放假后，7att1ce也很快写了一个机器人，主要实现了setu模块（</p>
 <p>以下图片节选至530开车群。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220104193548146.png" srcset="/img/loading.gif" lazyload alt="7att1ceのBot" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220104193548146.png" srcset="/img/loading.gif" lazyload alt="7att1ceのBot" /></p>
 <p>我便也着手准备起来。</p>
 <h2 id="成果"><a class="markdownIt-Anchor" href="#成果"></a> 成果</h2>
 <p>在昨晚搞了一会儿MCL以及今天用Ariadne写了几个小功能后，我的机器人大概是这样的。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220104194022997.png" srcset="/img/loading.gif" lazyload alt="help &amp; hi" /></p>
-<p><img src="https://upyun.wuuconix.link/image-20220104194049060.png" srcset="/img/loading.gif" lazyload alt="setu &amp; dice" /></p>
-<p><img src="https://upyun.wuuconix.link/image-20220104194205371.png" srcset="/img/loading.gif" lazyload alt="secret" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220104194022997.png" srcset="/img/loading.gif" lazyload alt="help &amp; hi" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220104194049060.png" srcset="/img/loading.gif" lazyload alt="setu &amp; dice" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220104194205371.png" srcset="/img/loading.gif" lazyload alt="secret" /></p>
 <p>当输入<code>#help</code> 时就会调用 <a target="_blank" rel="noopener" href="https://api.ixiaowai.cn/api/api.php">https://api.ixiaowai.cn/api/api.php</a> 接口随机获得一张setu。</p>
 <p>至于<code>#secret</code>实际上就是把setu以闪照的形式发出来233。</p>
 <h2 id="如何实现"><a class="markdownIt-Anchor" href="#如何实现"></a> 如何实现</h2>
@@ -336,14 +336,14 @@
 <p><a target="_blank" rel="noopener" href="https://github.com/mamoe/mirai">mamoe/mirai: 高效率 QQ 机器人支持库 (github.com)</a></p>
 <p>这是mirai主仓库，你需要按照它的用户手册下载Mirai Console Loader（即Mirai 控制台 加载器）</p>
 <p>它有交互式终端，提供了一些命令，但是实际上的主要功能就是自动登录qq（</p>
-<p><img src="https://upyun.wuuconix.link/image-20220104195217868.png" srcset="/img/loading.gif" lazyload alt="mcl" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220104195217868.png" srcset="/img/loading.gif" lazyload alt="mcl" /></p>
 <p>登录qq是个大坑，建议看这篇 mirai官方论坛的文章 <a target="_blank" rel="noopener" href="https://mirai.mamoe.net/topic/223/%E6%97%A0%E6%B3%95%E7%99%BB%E5%BD%95%E7%9A%84%E4%B8%B4%E6%97%B6%E5%A4%84%E7%90%86%E6%96%B9%E6%A1%88?lang=zh-CN">无法登录的临时处理方案 | MiraiForum (mamoe.net)</a></p>
 <p>大概步骤就是先用MiraiAndroid 登录上qq，然后复制device.json到服务器。然后服务器就能够登录了。</p>
 </li>
 <li>
 <p>登录上qq了你便完成了一大半了。接下来就是如何对bot进行控制。Mirai官方提供了<a target="_blank" rel="noopener" href="https://github.com/project-mirai/mirai-api-http">project-mirai/mirai-api-http: Mirai HTTP API (console) plugin (github.com)</a> 这款插件，它通过在机器本地开设http服务，让我们通过访问api接口的方式对机器人进行控制。这样有一个好处，无论你是什么语言，只要你可以去访问api，对api进行请求，你就实现对bot的操作。</p>
 <p>下载插件十分简单，进入 plugins目录，然后把插件的jar包放进去，下次开启mcl的时候就会自动加载插件了。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220104200413119.png" srcset="/img/loading.gif" lazyload alt="mirai-api-http" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220104200413119.png" srcset="/img/loading.gif" lazyload alt="mirai-api-http" /></p>
 <p>我这里下载了v2.4.0 即最新版本。</p>
 <blockquote>
 <p>注意 mirai主仓库提供的安装插件命令 ./mcl --update-package net.mamoe:mirai-api-http --type plugin --channel stable 下载的是插件的稳定版，实际上是v1. 的版本，不建议使用。</p>
@@ -352,14 +352,14 @@
 <li>
 <p>接下来我找了一个mirai python框架 <a target="_blank" rel="noopener" href="https://github.com/GraiaProject/Ariadne">GraiaProject/Ariadne: Another elegant framework for Mirai and mirai-api-http v2. Powered by GraiaProject. (github.com)</a> 用来编写bot功能。</p>
 <p>在仔细阅读它的文档之后，我们很快就能实现一个简单的机器人。以下是我当前项目的代码。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220104200726529.png" srcset="/img/loading.gif" lazyload alt="bot" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220104200726529.png" srcset="/img/loading.gif" lazyload alt="bot" /></p>
 <p>由于该框架封装的比较好，用起来还是比较方便的。</p>
 </li>
 </ol>
 <h2 id="结尾"><a class="markdownIt-Anchor" href="#结尾"></a> 结尾</h2>
 <p>一个QQ机器人还是非常有趣的，虽然用的频率可能不多。</p>
 <p>但是它可能会给使群热闹起来。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220104201138164.png" srcset="/img/loading.gif" lazyload alt="注入" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220104201138164.png" srcset="/img/loading.gif" lazyload alt="注入" /></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
@@ -589,7 +589,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://upyun.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://r2.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
     </div>
   
   

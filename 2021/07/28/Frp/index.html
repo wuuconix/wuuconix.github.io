@@ -24,8 +24,8 @@
 <meta property="og:description" content="背景 我在实验室的机器配置较高，内存有8G，而阿里云服务器的内存只有2G。之前校园网里的博客和公网的博客是分别在实验室机器和阿里云服务器上开了两个docker，都分别绑定了机器上的文件，然后这这些文件通过github实现同步。但是它不会自动同步，需要手动在一台机器上docker push和另一台机器上docker pull。此外，同时开两个docker对阿里云服务器的性能有些浪费，毕竟2G内存">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o12zlqj5j30u20ntjw5.jpg">
-<meta property="article:published_time" content="2021-07-28T16:19:45.000Z">
-<meta property="article:modified_time" content="2021-07-28T16:19:45.000Z">
+<meta property="article:published_time" content="2021-07-28T08:19:45.000Z">
+<meta property="article:modified_time" content="2021-07-28T08:19:45.000Z">
 <meta property="article:author" content="wuuconix">
 <meta property="article:tag" content="frp">
 <meta name="twitter:card" content="summary_large_image">
@@ -317,7 +317,7 @@
 <p>利用<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp">frp</a>这款简洁又强大的内网穿透工具，利用某种机制实现内网机器的服务可以被公网访问到。</p>
 <p>其具体实现的原理大概是，公网机器运行frps作为服务端，内网机器运行frpc作为客户端，两者进行某种连接。当有公网请求时，公网就会把请求转发到内网机器上，内网机器发送相应后，再发送回公网机器，公网机器再返回给用户。相当于利用公网机器做了一个跳板。</p>
 <p>同时我在frp客户端也就是我的实验室机器上配置了多个web服务。具体配置文件如下。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210729000820252.png" srcset="/img/loading.gif" lazyload alt="frpc.ini" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210729000820252.png" srcset="/img/loading.gif" lazyload alt="frpc.ini" /></p>
 <ul>
 <li>
 <p>当用户访问blog二级域名时，会被转发到我实验室机器的80端口，实现博客页面的展示。</p>
@@ -564,7 +564,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://upyun.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://r2.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
     </div>
   
   

@@ -6,7 +6,7 @@
   <link href="https://wuuconix.link/atom.xml" rel="self"/>
   
   <link href="https://wuuconix.link/"/>
-  <updated>2026-04-18T11:18:14.811Z</updated>
+  <updated>2026-11-26T06:29:40.859Z</updated>
   <id>https://wuuconix.link/</id>
   
   <author>
@@ -17,11 +17,40 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Eletheme：FastAdmin 的 Element UI 风格后台主题</title>
+    <link href="https://wuuconix.link/2026/08/27/fastadmin-elementui-theme/"/>
+    <id>https://wuuconix.link/2026/08/27/fastadmin-elementui-theme/</id>
+    <published>2026-08-27T02:00:00.000Z</published>
+    <updated>2026-11-26T06:29:40.859Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;本文由 GPT-6.2 Sol Medium 协助编写。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;FastAdmin 的开发体验一直很直接：熟悉的 ThinkPHP、模板和 Bootstrap 组件，开箱即用，做业务时不必先搭一套前端工程。&lt;/p&gt;
+&lt;p&gt;但在不少项目中，后台的功能已经足够成熟，界面观感却仍希望更现代一些。一个常见的选择是重构为 Vue 后台；这当然可行，但也意味着要引入新的工程结构、构建流程和维护成本。对于已经稳定运行的 FastAdmin 项目来说，往往没有必要为了调整视觉风格而重做整套后台。&lt;/p&gt;
+&lt;p&gt;因此，我制作并上架了 &lt;strong&gt;Eletheme&lt;/strong&gt;，一款 Element UI 风格后台主题。&lt;/p&gt;
+&lt;p&gt;它的目标很简单：&lt;strong&gt;保留 FastAdmin 原生开发方式，不引入 Vue，也能让后台拥有接近 Element UI 的现代化视觉体验。&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="开发" scheme="https://wuuconix.link/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="FastAdmin" scheme="https://wuuconix.link/tags/FastAdmin/"/>
+    
+    <category term="后台主题" scheme="https://wuuconix.link/tags/%E5%90%8E%E5%8F%B0%E4%B8%BB%E9%A2%98/"/>
+    
+    <category term="Element UI" scheme="https://wuuconix.link/tags/Element-UI/"/>
+    
+  </entry>
+  
+  <entry>
     <title>简单理解JS中的this关键字</title>
     <link href="https://wuuconix.link/2023/01/01/this/"/>
     <id>https://wuuconix.link/2023/01/01/this/</id>
-    <published>2023-01-01T20:01:49.000Z</published>
-    <updated>2026-04-18T11:18:14.811Z</updated>
+    <published>2023-01-01T12:01:49.000Z</published>
+    <updated>2026-08-05T03:20:32.247Z</updated>
     
     
       
@@ -43,8 +72,8 @@
     <title>Nuxt脚手架nuxi初始化失败原因&amp;解决方法</title>
     <link href="https://wuuconix.link/2022/11/06/nuxi/"/>
     <id>https://wuuconix.link/2022/11/06/nuxi/</id>
-    <published>2022-11-06T14:43:45.000Z</published>
-    <updated>2022-11-06T16:10:00.000Z</updated>
+    <published>2022-11-06T06:43:45.000Z</published>
+    <updated>2022-11-06T08:10:00.000Z</updated>
     
     
       
@@ -70,8 +99,8 @@
     <title>我躺平又不摆烂的日常生活</title>
     <link href="https://wuuconix.link/2022/10/08/my-daily-tour/"/>
     <id>https://wuuconix.link/2022/10/08/my-daily-tour/</id>
-    <published>2022-10-08T17:51:03.000Z</published>
-    <updated>2022-10-08T20:47:00.000Z</updated>
+    <published>2022-10-08T09:51:03.000Z</published>
+    <updated>2022-10-08T12:47:00.000Z</updated>
     
     
     <summary type="html">在今年3月份正式确立了将来要成为一名前端工程师的目标的之后，很幸运的，我获得了某中厂的提前批offer。在那之后，我正式步入了躺平生活，秋招正式批里一份简历也没投。</summary>
@@ -89,8 +118,8 @@
     <title>JS该写分号嘛？</title>
     <link href="https://wuuconix.link/2022/08/06/asi/"/>
     <id>https://wuuconix.link/2022/08/06/asi/</id>
-    <published>2022-08-06T22:56:23.000Z</published>
-    <updated>2022-08-06T22:56:23.000Z</updated>
+    <published>2022-08-06T14:56:23.000Z</published>
+    <updated>2022-08-06T14:56:23.000Z</updated>
     
     
       
@@ -112,8 +141,8 @@
     <title>炎炎夏日下的&quot;秋&quot;招</title>
     <link href="https://wuuconix.link/2022/08/04/autumn/"/>
     <id>https://wuuconix.link/2022/08/04/autumn/</id>
-    <published>2022-08-04T22:16:17.000Z</published>
-    <updated>2022-08-06T22:56:23.000Z</updated>
+    <published>2022-08-04T14:16:17.000Z</published>
+    <updated>2022-08-06T14:56:23.000Z</updated>
     
     
       
@@ -139,8 +168,8 @@
     <title>前端面经笔记</title>
     <link href="https://wuuconix.link/2022/04/19/bible/"/>
     <id>https://wuuconix.link/2022/04/19/bible/</id>
-    <published>2022-04-19T14:15:11.000Z</published>
-    <updated>2022-05-06T19:38:11.000Z</updated>
+    <published>2022-04-19T06:15:11.000Z</published>
+    <updated>2022-05-06T11:38:11.000Z</updated>
     
     
       
@@ -168,8 +197,8 @@
     <title>我更新了博客看板娘</title>
     <link href="https://wuuconix.link/2022/04/05/live2d/"/>
     <id>https://wuuconix.link/2022/04/05/live2d/</id>
-    <published>2022-04-05T16:44:18.000Z</published>
-    <updated>2022-04-05T16:44:18.000Z</updated>
+    <published>2022-04-05T08:44:18.000Z</published>
+    <updated>2022-04-05T08:44:18.000Z</updated>
     
     
       
@@ -191,8 +220,8 @@
     <title>在JavaScript中使用最大优先队列</title>
     <link href="https://wuuconix.link/2022/03/20/priorityQueue/"/>
     <id>https://wuuconix.link/2022/03/20/priorityQueue/</id>
-    <published>2022-03-20T21:40:41.000Z</published>
-    <updated>2022-03-20T21:40:41.000Z</updated>
+    <published>2022-03-20T13:40:41.000Z</published>
+    <updated>2022-03-20T13:40:41.000Z</updated>
     
     
       
@@ -220,8 +249,8 @@
     <title>手机图片瘦身小脚本 Mobile Photo Slim Project</title>
     <link href="https://wuuconix.link/2022/03/08/slim/"/>
     <id>https://wuuconix.link/2022/03/08/slim/</id>
-    <published>2022-03-08T00:33:53.000Z</published>
-    <updated>2022-03-08T00:33:53.000Z</updated>
+    <published>2022-03-07T16:33:53.000Z</published>
+    <updated>2022-03-07T16:33:53.000Z</updated>
     
     
       
@@ -247,8 +276,8 @@
     <title>OneDrive的妙用 图/音频/视频床</title>
     <link href="https://wuuconix.link/2022/03/02/onedrive/"/>
     <id>https://wuuconix.link/2022/03/02/onedrive/</id>
-    <published>2022-03-02T23:39:37.000Z</published>
-    <updated>2022-03-02T23:39:37.000Z</updated>
+    <published>2022-03-02T15:39:37.000Z</published>
+    <updated>2022-03-02T15:39:37.000Z</updated>
     
     
       
@@ -276,8 +305,8 @@
     <title>Raidrive Pro? NonProfit!</title>
     <link href="https://wuuconix.link/2022/02/24/raidrive/"/>
     <id>https://wuuconix.link/2022/02/24/raidrive/</id>
-    <published>2022-02-24T18:20:55.000Z</published>
-    <updated>2022-02-24T18:20:55.000Z</updated>
+    <published>2022-02-24T10:20:55.000Z</published>
+    <updated>2022-02-24T10:20:55.000Z</updated>
     
     
       
@@ -305,8 +334,8 @@
     <title>天降公网ip</title>
     <link href="https://wuuconix.link/2022/02/18/ipv6/"/>
     <id>https://wuuconix.link/2022/02/18/ipv6/</id>
-    <published>2022-02-18T17:02:38.000Z</published>
-    <updated>2022-02-18T17:02:38.000Z</updated>
+    <published>2022-02-18T09:02:38.000Z</published>
+    <updated>2022-02-18T09:02:38.000Z</updated>
     
     
       
@@ -334,8 +363,8 @@
     <title>PWN PWN PWN！</title>
     <link href="https://wuuconix.link/2022/01/30/pwn/"/>
     <id>https://wuuconix.link/2022/01/30/pwn/</id>
-    <published>2022-01-30T18:15:56.000Z</published>
-    <updated>2022-02-15T18:15:56.000Z</updated>
+    <published>2022-01-30T10:15:56.000Z</published>
+    <updated>2022-02-15T10:15:56.000Z</updated>
     
     
       
@@ -361,8 +390,8 @@
     <title>利用acme.sh快速获取SSL证书</title>
     <link href="https://wuuconix.link/2022/01/29/acme-sh/"/>
     <id>https://wuuconix.link/2022/01/29/acme-sh/</id>
-    <published>2022-01-29T00:15:17.000Z</published>
-    <updated>2022-01-29T00:15:17.000Z</updated>
+    <published>2022-01-28T16:15:17.000Z</published>
+    <updated>2022-01-28T16:15:17.000Z</updated>
     
     
       
@@ -390,8 +419,8 @@
     <title>GitHub图床配合 jsDelivr实现大图存储</title>
     <link href="https://wuuconix.link/2022/01/23/github-host/"/>
     <id>https://wuuconix.link/2022/01/23/github-host/</id>
-    <published>2022-01-23T22:07:00.000Z</published>
-    <updated>2022-01-23T22:07:00.000Z</updated>
+    <published>2022-01-23T14:07:00.000Z</published>
+    <updated>2022-01-23T14:07:00.000Z</updated>
     
     
       
@@ -419,8 +448,8 @@
     <title>BUUCTF刷题记录</title>
     <link href="https://wuuconix.link/2022/01/21/buuctf/"/>
     <id>https://wuuconix.link/2022/01/21/buuctf/</id>
-    <published>2022-01-21T13:59:49.000Z</published>
-    <updated>2022-01-21T13:59:49.000Z</updated>
+    <published>2022-01-21T05:59:49.000Z</published>
+    <updated>2022-01-21T05:59:49.000Z</updated>
     
     
       
@@ -444,8 +473,8 @@
     <title>Vue3 解密 （持续更新中）</title>
     <link href="https://wuuconix.link/2022/01/13/vue/"/>
     <id>https://wuuconix.link/2022/01/13/vue/</id>
-    <published>2022-01-13T21:59:06.000Z</published>
-    <updated>2022-01-17T21:59:06.000Z</updated>
+    <published>2022-01-13T13:59:06.000Z</published>
+    <updated>2022-01-17T13:59:06.000Z</updated>
     
     
       
@@ -469,8 +498,8 @@
     <title>Github Actions 自动部署 Hexo</title>
     <link href="https://wuuconix.link/2022/01/08/actions/"/>
     <id>https://wuuconix.link/2022/01/08/actions/</id>
-    <published>2022-01-08T14:04:36.000Z</published>
-    <updated>2022-01-08T14:04:36.000Z</updated>
+    <published>2022-01-08T06:04:36.000Z</published>
+    <updated>2022-01-08T06:04:36.000Z</updated>
     
     
       
@@ -496,8 +525,8 @@
     <title>mirai QQ机器人初探</title>
     <link href="https://wuuconix.link/2022/01/04/mirai/"/>
     <id>https://wuuconix.link/2022/01/04/mirai/</id>
-    <published>2022-01-04T12:15:18.000Z</published>
-    <updated>2022-01-04T12:15:18.000Z</updated>
+    <published>2022-01-04T04:15:18.000Z</published>
+    <updated>2022-01-04T04:15:18.000Z</updated>
     
     
       
@@ -514,35 +543,6 @@
     <category term="python" scheme="https://wuuconix.link/tags/python/"/>
     
     <category term="mirai" scheme="https://wuuconix.link/tags/mirai/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Nginx手动实现短链接</title>
-    <link href="https://wuuconix.link/2021/12/14/url/"/>
-    <id>https://wuuconix.link/2021/12/14/url/</id>
-    <published>2021-12-14T13:19:34.000Z</published>
-    <updated>2021-12-14T13:19:34.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html"></summary>
-        
-      
-    
-    
-    
-    
-    <category term="python" scheme="https://wuuconix.link/tags/python/"/>
-    
-    <category term="nginx" scheme="https://wuuconix.link/tags/nginx/"/>
-    
-    <category term="短域名" scheme="https://wuuconix.link/tags/%E7%9F%AD%E5%9F%9F%E5%90%8D/"/>
-    
-    <category term="html" scheme="https://wuuconix.link/tags/html/"/>
     
   </entry>
   

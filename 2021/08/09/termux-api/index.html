@@ -24,8 +24,8 @@
 <meta property="og:description" content="背景  所谓需求是人类进步的阶梯。  昨天晚上也就是今天凌晨233我漫无目的地刷着youtube，享受着科学上网带来的方便。突然直接按刷到了一个ASMR的视频，我听着感觉非常舒服，不会再胡思乱想了，很快就能进入入睡状态。遂决定带着耳机睡觉。平板便亮着屏幕放一边了。 过了一会儿，我突然意识到这可不行，平板一直亮着那我一起来不就没电了！但是屏幕不亮的话浏览器又不能正常运行。所以我马上坐">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o1n4d7idj30z40r34ee.jpg">
-<meta property="article:published_time" content="2021-08-09T10:09:09.000Z">
-<meta property="article:modified_time" content="2022-04-03T10:09:09.000Z">
+<meta property="article:published_time" content="2021-08-09T02:09:09.000Z">
+<meta property="article:modified_time" content="2022-04-03T02:09:09.000Z">
 <meta property="article:author" content="wuuconix">
 <meta property="article:tag" content="shell">
 <meta property="article:tag" content="android">
@@ -322,7 +322,7 @@
                 
                 <header><meta name="referrer" content="never"></header>
 
-    <div id="aplayer-PJhKdZNC" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-ThladHZe" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="559760" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
     ></div>
 <h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
@@ -344,22 +344,22 @@
 <ol>
 <li>提示框。一句简单的termux-dialog命令就能调出安卓自带的提示框，而且种类繁多，非常牛逼。</li>
 </ol>
-<p><img src="https://upyun.wuuconix.link/image-20210809150303600.png" srcset="/img/loading.gif" lazyload alt="termux-dialog" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210809150303600.png" srcset="/img/loading.gif" lazyload alt="termux-dialog" /></p>
 <div align=center>
-<img src="https://upyun.wuuconix.link/image-20210809173725395.png" srcset="/img/loading.gif" lazyload alt="老杜是以下那一种？" style="zoom: 67%;" />
+<img src="https://r2.wuuconix.link/image-20210809173725395.png" srcset="/img/loading.gif" lazyload alt="老杜是以下那一种？" style="zoom: 67%;" />
 </div>
 <ol start="2">
 <li>可以直接把文字用谷歌的tts <code>TextToSpeech</code>念出来，至于音色嘛，就是大家熟悉的营销号2333。</li>
 </ol>
-<p><img src="https://upyun.wuuconix.link/image-20210809154123266.png" srcset="/img/loading.gif" lazyload alt="termux-tts-speak" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210809154123266.png" srcset="/img/loading.gif" lazyload alt="termux-tts-speak" /></p>
 <p>以下为珍贵的音频片段</p>
 <!-- 
-        <div id="aplayer-dGWZHOqf" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-vvfVBhsk" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-dGWZHOqf"),
+            element: document.getElementById("aplayer-vvfVBhsk"),
             narrow: false,
             autoplay: false,
             showlrc: false,
@@ -367,7 +367,7 @@
               title: "营销号",
               author: "wuuconix",
               url: "https://link.jscdn.cn/sharepoint/aHR0cHM6Ly9zdHVoaXRlZHVjbi1teS5zaGFyZXBvaW50LmNvbS86dTovZy9wZXJzb25hbC8yMTkwNDAwNjAxX3N0dV9oaXRfZWR1X2NuL0VWTTBIN000VVZKSmhqakd2SUlnUThJQjZ4TTdsRm5WLVNZTXhEMWhzTmtEN1E_ZT1jeUM3aWw.wav,",
-              pic: "https://upyun.wuuconix.link/image-20210809162039109.png",
+              pic: "https://r2.wuuconix.link/image-20210809162039109.png",
               lrc: ""
             }
           });
@@ -381,12 +381,12 @@
 </div>
 <p> </p>
 <p>ok，我们了解到了termux-api的强大功能，在本次实践中的一个主要动作就是确定时间，因为我要根据ASMR视频的时长来确定什么时候关闭屏幕，这里我用到了termux-api中的 termux-dialog time，一运行就会弹出系统自带的时间选择器。</p>
-<div align=center><img src="https://upyun.wuuconix.link/image-20210809173426024.png" srcset="/img/loading.gif" lazyload alt="时间选择器" style="zoom: 67%;" /></div>
+<div align=center><img src="https://r2.wuuconix.link/image-20210809173426024.png" srcset="/img/loading.gif" lazyload alt="时间选择器" style="zoom: 67%;" /></div>
 <p>选择后会返回一个json格式的数据。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210809173510893.png" srcset="/img/loading.gif" lazyload alt="json" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210809173510893.png" srcset="/img/loading.gif" lazyload alt="json" /></p>
 <p>我们可以利用<code>jq</code>这个命令来处理json数据，以下命令就能获得返回的时间</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">termux-dialog time | jq .text<br></code></pre></td></tr></table></figure>
-<p><img src="https://upyun.wuuconix.link/image-20210809173810443.png" srcset="/img/loading.gif" lazyload alt="time" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210809173810443.png" srcset="/img/loading.gif" lazyload alt="time" /></p>
 <p>获得了时间，我们得需要一个方法来让termux到了时间自动执行屏幕、wifi、蓝牙的脚本。这里直接先给出<code>switchoff.sh</code>脚本。利用了svc这个安卓自带的命令来关闭wifi和蓝牙，利用input keyevent 223来熄屏幕，十分简单。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo svc wifi <span class="hljs-built_in">disable</span><br>sudo svc bluetooth <span class="hljs-built_in">disable</span><br>sudo input keyevent 223<br></code></pre></td></tr></table></figure>
 <p>定时运行脚本，之前接触过crontab这个强大的命令，但是crontab适合那种需要重复执行的脚本，而我这个关屏幕只需要运行一次，不太合适。</p>
@@ -401,7 +401,7 @@
 <p>之前我对termux不屑的原因是因为我以为在termux里不能使用安卓自带的命令。而大家也看到了，我在今天的脚本里多次用到了安卓命令，比如<code>svc</code>、<code>input keyevent</code>等等，而这些只需要在termux里进入root用户就可以用，简直无敌。</p>
 <p>今天也是见证了termux-api的强大，几句命令就实现了可视化界面交互体验，有一种开发app的感觉（</p>
 <p>给大家炫耀一下我的termux全家桶（</p>
-<p><img src="https://upyun.wuuconix.link/image-20210809180823586.png" srcset="/img/loading.gif" lazyload alt="termux全家桶" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210809180823586.png" srcset="/img/loading.gif" lazyload alt="termux全家桶" /></p>
 <p>今天可以安心听着ASMR睡觉啦！</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
@@ -634,7 +634,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://upyun.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://r2.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
     </div>
   
   

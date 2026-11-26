@@ -24,8 +24,8 @@
 <meta property="og:description" content="背景 之前我的wuuconix.link和wuuconix.xyz域名的SSL证书都是通过 来此加密 - Let’s Encrypt 在线免费申请SSL证书 (osfipin.com) 申请的，它是一个网页端的SSL证书申请工具。 申请一个域名的SSL证书的步骤很简单。  填入域名 根据要求设置一个_acme-challenge的TXT DNS解析记录，它会提示你结果需要为什么。你">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o0ffnhg2j30m806j7bq.jpg">
-<meta property="article:published_time" content="2022-01-29T00:15:17.000Z">
-<meta property="article:modified_time" content="2022-01-29T00:15:17.000Z">
+<meta property="article:published_time" content="2022-01-28T16:15:17.000Z">
+<meta property="article:modified_time" content="2022-01-28T16:15:17.000Z">
 <meta property="article:author" content="wuuconix">
 <meta property="article:tag" content="ssl">
 <meta property="article:tag" content="domain">
@@ -315,7 +315,7 @@
                 
                 <header><meta name="referrer" content="never"></header>
 
-    <div id="aplayer-YoOBIIUV" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-yCXuprCV" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1911450954" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
     ></div>
 <h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
@@ -328,7 +328,7 @@
 </ol>
 <p>看起来非常简单，但是这个证书的有效期只有60天，所以你每隔两个月就需要重复着执行这个操作。更可恶的是，这个网站最近在验证DNS解析记录前增加了一段等待时间，而VIP则不需要，验证也需要等待半天，让人很无奈。而且我越来越觉得这个网站完全貌似不是<code>Let's Encrypt</code>证书签发商的官方网站。</p>
 <p>此外，今天闲来无事，在观看了<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1zb4y1n7sX?spm_id_from=333.1007.top_right_bar_window_history.content.click">（无需魔法）（无限续费）免费注册一年freenom域名_哔哩哔哩_bilibili</a> 这个视频后，我在freenom上成功白嫖了一堆域名</p>
-<p><img src="https://upyun.wuuconix.link/image-20220128231918207.png" srcset="/img/loading.gif" lazyload alt="域名万亩荡" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220128231918207.png" srcset="/img/loading.gif" lazyload alt="域名万亩荡" /></p>
 <p>想到以后每个域名都需要仍受 来此加密 恶心人的操作，我想试试之前早已耳闻的 脚本自动部署。</p>
 <h2 id="过程"><a class="markdownIt-Anchor" href="#过程"></a> 过程</h2>
 <p>我利用到了这个开源项目 <a target="_blank" rel="noopener" href="https://github.com/acmesh-official/acme.sh">acmesh-official/acme.sh: A pure Unix shell script implementing ACME client protocol (github.com)</a></p>
@@ -339,34 +339,34 @@
 <li>使用手动dns验证的方式</li>
 </ol>
    <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">acme.sh --issue --dns -d <span class="hljs-string">&quot;*.conix.ml&quot;</span> --yes-I-know-dns-manual-mode-enough-go-ahead-please<br></code></pre></td></tr></table></figure>
-<p><img src="https://upyun.wuuconix.link/image-20220128233822928.png" srcset="/img/loading.gif" lazyload alt="--issue" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220128233822928.png" srcset="/img/loading.gif" lazyload alt="--issue" /></p>
 <p>脚本的回显提示我们加添一个<code>_acme-challenge.conix.ml</code>的TXT DNS解析记录，并将值设置为<code>Y2U_vKtQ2umHtsL9LQ37QV-SovNvELzX4HgT4ePfkaw</code>。</p>
 <ol start="2">
 <li>
 <p>在域名服务商那里添加记录，我的域名的DNS服务商是CloudFlare。为了增快解析生效速度，将TTL设置为1min。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220128233929536.png" srcset="/img/loading.gif" lazyload alt="DNS" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220128233929536.png" srcset="/img/loading.gif" lazyload alt="DNS" /></p>
 <p>我们可以在windows命令行里使用<code>nslookup -q=txt</code>查看TXT记录是否生效。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220128234038768.png" srcset="/img/loading.gif" lazyload alt="nslookup" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220128234038768.png" srcset="/img/loading.gif" lazyload alt="nslookup" /></p>
 </li>
 <li>
 <p>确定生效后，将之前命令里的<code>--issue</code>更改为<code>--renew</code></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">acme.sh --issue --dns -d <span class="hljs-string">&quot;*.conix.ml&quot;</span> --yes-I-know-dns-manual-mode-enough-go-ahead-please<br></code></pre></td></tr></table></figure>
-<p><img src="https://upyun.wuuconix.link/image-20220128234307614.png" srcset="/img/loading.gif" lazyload alt="success" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220128234307614.png" srcset="/img/loading.gif" lazyload alt="success" /></p>
 <p>可以看到其中醒目的sucess，我们已经成功生成了证书，它的目录在<code>~/.acme.sh/*.conix.ml</code>下</p>
-<p><img src="https://upyun.wuuconix.link/image-20220128234404706.png" srcset="/img/loading.gif" lazyload alt="证书" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220128234404706.png" srcset="/img/loading.gif" lazyload alt="证书" /></p>
 </li>
 <li>
 <p>但是官方不推荐我们直接使用这些证书，而是使用类似以下命令放到我们想放的地方。【Tips 文件夹需要首先建好】</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">acme.sh --install-cert -d <span class="hljs-string">&quot;*.conix.ml&quot;</span> \ <br>--key-file       /etc/nginx/conix.ml/key.pem  \<br>--fullchain-file /etc/nginx/conix.ml/cert.pem \<br>--reloadcmd     <span class="hljs-string">&quot;service nginx force-reload&quot;</span><br></code></pre></td></tr></table></figure>
-<p><img src="https://upyun.wuuconix.link/image-20220128234658414.png" srcset="/img/loading.gif" lazyload alt="install-cert" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220128234658414.png" srcset="/img/loading.gif" lazyload alt="install-cert" /></p>
 </li>
 <li>
 <p>接下来我们尝试SSL证书是否生效，我们选择一个二级域名 <code>test.conix.ml</code>，设置A记录将DNS解析到你的服务器ip。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220128235523484.png" srcset="/img/loading.gif" lazyload alt="A" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220128235523484.png" srcset="/img/loading.gif" lazyload alt="A" /></p>
 <p>然后nginx写配置文件</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-section">server</span><br>&#123;<br>   <span class="hljs-attribute">listen</span> <span class="hljs-number">443</span> ssl;<span class="hljs-comment"># https 监听的是 443端口</span><br>   <span class="hljs-attribute">server_name</span>  test.conix.ml;<br><br>   <span class="hljs-attribute">keepalive_timeout</span> <span class="hljs-number">100</span>;<br><br>   <span class="hljs-attribute">ssl_session_cache</span>   shared:SSL:<span class="hljs-number">10m</span>;<br>   <span class="hljs-attribute">ssl_session_timeout</span> <span class="hljs-number">10m</span>;<br><br>   <span class="hljs-attribute">ssl_certificate</span> /etc/nginx/conix.ml/cert.pem; <span class="hljs-comment"># 证书路径</span><br>   <span class="hljs-attribute">ssl_certificate_key</span> /etc/nginx/conix.ml/key.pem; <span class="hljs-comment"># 请求认证 key 的路径</span><br><br>   <span class="hljs-attribute">ssl_protocols</span> TLSv1.<span class="hljs-number">1</span> TLSv1.<span class="hljs-number">2</span>;<br>   <span class="hljs-attribute">ssl_ciphers</span> ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;<br>   <span class="hljs-attribute">ssl_prefer_server_ciphers</span> <span class="hljs-literal">on</span>;<br>   <span class="hljs-attribute">ssl_session_cache</span> shared:SSL:<span class="hljs-number">10m</span>;<br><br>   <span class="hljs-attribute">add_header</span> Access-Control-Allow-Origin *;<br>   <span class="hljs-attribute">add_header</span> Access-Control-Allow-Headers X-Requested-With;<br>   <span class="hljs-attribute">add_header</span> Access-Control-Allow-Methods GET,POST,OPTIONS;<br><br>   <span class="hljs-attribute">index</span> index.html index.htm;<br>   <span class="hljs-section">location</span> / &#123;<br>       <span class="hljs-attribute">root</span>  /var/www/html;<br>   &#125;<br>&#125;<br><br><span class="hljs-section">server</span><br>&#123;<br>   <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;<br>   <span class="hljs-attribute">server_name</span> test.conix.ml;<br>   <span class="hljs-attribute">rewrite</span><span class="hljs-regexp"> ^(.*)</span> https://<span class="hljs-variable">$server_name</span><span class="hljs-variable">$1</span> <span class="hljs-literal">permanent</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>在浏览器中访问。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220129000227790.png" srcset="/img/loading.gif" lazyload alt="浏览器中访问" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220129000227790.png" srcset="/img/loading.gif" lazyload alt="浏览器中访问" /></p>
 <p>成功进行SSL连接并且看到证书。</p>
 <blockquote>
 <p>这里突然发现颁发者是ZeroSSL，看来acme.sh默认的证书签发商已经不再是Let’s Encryp了。</p>
@@ -376,9 +376,9 @@
 <h2 id="另外想说的"><a class="markdownIt-Anchor" href="#另外想说的"></a> 另外想说的</h2>
 <p>实际上acme.sh更强大之处可以利用DNS解析商提供的api接口，完全自动进行SSL证书的签发，即不用手动写TXT记录，而程序自动写，当然了，这需要你在环境变量里设置好你的服务商的api接口的token供acme.sh调用。</p>
 <p>但是CloudFlare对Freenom上白嫖的顶级域名做了限制，使得这种更简单的方法对<code>tk、ml、cf</code>等顶级域名失效。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220129000958283.png" srcset="/img/loading.gif" lazyload alt="cloudflare" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220129000958283.png" srcset="/img/loading.gif" lazyload alt="cloudflare" /></p>
 <p>这里引用一位国外老哥在CloudFlare论坛上的话来评价这种行为。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220129001049981.png" srcset="/img/loading.gif" lazyload alt="国外老哥" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220129001049981.png" srcset="/img/loading.gif" lazyload alt="国外老哥" /></p>
 <p>当然了，如果是正常购买的域名，完全可以用这种方式进行解析，我的<code>wuuconix.link</code>的二级泛域名证书就是利用阿里云的api接口实现全自动生成的。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
@@ -613,7 +613,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://upyun.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://r2.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
     </div>
   
   

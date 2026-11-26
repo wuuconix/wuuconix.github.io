@@ -24,8 +24,8 @@
 <meta property="og:description" content="背景 这个暑假没有回家，原因是因为实验室有某个神秘项目。其实也不神秘，就是让你去挖三大运营商网站的漏洞，这个网站不光是总站，还可以是分公司的站，比如说中国移动通信集团新疆有限公司伊犁州分公司。这个项目非常幸运地和vaala一起做，在过程中vaala帮助了我很多，非常感谢。  大体流程   首先我们需要确定以一个目标，我们可以在天眼查天眼查中输入关键字。查看具体的企业名称。    然">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o15033ldj30q60d57jt.jpg">
-<meta property="article:published_time" content="2021-08-11T05:55:44.000Z">
-<meta property="article:modified_time" content="2021-08-11T05:55:44.000Z">
+<meta property="article:published_time" content="2021-08-10T21:55:44.000Z">
+<meta property="article:modified_time" content="2021-08-10T21:55:44.000Z">
 <meta property="article:author" content="wuuconix">
 <meta property="article:tag" content="挖洞">
 <meta property="article:tag" content="安全">
@@ -313,7 +313,7 @@
                 
                 <header><meta name="referrer" content="never"></header>
 
-    <div id="aplayer-giXqmFEn" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-DQnQrSww" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1343799783" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
     ></div>
 <h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
@@ -322,19 +322,19 @@
 <ol>
 <li>
 <p>首先我们需要确定以一个目标，我们可以在天眼查<a target="_blank" rel="noopener" href="https://www.tianyancha.com/">天眼查</a>中输入关键字。查看具体的企业名称。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210811130412259.png" srcset="/img/loading.gif" lazyload alt="天眼查" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210811130412259.png" srcset="/img/loading.gif" lazyload alt="天眼查" /></p>
 </li>
 <li>
 <p>然后在<a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">备案网</a>上查询该公司有哪些网站。</p>
-<img src="https://upyun.wuuconix.link/image-20210811130707755.png" srcset="/img/loading.gif" lazyload alt="备案网" style="zoom: 80%;" />
+<img src="https://r2.wuuconix.link/image-20210811130707755.png" srcset="/img/loading.gif" lazyload alt="备案网" style="zoom: 80%;" />
 </li>
 <li>
 <p>然后我们需要根据网址得到网站的IP，这里可以手动ping一下，可以借助<a target="_blank" rel="noopener" href="http://mip.chinaz.com/">在线网站</a></p>
-<p><img src="https://upyun.wuuconix.link/image-20210811130917127.png" srcset="/img/loading.gif" lazyload alt="ip" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210811130917127.png" srcset="/img/loading.gif" lazyload alt="ip" /></p>
 </li>
 <li>
 <p>然后就需要根据ip对网站进行扫描。这里用到了一款强大的网络控件安全引擎<a target="_blank" rel="noopener" href="https://classic.fofa.so/">fofa</a>。输入ip即可。</p>
-<img src="https://upyun.wuuconix.link/image-20210811131143820.png" srcset="/img/loading.gif" lazyload alt="fofa"  />
+<img src="https://r2.wuuconix.link/image-20210811131143820.png" srcset="/img/loading.gif" lazyload alt="fofa"  />
 <p>fofa能够将ip下开放的端口直接扫出来，十分强大。因为有些网站是不开放80端口的，我们直接去访问域名是访问不到服务的，而有了fofa，该机器开设的服务我们将尽收眼底。</p>
 </li>
 <li>
@@ -357,14 +357,14 @@
 </li>
 <li>
 <p>第一次用goby的时候，不小心设置成C端扫描了，扫了一会儿我发现了问题的严重性，因为我发现一下子有很多ip。我跟vaala分享了这恐怖的一瞬间，vaala说没事，还指出扫出来的两个ip很有可能是关键节点，因为它们都开启了telnet服务。我一点进去，还真可以，有一个矿场的后台登录界面。我顺手输了两个admin，竟然直接进入了，幸福就是来着这么突然。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210811134818259.png" srcset="/img/loading.gif" lazyload alt="chat-1" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210811134818259.png" srcset="/img/loading.gif" lazyload alt="chat-1" /></p>
 <p>内部矿井的信息一览无余，由于涉密，这里就不放出来了。</p>
 </li>
 </ol>
 <h2 id="战术总结"><a class="markdownIt-Anchor" href="#战术总结"></a> 战术总结</h2>
 <p>经过这次经历，我对漏洞的查找有了初步的认识，对各种工具的使用也比较熟悉了。</p>
 <p>也非常幸运地找到了人生第一个漏洞，完成了一开始和vaala夸下的海口。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210811135345945.png" srcset="/img/loading.gif" lazyload alt="chat-2" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210811135345945.png" srcset="/img/loading.gif" lazyload alt="chat-2" /></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
@@ -594,7 +594,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://upyun.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://r2.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
     </div>
   
   

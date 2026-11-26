@@ -24,8 +24,8 @@
 <meta property="og:description" content="写在前面 作为一个半退役的CTF web选手，在大三上学习了编译原理和操作系统原理之后，感觉可以学习pwn了！下面写一下在buu和攻防世界上pwn专题的刷题记录。  攻防世界  1.CGfsb 作为攻防世界pwn新手区的第一题，它的考点是printf函数的格式化字符串漏洞。 利用IDA64进行反编译后，在main函数中，我们发现了以下代码。 12345if ( pwnme &#x3D;&#x3D; 8">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o1intoqrj31070k1dk7.jpg">
-<meta property="article:published_time" content="2022-01-30T18:15:56.000Z">
-<meta property="article:modified_time" content="2022-02-15T18:15:56.000Z">
+<meta property="article:published_time" content="2022-01-30T10:15:56.000Z">
+<meta property="article:modified_time" content="2022-02-15T10:15:56.000Z">
 <meta property="article:author" content="wuuconix">
 <meta property="article:tag" content="ctf">
 <meta property="article:tag" content="writeup">
@@ -322,7 +322,7 @@
                 
                 <header><meta name="referrer" content="never"></header>
 
-    <div id="aplayer-LkTlZSvB" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-bQBmrHpW" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1830411330" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
     ></div>
 <h2 id="写在前面"><a class="markdownIt-Anchor" href="#写在前面"></a> 写在前面</h2>
@@ -341,11 +341,11 @@
 <ol>
 <li>
 <p>使用 AAAA %08x %08x %08x…的方式，找到41414141所在的位置，即offset</p>
-<p><img src="https://upyun.wuuconix.link/image-20220130180617501.png" srcset="/img/loading.gif" lazyload alt="%08x get offset" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220130180617501.png" srcset="/img/loading.gif" lazyload alt="%08x get offset" /></p>
 </li>
 <li>
 <p>和第一种类似，只不过把%08x 换成 %p</p>
-<p><img src="https://upyun.wuuconix.link/image-20220130180717003.png" srcset="/img/loading.gif" lazyload alt="%p" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220130180717003.png" srcset="/img/loading.gif" lazyload alt="%p" /></p>
 </li>
 </ol>
 <p>实际情况下，%08x或者%p的数量可以多一些，这样某个神秘的指针就会在一次次调用中不断往后，直到找到41414141，即AAAA的ascii值，你就获得了你能够控制的格式化字符串的offset 偏移量。</p>
@@ -369,7 +369,7 @@
 <p>按理说buf字符串的长度应该只有128，但是这个程序却用read读了0x200这么长，即512的长度。</p>
 <p>所以我们在把正常buf的内容用随便一些字符覆盖完后，我们就可以进行一些劫持工作了。</p>
 <p>在IDA64中双击buf变量，我们可以看到buf的栈使用情况。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220130185135716.png" srcset="/img/loading.gif" lazyload alt="buf stack" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220130185135716.png" srcset="/img/loading.gif" lazyload alt="buf stack" /></p>
 <p>我们可以看到buf 有0x80个空间，然后就是一个s和r。</p>
 <p>这两个具体是啥我也不太懂，但是我们可以通过覆盖<strong>r</strong>中的值从而改变程序流向。</p>
 <p>该程序中还存在一个<code>callsystem</code>函数，很显然，这就是我们期盼的后门函数了。</p>
@@ -411,7 +411,7 @@
 <p>最简单的栈溢出。main函数如下。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c">__int64 __fastcall <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> a1, <span class="hljs-type">char</span> **a2, <span class="hljs-type">char</span> **a3)</span><br>&#123;<br>  alarm(<span class="hljs-number">0x3C</span>u);<br>  setbuf(<span class="hljs-built_in">stdout</span>, <span class="hljs-number">0LL</span>);<br>  <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;~~ welcome to ctf ~~     &quot;</span>);<br>  <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;lets get helloworld for bof&quot;</span>);<br>  read(<span class="hljs-number">0</span>, &amp;unk_601068, <span class="hljs-number">0x10</span>uLL);<br>  <span class="hljs-keyword">if</span> ( dword_60106C == <span class="hljs-number">1853186401</span> )<br>    sub_400686();<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0LL</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>利用read函数读了16个字符，而unk_601068这个变量实际上只占4个空间，我们可以影响到栈下面的dword_60106C。把下面那个变量设置为1853186401即可获得flag。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220201112957824.png" srcset="/img/loading.gif" lazyload alt="栈情况" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220201112957824.png" srcset="/img/loading.gif" lazyload alt="栈情况" /></p>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
         payload代码
@@ -423,7 +423,7 @@
 </div>
 <h3 id="6guess_num"><a class="markdownIt-Anchor" href="#6guess_num"></a> 6.guess_num</h3>
 <p>仍然是栈溢出。但是这道题我不太明白为什么不能直接移除到ret2text的方式，直接去调用cat flag的函数，可能是和该题开启了canary的方式（运行过程中没有报错就挺奇怪的</p>
-<p><img src="https://upyun.wuuconix.link/image-20220201195221937.png" srcset="/img/loading.gif" lazyload alt="最终猜数成功调用的函数" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220201195221937.png" srcset="/img/loading.gif" lazyload alt="最终猜数成功调用的函数" /></p>
 <p>看了网上的wp，利用溢出去改变随机数的种子，让其产生的随机数固定，然后我们就能成功猜数，通过正常的程序流cat flag。总结一下就是利用栈溢出了，但是没有完全利用。</p>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs scss">-<span class="hljs-number">0000000000000030</span> var_30          db <span class="hljs-number">32</span> <span class="hljs-built_in">dup</span>(?) <span class="hljs-comment">//这是我们gets的那个变量</span><br>-<span class="hljs-number">0000000000000010</span> seed            <span class="hljs-selector-tag">dd</span> <span class="hljs-number">2</span> <span class="hljs-built_in">dup</span>(?)  <span class="hljs-comment">//wp需要改变这个</span><br>-<span class="hljs-number">0000000000000008</span> var_8           dq ?<br>+<span class="hljs-number">0000000000000000</span>  s              db <span class="hljs-number">8</span> <span class="hljs-built_in">dup</span>(?)<br>+<span class="hljs-number">0000000000000008</span>  r              db <span class="hljs-number">8</span> <span class="hljs-built_in">dup</span>(?)  <span class="hljs-comment">//为什么不能直接rop，可能是Cannary作怪</span><br></code></pre></td></tr></table></figure>
 <p>在看wp的过程中，还了解到在python中利用<code>ctypes</code>能够导入一个libc库从而直接运行c函数，非常牛皮。</p>
@@ -460,7 +460,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">int</span> pwn()<br>&#123;<br>  <span class="hljs-keyword">return</span> system(<span class="hljs-string">&quot;echo hehehe&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>但是这个后门函数中有system，我们再找到一个/bin/sh字符串就能够去手动调用了。可惜shift+F12，没有找到这个字符串。</p>
 <p>我们观察可执行文件的运行流程，它会让我们输入姓名和一条信息，在信息那块有gets造成的栈溢出，而姓名那块我们则可以输入一个/bin/sh来手动把name变成我们需要的字符串。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220202140445981.png" srcset="/img/loading.gif" lazyload alt="可执行文件运行流程" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220202140445981.png" srcset="/img/loading.gif" lazyload alt="可执行文件运行流程" /></p>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
         payload代码
@@ -495,7 +495,7 @@ sub_400A7D--&gt;sub_400BB9--&gt;sub_400CA6
 <p>首先这里我们主要利用的%标记是%n，它的功能是将之前输出的字符个数的值存放到对应的地址中，在这里，就会存放到<code>var_78</code>中，因为没有指定参数。</p>
 <p>而这个payload中没有使用<code>n</code>而是使用了<code>hhd</code>，它们的区别是写的内存地址的长度，若是<code>%n</code>，则是向4个字节的内存地址写数据，<code>%hn</code>则是2个字节，<code>%hhn</code>则会是1个字节。因为这道题里我们需要改变的两个变量占的空间是8位，即1个字节，故我们这里使用<code>%hhn</code>。</p>
 <p>那为什么<code>%hhn</code>中间有<code>7$</code>，这个有点难以解释，我们可以暂且记为偏移量减去1。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220203151241758.png" srcset="/img/loading.gif" lazyload alt="偏移量是8" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220203151241758.png" srcset="/img/loading.gif" lazyload alt="偏移量是8" /></p>
 <p>然后<code>%85c</code>用来快速生成85个字符，从而得到85这个数字存往<code>var_78</code>中，通过第一关。</p>
 <p>然后我们可以利用以下代码生成shellcode</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">context(arch = <span class="hljs-string">&quot;amd64&quot;</span>) <span class="hljs-comment">#因为这里用了asm构造的shellcode，必须指明架构。架构用checksec可以看</span><br>payload = asm(shellcraft.sh())<br></code></pre></td></tr></table></figure>
@@ -515,11 +515,11 @@ sub_400A7D--&gt;sub_400BB9--&gt;sub_400CA6
 <p>当我们在用C语言编程时，我们都会大量应用库函数，比如printf和scanf等，这些函数都是存在在动态链接库中的。</p>
 <p>理论上我们可以使用动态链接库中的任意函数，但是这些函数在内存中的地址在程序运行的一开始是不知道的，这是为了提升效率，只有当真正去调用它的时候，才会进行绑定，这也叫做叫延迟绑定<code>lazy bind</code>。然后这个绑定后的真实地址会被存在GOT表中。</p>
 <p>在这道题中，题目的附件里给了一个libc文件 <code>libc_32.so.6</code>。它实际上不神秘，它本质上也是一个ELF文件，也能用checksec查看保护情况。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220203194259889.png" srcset="/img/loading.gif" lazyload alt="libc_32.so.6 checksec" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220203194259889.png" srcset="/img/loading.gif" lazyload alt="libc_32.so.6 checksec" /></p>
 <p>它也能用IDA打开，只不过它的函数特别特别多，我们可以在函数列表用<code>ctrl + F</code>来搜索我们想要查看的函数。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220203194842457.png" srcset="/img/loading.gif" lazyload alt="system 地址0x3A940" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220203194842457.png" srcset="/img/loading.gif" lazyload alt="system 地址0x3A940" /></p>
 <p>可以用shift + F12搜索我们想要的字符串。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220203194641077.png" srcset="/img/loading.gif" lazyload alt="/bin/sh 地址0x15902B" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220203194641077.png" srcset="/img/loading.gif" lazyload alt="/bin/sh 地址0x15902B" /></p>
 <p>两个都有，但是它们在IDA里看到的地址并不是程序运行中实际上的地址。</p>
 <p>我也不知道在IDA里可以看到的地址应该被称为什么，暂且叫为<strong>形式地址</strong>。</p>
 <p>这里有一个重要的关系，两个东西的<strong>形式地址</strong>的差和两个东西的<strong>真实地址</strong>的差是相同的。</p>
@@ -576,7 +576,7 @@ sub_400A7D--&gt;sub_400BB9--&gt;sub_400CA6
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">-<span class="hljs-number">0000000000000030</span> var_30          db <span class="hljs-number">44</span> dup(?) <span class="hljs-regexp">//</span>v1<br>-<span class="hljs-number">0000000000000004</span> var_4           dd ? <span class="hljs-regexp">//</span>v2<br></code></pre></td></tr></table></figure>
 <p>我们需要将var_4里的值变成11.28125。然而我们不知道浮点数在计算机内部是如何表示的。</p>
 <p>这时候我们可以在IDA View-A里按空格查看汇编代码。找到汇编里代码里的浮点数表示。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220209143749583.png" srcset="/img/loading.gif" lazyload alt="41348000h" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220209143749583.png" srcset="/img/loading.gif" lazyload alt="41348000h" /></p>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
         payload代码
@@ -863,7 +863,7 @@ sub_400A7D--&gt;sub_400BB9--&gt;sub_400CA6
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://upyun.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://r2.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
     </div>
   
   

@@ -24,8 +24,8 @@
 <meta property="og:description" content="背景 四月份vaala向我分享了它的科学上网小助手，利用的是clash。界面十分漂亮。这个暑假我也自己购买了国外的vps，实现了自己的节点。但是我能够使用代理一直都只是在Windows和Android，在github上你很容里能找到Clash For Windows和Clash For Android，但是如何在Linux上利用Clash实现代理呢？ 另一方面，我在实验室主机上每次">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o0vtb5ffj30yn0jqtdl.jpg">
-<meta property="article:published_time" content="2021-08-14T14:06:50.000Z">
-<meta property="article:modified_time" content="2021-08-14T14:06:50.000Z">
+<meta property="article:published_time" content="2021-08-14T06:06:50.000Z">
+<meta property="article:modified_time" content="2021-08-14T06:06:50.000Z">
 <meta property="article:author" content="wuuconix">
 <meta property="article:tag" content="ubuntu server">
 <meta property="article:tag" content="clash">
@@ -314,7 +314,7 @@
                 
                 <header><meta name="referrer" content="never"></header>
 
-    <div id="aplayer-GISyNFeZ" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-JPXStKKM" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1844193289" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
     ></div>
 <h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
@@ -338,25 +338,25 @@
 </li>
 <li>
 <p>这里要特别注意，我们的config.yaml里有两个项特别重要的配置。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210814214034471.png" srcset="/img/loading.gif" lazyload alt="config.yml" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210814214034471.png" srcset="/img/loading.gif" lazyload alt="config.yml" /></p>
 <p>这个<code>external-controller</code>就是相当于额外的一个api，这个9090端口之后的dashboard会用到，而且需要设置为0.0.0.0，保证dashboard容器能够访问到。</p>
 <p>然后这个allow-lan必须设置为true。allow-lan按我的理解就是看你局域网里的其他应用能不能访问你的7890端口，如果设置为false是无法实现代理的，所以要代理就得全程开着。</p>
 </li>
 <li>
 <p>确保config.yaml没错并且运行完以上四个命令后，就可以进dashboard了，url就是的<code>主机ip:1234</code></p>
 <p>一开始会让你选择服务的ip和端口。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210814214513267.png" srcset="/img/loading.gif" lazyload alt="选择服务地址" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210814214513267.png" srcset="/img/loading.gif" lazyload alt="选择服务地址" /></p>
 <p>默认的<code>http://127.0.0.1:9090</code>是不可能成功进去的，因为这个127.0.0.1代表的是dashboard的本地，而真正的clash服务是在令一个容器内，所以我们真正的地址应该是<code>主机ip:9090</code>。<s>一开始在这里卡了好久</s></p>
 </li>
 <li>
 <p>然后就能进入图形化界面啦。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210814214011686.png" srcset="/img/loading.gif" lazyload alt="界面1" /></p>
-<p><img src="https://upyun.wuuconix.link/image-20210814214810283.png" srcset="/img/loading.gif" lazyload alt="界面2" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210814214011686.png" srcset="/img/loading.gif" lazyload alt="界面1" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210814214810283.png" srcset="/img/loading.gif" lazyload alt="界面2" /></p>
 </li>
 <li>
 <p>然后我们可以利用 <code>curl -x</code>来检测代理是否成功，尝试利用代理访问谷歌。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -x http://127.0.0.1:7890 https://www.google.com.hk/<br></code></pre></td></tr></table></figure>
-<p><img src="https://upyun.wuuconix.link/image-20210814215743017.png" srcset="/img/loading.gif" lazyload alt="curl测试" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210814215743017.png" srcset="/img/loading.gif" lazyload alt="curl测试" /></p>
 <p>如果返回结果了，那么说明你的clash成功了！</p>
 </li>
 <li>
@@ -367,7 +367,7 @@
 <h2 id="战术总结"><a class="markdownIt-Anchor" href="#战术总结"></a> 战术总结</h2>
 <p>这次终于是实现了Ubuntu Server里的代理，过程较为曲折，结果十分成功。</p>
 <p>这里再打个广告，我的科学上网小助手更新了一个永久节点，但是由于内容比较敏感，所以文章加密了。迫切科学上网的同学可以联系我获取<a href="https://wuuconix.link/2021/08/06/clash/">文章</a>密码。延续无私奉献的黄金精神2333</p>
-<img src="https://upyun.wuuconix.link/image-20210814220422826.png" srcset="/img/loading.gif" lazyload alt="自建科学上网小助手文章" style="zoom:67%;" />
+<img src="https://r2.wuuconix.link/image-20210814220422826.png" srcset="/img/loading.gif" lazyload alt="自建科学上网小助手文章" style="zoom:67%;" />
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
@@ -599,7 +599,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://upyun.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://r2.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
     </div>
   
   

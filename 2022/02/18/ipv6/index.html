@@ -24,8 +24,8 @@
 <meta property="og:description" content="背景 之前因为家里是移动的宽带，不给你分配公网ip，所以你无法实现类似在逛街的时候远程连接家里的电脑之类的操作。 相比于移动，我哥家里的宽带是电信的，他一个电话过去，电信立马给了公网ip，所以他可以随时随地远程控制他的电脑，这令我很羡慕。  内网穿透之旅 当然了，在过去一个学期里，随着知识和经验的进步，我学会了内网穿透。简单的理解起来，它干的工作类似于端口转发，只不过我们把本地的服">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o17giosjj30xc0hiwlr.jpg">
-<meta property="article:published_time" content="2022-02-18T17:02:38.000Z">
-<meta property="article:modified_time" content="2022-02-18T17:02:38.000Z">
+<meta property="article:published_time" content="2022-02-18T09:02:38.000Z">
+<meta property="article:modified_time" content="2022-02-18T09:02:38.000Z">
 <meta property="article:author" content="wuuconix">
 <meta property="article:tag" content="ipv6">
 <meta property="article:tag" content="公网ip">
@@ -315,7 +315,7 @@
                 
                 <header><meta name="referrer" content="never"></header>
 
-    <div id="aplayer-eUdYSEOz" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-qVGJofJy" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="27198348" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
     ></div>
 <h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
@@ -329,40 +329,40 @@
 <h2 id="突然发现的ipv6"><a class="markdownIt-Anchor" href="#突然发现的ipv6"></a> 突然发现的IPV6</h2>
 <p>昨天我在瞎玩的时候，突然发现我家的移动宽带是有公网ipv6的。</p>
 <p>现在我教大家如何快速判断你所在的网络有没有IPV6。直接在powershell中输入<strong>ipconfig</strong>。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220218154619969.png" srcset="/img/loading.gif" lazyload alt="ipconfig" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220218154619969.png" srcset="/img/loading.gif" lazyload alt="ipconfig" /></p>
 <p>如果有IPv6 Address，并且开头不是<strong>fe80</strong>的话，那就说明你很幸运的拥有了一个公网ipv6，这意味着你的电脑完全提供服务并在公网中访问。</p>
 <p>还可以访问此网站 <a target="_blank" rel="noopener" href="https://ipw.cn/ipv6/">IPv6地址查询 | IP查询(ipw.cn)</a> 如果出现以下类似画面，说明你确实拥有一个公网ipv6。</p>
 <blockquote>
 <p>注意访问此网站请关闭代理工具，不然会得到代理服务器的ip，而一般的代理服务器都是不支持ipv6的。</p>
 </blockquote>
-<p><img src="https://upyun.wuuconix.link/image-20220218155702274.png" srcset="/img/loading.gif" lazyload alt="ipv6地址查询工具" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220218155702274.png" srcset="/img/loading.gif" lazyload alt="ipv6地址查询工具" /></p>
 <h2 id="ipv6的特点"><a class="markdownIt-Anchor" href="#ipv6的特点"></a> IPV6的特点</h2>
 <p>也许大家会有个疑惑，按理说我的笔记本连在一个路由器下，得到的ip应该是一个内网ip，比如<code>192.168.1.60</code>。而为什么我笔记本上的ipv6能够直接是公网ip呢？</p>
 <p>这大概是由于ipv6的数量实在是太多了。我们来简单算一笔账，我们知道ipv4一共是32位。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220218164742159.png" srcset="/img/loading.gif" lazyload alt="ipv4的数量" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220218164742159.png" srcset="/img/loading.gif" lazyload alt="ipv4的数量" /></p>
 <p>所以总共ipv4的数量是43亿个，这对于这个信息化的世界来说，一个人可能有数台设备，一个公司里面可能有数百台设备，如果每台设备分配一个ip，这个ipv4是完全不够的，所以出现了NAT这种方式来缓解这种资源的紧张感，一台路由器下的所有设备都会被分到一个内网ip，这个内网ip是无法在公网中被访问的。</p>
 <p>而ipv6是64位。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220218165048480.png" srcset="/img/loading.gif" lazyload alt="ipv6的数量" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220218165048480.png" srcset="/img/loading.gif" lazyload alt="ipv6的数量" /></p>
 <p>它的数量我大概数了一下，应该是1844亿亿个。按全球人口70亿人来算，每个人都能分到263亿个ip。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220218165452735.png" srcset="/img/loading.gif" lazyload alt="每个人能分到的ipv6个数" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220218165452735.png" srcset="/img/loading.gif" lazyload alt="每个人能分到的ipv6个数" /></p>
 <p>所以公网ip一下子从一个稀缺资源，变成了一个人唾手可得的资源。所以对于ipv6而言，NAT这种方式已经没有意义了，所以局域网下的所有设备都会被分到一个公网ipv6。</p>
 <h2 id="手机流量也有ipv6"><a class="markdownIt-Anchor" href="#手机流量也有ipv6"></a> 手机流量也有IPV6</h2>
 <p>昨天下午在发现家里宽带有公网ipv6后已经非常高兴了，晚上睡觉前又试了一下，发现我的移动卡也有IPV6！</p>
-<p><img src="https://upyun.wuuconix.link/image-20220218160358771.png" srcset="/img/loading.gif" lazyload alt="移动ipv6" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220218160358771.png" srcset="/img/loading.gif" lazyload alt="移动ipv6" /></p>
 <p>可以看到因为我有两张移动卡，这里直接有两个ipv6。</p>
 <p>没想到ipv6的推广如此迅速又如此悄无声息，大部分普通用户都没有意识到它手里掌握着许多公网ip。</p>
 <h2 id="ipv6-wsl2"><a class="markdownIt-Anchor" href="#ipv6-wsl2"></a> IPV6 + WSL2</h2>
 <p>有了公网ip，实际上我们已经能实现一开始说的情景了，不用内网穿透，直接在任何地点远程连接我的笔记本。由于比较简单，这里就不放图了。</p>
 <p>平常我都用<strong>WSL2</strong>来作为生产力环境。我们都知道，windows对wsl2做了很强的适配，wsl2按理说是一个虚拟机，如果我们需要访问wsl2中的8081端口上的服务，按理说得到windows主机的浏览器输入<code>http://wsl2-ip:8081</code>的url才能访问到。</p>
 <p>但是微软帮我们自动做了一层端口转发，wsl2内部的任意端口都会被转发到windows主机的对应端口上，所以，我们只需要在浏览器中输入<code>http://127.0.0.1:8081</code>就能访问到wsl2 8081端口上的的服务。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220218162638691.png" srcset="/img/loading.gif" lazyload alt="8081" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220218162638691.png" srcset="/img/loading.gif" lazyload alt="8081" /></p>
 <p>我在8081端口开了一个nextcloud。</p>
 <p>所以我们现在能否直接通过<code>http://[ipv6]:8081</code>的方式来访问这个服务呢？</p>
 <p>可以，但是需要以下两步设置。</p>
 <ol>
 <li>
 <p>在高级防火墙设置中添加8081端口的入站规则</p>
-<p><img src="https://upyun.wuuconix.link/image-20220218163124126.png" srcset="/img/loading.gif" lazyload alt="入站规则" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220218163124126.png" srcset="/img/loading.gif" lazyload alt="入站规则" /></p>
 </li>
 <li>
 <p>在poweshell将ipv6的端口的请求转发到ipv4对应端口</p>
@@ -374,13 +374,13 @@
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">netsh interface portproxy add v6tov4 listenport=<span class="hljs-number">8081</span> connectport=<span class="hljs-number">8081</span><br></code></pre></td></tr></table></figure>
 <p>然后你可以通过以下指令查看转发是否成功</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">netsh interface portproxy show all<br></code></pre></td></tr></table></figure>
-<p><img src="https://upyun.wuuconix.link/image-20220218163650430.png" srcset="/img/loading.gif" lazyload alt="show all" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220218163650430.png" srcset="/img/loading.gif" lazyload alt="show all" /></p>
 </li>
 </ol>
-<p><img src="https://upyun.wuuconix.link/image-20220218164002538.png" srcset="/img/loading.gif" lazyload alt="ipv6访问" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220218164002538.png" srcset="/img/loading.gif" lazyload alt="ipv6访问" /></p>
 <p>可以看到，成功使用ipv6访问服务。</p>
 <p>用手机尝试下载文件时，可以看到速度达到<code>7MB/s</code>。这应该受限于我家的宽带的带宽，如果你家是千兆宽带，那就直接起飞了。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220218164123210.png" srcset="/img/loading.gif" lazyload alt="速度" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220218164123210.png" srcset="/img/loading.gif" lazyload alt="速度" /></p>
 <h2 id="美中不足"><a class="markdownIt-Anchor" href="#美中不足"></a> 美中不足</h2>
 <p>受到国家政策的限制，运营商都对80/443端口进行了封锁，应对服务器满天飞而造成监管难度过大的困境。</p>
 <p>所以我们暂时只能用其他的端口提供服务。</p>
@@ -620,7 +620,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://upyun.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://r2.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
     </div>
   
   

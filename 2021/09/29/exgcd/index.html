@@ -24,8 +24,8 @@
 <meta property="og:description" content="背景 在准备用python实现AES的时候，遇到了求伽罗华域下一个多项式的逆的问题。我发现，我不光把域的知识忘光了，别说多项式的逆了，我连如何用python实现求一个整数的逆都不知道。 我只了解手动手动推的过程，主要利用到了贝组等式和欧几里得的逆推。  手动推的过程 基于贝组等式ax+by&#x3D;gcd(a,b)ax+by &#x3D; gcd(a,b)ax+by&#x3D;gcd(a,b)有解。 比如我们">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://th.bing.com/th/id/OIP.Md4uNA5O_xzivfGl20SoDAHaFh?pid=ImgDet&rs=1">
-<meta property="article:published_time" content="2021-09-29T16:17:38.000Z">
-<meta property="article:modified_time" content="2021-09-29T16:17:38.000Z">
+<meta property="article:published_time" content="2021-09-29T08:17:38.000Z">
+<meta property="article:modified_time" content="2021-09-29T08:17:38.000Z">
 <meta property="article:author" content="wuuconix">
 <meta property="article:tag" content="crypto">
 <meta property="article:tag" content="algorithm">
@@ -315,7 +315,7 @@
                 
                 <header><meta name="referrer" content="never"></header>
 
-    <div id="aplayer-ADnlXBha" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-RhISFWPh" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1878900082" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
     ></div>
 <h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
@@ -357,7 +357,7 @@
 <figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">3 </span>* <span class="hljs-number">26</span> - <span class="hljs-number">11</span> * <span class="hljs-number">7</span> = <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
 <p>这不就是贝组等式嘛！而且 7 前面的 系数我们也知道了，是 -11，也就是15</p>
 <p>所以 15 就是 7 的逆了。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210929223156774.png" srcset="/img/loading.gif" lazyload alt="7's inverse" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210929223156774.png" srcset="/img/loading.gif" lazyload alt="7's inverse" /></p>
 </li>
 </ol>
 <h2 id="思考"><a class="markdownIt-Anchor" href="#思考"></a> 思考</h2>
@@ -404,12 +404,12 @@
 <p>很简单，首先得判断它得gcd是不是1，只有a和b互素情况下，a才有逆。</p>
 <p>然后x就是a的逆啦！</p>
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">def exgcd(<span class="hljs-keyword">a</span>, b):<br>	<span class="hljs-keyword">if</span> (b == <span class="hljs-number">0</span>):<br>		<span class="hljs-literal">return</span> <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-keyword">a</span><br>	<span class="hljs-keyword">else</span>:<br>		x, y, gcd= exgcd(b, <span class="hljs-keyword">a</span> % b)<br>		x, y = y, (x - (<span class="hljs-keyword">a</span><span class="hljs-comment"> // b) * y)</span><br>		<span class="hljs-literal">return</span> x, y, gcd<br><br>print(exgcd(<span class="hljs-number">7</span>, <span class="hljs-number">26</span>))<br></code></pre></td></tr></table></figure>
-<p><img src="https://upyun.wuuconix.link/image-20210930000954797.png" srcset="/img/loading.gif" lazyload alt="7's inverse" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210930000954797.png" srcset="/img/loading.gif" lazyload alt="7's inverse" /></p>
 <p>还可以使用<code>libnum</code>这个强大的库来直接求模逆。这里把它的相关函数copy过来。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">xgcd</span>(<span class="hljs-params">a, b</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    Extented Euclid GCD algorithm.</span><br><span class="hljs-string">    Return (x, y, g) : a * x + b * y = gcd(a, b) = g.</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-keyword">if</span> a == <span class="hljs-number">0</span>:<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, b<br>    <span class="hljs-keyword">if</span> b == <span class="hljs-number">0</span>:<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, a<br><br>    px, ppx = <span class="hljs-number">0</span>, <span class="hljs-number">1</span><br>    py, ppy = <span class="hljs-number">1</span>, <span class="hljs-number">0</span><br><br>    <span class="hljs-keyword">while</span> b:<br>        q = a // b<br>        a, b = b, a % b<br>        x = ppx - q * px<br>        y = ppy - q * py<br>        ppx, px = px, x<br>        ppy, py = py, y<br><br>    <span class="hljs-keyword">return</span> ppx, ppy, a<br>    <br><span class="hljs-keyword">def</span> <span class="hljs-title function_">invmod</span>(<span class="hljs-params">a, n</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    Return 1 / a (mod n).</span><br><span class="hljs-string">    @a and @n must be co-primes.</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-keyword">if</span> n &lt; <span class="hljs-number">2</span>:<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;modulus must be greater than 1&quot;</span>)<br><br>    x, y, g = xgcd(a, n)<br><br>    <span class="hljs-keyword">if</span> g != <span class="hljs-number">1</span>:<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;no invmod for given @a and @n&quot;</span>)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">return</span> x % n<br></code></pre></td></tr></table></figure>
 <p>实际上就是拓展欧几里得，它用的拓展欧几里得是迭代版的，下次再去学习一下。</p>
 <p>然后它判断了一下a和b的最大公因子是不是1，不是的话报错，提示无法求逆。</p>
-<p>​	<img src="https://upyun.wuuconix.link/image-20210930001256984.png" srcset="/img/loading.gif" lazyload alt="libnum" /></p>
+<p>​	<img src="https://r2.wuuconix.link/image-20210930001256984.png" srcset="/img/loading.gif" lazyload alt="libnum" /></p>
 <h2 id="战术总结"><a class="markdownIt-Anchor" href="#战术总结"></a> 战术总结</h2>
 <p>今天总算是把拓展欧几里得的原理弄懂了，还经过7att1ce的推荐知道了libnum这个强大库的存在。总算是迈出了代码实现AES的第一步啦！</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
@@ -646,7 +646,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://upyun.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://r2.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
     </div>
   
   

@@ -24,8 +24,8 @@
 <meta property="og:description" content="背景 在家摸鱼太久啥都没干。突然想起自己好像是CTF半退役选手，便来做做题目当作益智游戏了。  Web Page 1  1. EasySQL 万能密码 账号输入 1&#39; or 1&#x3D;1#，密码随便输即可，或者反过来，账号随便输，密码输入1&#39; or 1&#x3D;1#。  2. WarmUp 源代码发现 source.php。然后审计，发现传入一个file参数可以用来include file。同时">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o0uraxjfj30wy0cutff.jpg">
-<meta property="article:published_time" content="2022-01-21T13:59:49.000Z">
-<meta property="article:modified_time" content="2022-01-21T13:59:49.000Z">
+<meta property="article:published_time" content="2022-01-21T05:59:49.000Z">
+<meta property="article:modified_time" content="2022-01-21T05:59:49.000Z">
 <meta property="article:author" content="wuuconix">
 <meta property="article:tag" content="ctf">
 <meta property="article:tag" content="writeup">
@@ -313,7 +313,7 @@
                 
                 <header><meta name="referrer" content="never"></header>
 
-    <div id="aplayer-RDohUPfe" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-EfwXPXxL" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1913652676" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
     ></div>
 <h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
@@ -333,7 +333,7 @@
 <p>简单的php伪协议利用，可以看到藏在注释中的flag。</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">view-source:http:<span class="hljs-regexp">//</span>example.com<span class="hljs-regexp">/?file=php:/</span><span class="hljs-regexp">/filter/</span>convert.base64-encode/resource=flag.php<br></code></pre></td></tr></table></figure>
 <p>然后base64解密即可。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220121134145053.png" srcset="/img/loading.gif" lazyload alt="base64 -d" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220121134145053.png" srcset="/img/loading.gif" lazyload alt="base64 -d" /></p>
 <h3 id="5-随便注"><a class="markdownIt-Anchor" href="#5-随便注"></a> 5. 随便注</h3>
 <p>该题目存在堆叠注入。即可以执行多条sql语句。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-number">1</span><span class="hljs-string">&#x27;; show tables;#</span><br></code></pre></td></tr></table></figure>
@@ -359,7 +359,7 @@
 <h3 id="6easysql"><a class="markdownIt-Anchor" href="#6easysql"></a> 6.EasySQL</h3>
 <p>不得不说Web实在是太难了。</p>
 <p>这道题我发现了堆叠注入，找到了Flag表。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220209153353059.png" srcset="/img/loading.gif" lazyload alt="Flag表" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220209153353059.png" srcset="/img/loading.gif" lazyload alt="Flag表" /></p>
 <p>可惜Flag关键字被过滤了，我们无法直接 <code>1; select * from Flag</code>。</p>
 <p>于是我试着用上一道题了解到的预处理来绕过Flag。结果发现from也被过滤了，而预处理中需要from关键字作为结构。心态崩溃。</p>
 <p>在网上搜索后我发现了这道题的源码。 <a target="_blank" rel="noopener" href="https://github.com/team-su/SUCTF-2019/tree/master/Web/easy_sql">SUCTF-2019/Web/easy_sql</a></p>
@@ -381,7 +381,7 @@
 <figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf"><span class="hljs-number">1</span><span class="hljs-comment">; cat flag</span><br></code></pre></td></tr></table></figure>
 <h3 id="8secret-file"><a class="markdownIt-Anchor" href="#8secret-file"></a> 8.Secret File</h3>
 <p>阅读源码发现<code>Archive_room.php</code>。然后发现<code>action.php</code>，其设置了location http头，会进行快速页面跳转影响我们阅读。利用curl命令查看其内容。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220209182332122.png" srcset="/img/loading.gif" lazyload alt="curl" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220209182332122.png" srcset="/img/loading.gif" lazyload alt="curl" /></p>
 <p>发现<code>secre3t.php</code>文件。内容如下。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br>    <span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br>    <span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br>    <span class="hljs-variable">$file</span>=<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;file&#x27;</span>];<br>    <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">strstr</span>(<span class="hljs-variable">$file</span>,<span class="hljs-string">&quot;../&quot;</span>)||<span class="hljs-title function_ invoke__">stristr</span>(<span class="hljs-variable">$file</span>, <span class="hljs-string">&quot;tp&quot;</span>)||<span class="hljs-title function_ invoke__">stristr</span>(<span class="hljs-variable">$file</span>,<span class="hljs-string">&quot;input&quot;</span>)||<span class="hljs-title function_ invoke__">stristr</span>(<span class="hljs-variable">$file</span>,<span class="hljs-string">&quot;data&quot;</span>))&#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Oh no!&quot;</span>;<br>        <span class="hljs-keyword">exit</span>();<br>    &#125;<br>    <span class="hljs-keyword">include</span>(<span class="hljs-variable">$file</span>); <br><span class="hljs-comment">//flag放在了flag.php里</span><br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
 <p>得知flag的文件位置<code>flag.php</code>，测试后推测flag在flag.php的php代码中，没有输出。</p>
@@ -638,7 +638,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://upyun.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://r2.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
     </div>
   
   

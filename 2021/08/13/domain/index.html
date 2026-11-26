@@ -24,8 +24,8 @@
 <meta property="og:description" content="背景 由于之前的域名wuuconix.xyz是在国外域名厂商NameSilo手里买的，而我的服务器是阿里云。任何域名绑国内的服务器，80端口都是需要备案的，不备案就会有以下的提示。    但是国外的域名又无法备案。所以很长时间里我的所有服务都加上了8000端口。显得非常难看。 最后实在受不了了，我在8月6日晚22点在阿里云万网花了17大洋购买了wuuconix.link域名。以下我">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o10knsyxj30yu0mtqom.jpg">
-<meta property="article:published_time" content="2021-08-13T14:09:57.000Z">
-<meta property="article:modified_time" content="2021-08-13T14:09:57.000Z">
+<meta property="article:published_time" content="2021-08-13T06:09:57.000Z">
+<meta property="article:modified_time" content="2021-08-13T06:09:57.000Z">
 <meta property="article:author" content="wuuconix">
 <meta property="article:tag" content="域名">
 <meta property="article:tag" content="SSL证书">
@@ -314,13 +314,13 @@
                 
                 <header><meta name="referrer" content="never"></header>
 
-    <div id="aplayer-FfkaSlJr" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-GwYiaszD" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="27566958" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
     ></div>
 <h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
 <p>由于之前的域名<code>wuuconix.xyz</code>是在国外域名厂商<a target="_blank" rel="noopener" href="https://www.namesilo.com/">NameSilo</a>手里买的，而我的服务器是阿里云。任何域名绑国内的服务器，80端口都是需要备案的，不备案就会有以下的提示。</p>
 <p align="center">
-<img src="https://upyun.wuuconix.link/image-20210813213439721.png" srcset="/img/loading.gif" lazyload alt="提示备案" style="zoom: 67%;" />
+<img src="https://r2.wuuconix.link/image-20210813213439721.png" srcset="/img/loading.gif" lazyload alt="提示备案" style="zoom: 67%;" />
 </p>
 <p>但是国外的域名又无法备案。所以很长时间里我的所有服务都加上了8000端口。显得非常难看。</p>
 <p>最后实在受不了了，我在8月6日晚22点在阿里云<a target="_blank" rel="noopener" href="https://wanwang.aliyun.com/domain/">万网</a>花了17大洋购买了<code>wuuconix.link</code>域名。以下我来介绍一下购买域名后需要干的一些事。</p>
@@ -335,14 +335,14 @@
 </ol>
 <h2 id="ssl证书的获取"><a class="markdownIt-Anchor" href="#ssl证书的获取"></a> SSL证书的获取</h2>
 <p>推荐使用<a target="_blank" rel="noopener" href="https://letsencrypt.osfipin.com/">来此加密</a>进行免费的SSL证书获取。过程十分简单，大概就是让你设置一个TXT域名解析证明这个域名是你的，然后过一会儿等它验证完，你就可以下载证书了。网站下载的文件夹里包含以下文件。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210813214926696.png" srcset="/img/loading.gif" lazyload alt="证书文件" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210813214926696.png" srcset="/img/loading.gif" lazyload alt="证书文件" /></p>
 <h2 id="nginx将http重定向到https"><a class="markdownIt-Anchor" href="#nginx将http重定向到https"></a> nginx将http重定向到https</h2>
 <p>我现在的所有服务其实都开在实验室的小主机上面，给大家康康我的docker容器们。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210813215138072.png" srcset="/img/loading.gif" lazyload alt="docker容器们" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210813215138072.png" srcset="/img/loading.gif" lazyload alt="docker容器们" /></p>
 <p>然后利用frp内网穿透将服务通过阿里云服务器向外提供服务。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210813215306645.png" srcset="/img/loading.gif" lazyload alt="frpc.ini" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210813215306645.png" srcset="/img/loading.gif" lazyload alt="frpc.ini" /></p>
 <p>然后怎么把这些原本都是http的服务变成https的呢？实际上是利用阿里云服务器的nginx做了一层反向代理和重定向。</p>
-<p><img src="https://upyun.wuuconix.link/image-20210813215524340.png" srcset="/img/loading.gif" lazyload alt="nginx配置" /></p>
+<p><img src="https://r2.wuuconix.link/image-20210813215524340.png" srcset="/img/loading.gif" lazyload alt="nginx配置" /></p>
 <p>从nginx的配置文件中可以看出，<code>https://wuuconix.link</code>实际上被反向代理到了<code>http://wuuconix.link:8000</code>，这个8000端口其实就是frp</p>
 <p>然后对普通的<code>http://wuuconix.link</code>进行重定向，重定向到了<code>https://wuuconix.link</code>。</p>
 <p>也就是说实际上提供服务器的就是<code>http://wuuconix.link:8000</code>。但是经过一番操作，用户不再需要输入端口，网站访问变得更加优美。从这里也可以体现出反向代理的强大。</p>
@@ -580,7 +580,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://upyun.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://r2.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
     </div>
   
   

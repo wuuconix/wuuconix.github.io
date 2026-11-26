@@ -24,8 +24,8 @@
 <meta property="og:description" content="背景 最近博客的图片用上了又拍云CDN，网站加载速度快了不少。网站整体在1~2s之间就能完成加载，除了我的shizuku看板娘。 平常加载她需要6~7s的时间，而且每次切换页面，比如进入文章之类的操作，这个加载过程还会再进行一次，让人等的难受。 下图红色框起来的区域就是她的加载过程，我们看到，她从2s开始加载，一直加载到了6s。  经过测试，我发现是我用的hexo插件 hexo-h">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o1bfm9mij309909vab2.jpg">
-<meta property="article:published_time" content="2022-04-05T16:44:18.000Z">
-<meta property="article:modified_time" content="2022-04-05T16:44:18.000Z">
+<meta property="article:published_time" content="2022-04-05T08:44:18.000Z">
+<meta property="article:modified_time" content="2022-04-05T08:44:18.000Z">
 <meta property="article:author" content="wuuconix">
 <meta property="article:tag" content="live2d">
 <meta name="twitter:card" content="summary_large_image">
@@ -312,21 +312,21 @@
                 
                 <header><meta name="referrer" content="never"></header>
 
-    <div id="aplayer-jpyVzeap" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-CCJFdeyW" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="453189277" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
     ></div>
 <h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
 <p>最近博客的图片用上了又拍云CDN，网站加载速度快了不少。网站整体在<code>1~2s</code>之间就能完成加载，除了我的<strong>shizuku</strong>看板娘。</p>
 <p>平常加载她需要<code>6~7s</code>的时间，而且每次切换页面，比如进入文章之类的操作，这个加载过程还会再进行一次，让人等的难受。</p>
 <p>下图红色框起来的区域就是她的加载过程，我们看到，她从<code>2s</code>开始加载，一直加载到了<code>6s</code>。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220405160243477.png" srcset="/img/loading.gif" lazyload alt="shizuku加载" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220405160243477.png" srcset="/img/loading.gif" lazyload alt="shizuku加载" /></p>
 <p>经过测试，我发现是我用的hexo插件 <a target="_blank" rel="noopener" href="https://github.com/EYHN/hexo-helper-live2d">hexo-helper-live2d</a> 出了问题。它把看板娘的静态资源都放在<code>unpkg.com</code>上供用户访问。然而这个cdn在国内的延迟很大。</p>
 <p>以下是<code>unpkg</code>和<code>jsdeliver</code>的对比。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220405160847585.png" srcset="/img/loading.gif" lazyload alt="unpkg" /></p>
-<p><img src="https://upyun.wuuconix.link/image-20220405160918578.png" srcset="/img/loading.gif" lazyload alt="jsdelivr" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220405160847585.png" srcset="/img/loading.gif" lazyload alt="unpkg" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220405160918578.png" srcset="/img/loading.gif" lazyload alt="jsdelivr" /></p>
 <p>可以看到同样是国外cdn的<code>jsdelivr</code> 在国内许多城市的延迟在100ms以内，而<code>unpkg</code>则几乎全部接近200ms。</p>
 <p>然后更离谱的情况发生了，我发现 <a target="_blank" rel="noopener" href="https://github.com/EYHN/hexo-helper-live2d">hexo-helper-live2d</a>  这个项目在github已经归档了，已经变成只读的了。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220405161350416.png" srcset="/img/loading.gif" lazyload alt="archived" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220405161350416.png" srcset="/img/loading.gif" lazyload alt="archived" /></p>
 <p>用着一个已经被遗弃的项目，加载速度能快就有鬼了2333</p>
 <h2 id="live2d-cdn的创建"><a class="markdownIt-Anchor" href="#live2d-cdn的创建"></a> live2d-cdn的创建</h2>
 <p>在github简单搜了一下，目前比较流行的live2d项目是 <a target="_blank" rel="noopener" href="https://github.com/stevenjoezhang/live2d-widget">stevenjoezhang/live2d-widget</a>。</p>
@@ -338,14 +338,14 @@
 <p>大学以来CTF的经历让我对php的印象不是很好，而且个人认为没有必要用后端接口，看板娘需要的就是它的静态资源文件，cdn方式完全可以得到目的。</p>
 <p>于是我便简单魔改了一下代码，删除了原项目中 使用api的代码。</p>
 <p>然后原项目因为怕涉及到版权问题，没有给live2d的模型。在找了一圈后，我发现 <a target="_blank" rel="noopener" href="https://github.com/imuncle/live2d">imuncle/live2d</a> 这个仓库里面提供了许多模型。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220405162928490.png" srcset="/img/loading.gif" lazyload alt="模型们" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220405162928490.png" srcset="/img/loading.gif" lazyload alt="模型们" /></p>
 <p>看了100多个模型，最后选择了小埋，我便把模型直接放到仓库里了。经过一番代码的调整，最后这个项目就完成了。</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/wuuconix/live2d-cdn">wuuconix/live2d-cdn: 自用。仅包含cdnPath的live2d-widget。内置模型。 (github.com)</a></p>
 <h2 id="效果展示"><a class="markdownIt-Anchor" href="#效果展示"></a> 效果展示</h2>
-<p><img src="https://upyun.wuuconix.link/image-20220405163355863.png" srcset="/img/loading.gif" lazyload alt="小埋" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220405163355863.png" srcset="/img/loading.gif" lazyload alt="小埋" /></p>
 <p>可以看到，现在整个网页包括小埋的加载都只用了<code>2.2s</code>。十分迅速。</p>
 <p>而且由于 <a target="_blank" rel="noopener" href="https://github.com/stevenjoezhang/live2d-widget">stevenjoezhang/live2d-widget</a> 的创新，给看板娘加上了<code>waifu-tool</code>。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220405163639958.png" srcset="/img/loading.gif" lazyload alt="小埋" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220405163639958.png" srcset="/img/loading.gif" lazyload alt="小埋" /></p>
 <p>当鼠标指针移动到她身上的时候会出现一些功能按键。大家自己体验吧2333。实际效果很赞。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
@@ -574,7 +574,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://upyun.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://r2.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
     </div>
   
   

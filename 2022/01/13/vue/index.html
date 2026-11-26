@@ -24,8 +24,8 @@
 <meta property="og:description" content="背景 用Vue也写过不少项目了，科技立项的个人网盘以及这个寒假写的短链站、禁书目录等等。 但是会写了，也只是依样画葫芦，更多的是在Element Plus里复制粘贴，再加点自己的东西，没有系统的学习和了解Vue。 懒惰的武丑兄便打算给自己开个新坑，以Vue3官方文档为基础，真正去理解Vue，形成更加长远的记忆。 本博客将持续更新，具体形式为提出某个问题，并对该问题进行解析。  ap">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sina.wuuconix.link/large/007YVyKcly1h3o1paee14j30z40mk7a4.jpg">
-<meta property="article:published_time" content="2022-01-13T21:59:06.000Z">
-<meta property="article:modified_time" content="2022-01-17T21:59:06.000Z">
+<meta property="article:published_time" content="2022-01-13T13:59:06.000Z">
+<meta property="article:modified_time" content="2022-01-17T13:59:06.000Z">
 <meta property="article:author" content="wuuconix">
 <meta property="article:tag" content="笔记">
 <meta property="article:tag" content="vue">
@@ -321,7 +321,7 @@
                 
                 <header><meta name="referrer" content="never"></header>
 
-    <div id="aplayer-mNfzUChR" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-WILJzJOJ" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1910838939" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
     ></div>
 <h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
@@ -335,7 +335,7 @@
 <p>这里面一共出现了8个app，让人眼花缭乱，让人看不懂它们到底是什么。</p>
 <p>首先我们看第二行的<code>App</code>，它是从单文件组件 <code>App.vue</code> 里引入的，所以我们可以把App称为一个组件。而通常情况下，这个App总是最外层的，我们可以把它叫做rootComponent，即<strong>根组件</strong>，它将是渲染的起点。</p>
 <p>再看第一行的createApp，它是从<code>vue</code>这个模块里通过ES6中的解构语法导出的一个函数。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220113202752560.png" srcset="/img/loading.gif" lazyload alt="vue module" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220113202752560.png" srcset="/img/loading.gif" lazyload alt="vue module" /></p>
 <p>而第三行的app变量就是这个函数的返回值。那它是什么呢？在之前，我一直把这个app看作一个组件，因为createApp的参数里是App，是根组件。</p>
 <p>但是查阅文档 <a target="_blank" rel="noopener" href="https://v3.cn.vuejs.org/api/application-api.html#component">应用 API | Vue.js (vuejs.org)</a> 之后，我们可以知道，该函数的返回值，即这里的app，我们应该叫它为 <strong>应用实例</strong>。</p>
 <p>这个实例可以干很多事情。</p>
@@ -351,7 +351,7 @@
 </li>
 </ol>
 <p>我们最后看第四行的<code>'#app'</code>。它实际上是项目 <code>public/index.html</code>里面的一个div。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220113205427613.png" srcset="/img/loading.gif" lazyload alt="div #app" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220113205427613.png" srcset="/img/loading.gif" lazyload alt="div #app" /></p>
 <p>它算什么呢？我们从它给我们的注释里也可以知道，项目的根组件渲染的结果实际上是会放到这个<code>&lt;div id=&quot;app&quot;&gt;</code>中的内部的。</p>
 <p>所以它应该被叫为 <strong>根组件实例</strong>。</p>
 <p>我们再来重新看<code>app.mount('#app')</code>这个语句，它是把app这个应用实例绑定到了 根组件实例上了嘛？不，app这个应用实例只是一个工具人，它干的事情是，把应用实例对应的根组件绑定到了根组件实例里。</p>
@@ -365,7 +365,7 @@
 <p>我还不太会写这种高阶的语法，但是我在看许多案例的时候都发现它们都使用了 vue module里面的ref，而它们干的事情好像又很简单，我就无法理解这个ref的作用。比如下面的例子。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">import</span> &#123; ref &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span></span><br><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">const</span> msg = <span class="hljs-title function_">ref</span>(<span class="hljs-string">&#x27;Hello World!&#x27;</span>)</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>&#123;&#123; msg &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;msg&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>你可以把这段代码复制到 <a target="_blank" rel="noopener" href="https://sfc.vuejs.org/">Vue SFC PlayGround</a> 里进行尝试。该单文件组件的功能就是将input输入的内容和msg绑定起来，输入框的内容一变，msg变量就会变。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220113212146134.png" srcset="/img/loading.gif" lazyload alt="v-model msg" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220113212146134.png" srcset="/img/loading.gif" lazyload alt="v-model msg" /></p>
 <p>我们注意到，msg变量定义的时候，用的是const，按理说msg的值是不可以改变的，除非它是一个对象。所以ref的返回值是一个对象。</p>
 <p>通过查阅 <a target="_blank" rel="noopener" href="https://v3.cn.vuejs.org/api/refs-api.html#ref">Refs | Vue.js (vuejs.org)</a> 文档，我们印证了这个观点。</p>
 <blockquote>
@@ -374,7 +374,7 @@
 <p>所以ref存在的目的就是为了实现Vue中响应式数据的特点。那为什么我们用普通的写法不需要用到ref呢？这里我将语法改写为以下。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-title function_">default</span>(&#123;</span><br><span class="language-javascript">  <span class="hljs-title function_">data</span>(<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">    <span class="hljs-keyword">return</span> &#123;</span><br><span class="language-javascript">	    <span class="hljs-attr">msg</span>: <span class="hljs-string">&#x27;123&#x27;</span></span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript">  &#125;</span><br><span class="language-javascript">&#125;)</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>&#123;&#123; msg &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;msg&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>我们发现，同样可以实现和之前一样的效果。</p>
-<p><img src="https://upyun.wuuconix.link/image-20220113212936755.png" srcset="/img/loading.gif" lazyload alt="普通写法" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220113212936755.png" srcset="/img/loading.gif" lazyload alt="普通写法" /></p>
 <p>我们观察这个普通写法中的data 实际上返回了一个对象，msg是这个对象里的一个键，由于对象的特性，msg的值可以被随意更改，实现响应式。</p>
 <p>而高阶语法里没有这种data对象，我们便需要用ref来创造一个只有value值的对象。实现数据的响应。</p>
 <p>以上观点可以在Vue SFC Playground里得到印证，它向我们展示出我们这段js代码最终被编译后的样子。</p>
@@ -383,8 +383,8 @@
         SFC After Complier
     </div>
     <div class='spoiler-content'>
-        <p><img src="https://upyun.wuuconix.link/image-20220113214826401.png" srcset="/img/loading.gif" lazyload alt="$data.msg" /></p>
-<p><img src="https://upyun.wuuconix.link/image-20220113214907874.png" srcset="/img/loading.gif" lazyload alt="msg.value" /></p>
+        <p><img src="https://r2.wuuconix.link/image-20220113214826401.png" srcset="/img/loading.gif" lazyload alt="$data.msg" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220113214907874.png" srcset="/img/loading.gif" lazyload alt="msg.value" /></p>
 
     </div>
 </div>
@@ -408,7 +408,7 @@
     </div>
     <div class='spoiler-content'>
         <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>&#123;&#123; wuuconix &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> (&#123;</span><br><span class="language-javascript">	<span class="hljs-title function_">data</span>(<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">		<span class="hljs-keyword">return</span> &#123;</span><br><span class="language-javascript">            <span class="hljs-attr">wuuconix</span>: <span class="hljs-string">&#x27;yyds&#x27;</span></span><br><span class="language-javascript">        &#125;</span><br><span class="language-javascript">	&#125;</span><br><span class="language-javascript">&#125;)</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
-<p><img src="https://upyun.wuuconix.link/image-20220114104208293.png" srcset="/img/loading.gif" lazyload alt="插值" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220114104208293.png" srcset="/img/loading.gif" lazyload alt="插值" /></p>
 
     </div>
 </div>
@@ -421,7 +421,7 @@
     </div>
     <div class='spoiler-content'>
         <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;test&quot;</span>&gt;</span>&#123;&#123; wuuconix &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> (&#123;</span><br><span class="language-javascript">	<span class="hljs-title function_">data</span>(<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">		<span class="hljs-keyword">return</span> &#123;</span><br><span class="language-javascript">            <span class="hljs-attr">wuuconix</span>: <span class="hljs-string">&#x27;yyds&#x27;</span></span><br><span class="language-javascript">        &#125;</span><br><span class="language-javascript">	&#125;,</span><br><span class="language-javascript">	<span class="hljs-attr">methods</span>: &#123;</span><br><span class="language-javascript">		<span class="hljs-title function_">test</span>(<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">			<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">wuuconix</span>)</span><br><span class="language-javascript">		&#125;</span><br><span class="language-javascript">	&#125;</span><br><span class="language-javascript">	</span><br><span class="language-javascript">&#125;)</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
-<p><img src="https://upyun.wuuconix.link/image-20220114103933494.png" srcset="/img/loading.gif" lazyload alt="console.log" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220114103933494.png" srcset="/img/loading.gif" lazyload alt="console.log" /></p>
 
     </div>
 </div>
@@ -441,7 +441,7 @@
     </div>
     <div class='spoiler-content'>
         <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;test&quot;</span>&gt;</span>&#123;&#123; wuuconix &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> (&#123;</span><br><span class="language-javascript">	<span class="hljs-title function_">data</span>(<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">		<span class="hljs-keyword">return</span> &#123;</span><br><span class="language-javascript">            <span class="hljs-attr">wuuconix</span>: <span class="hljs-string">&#x27;yyds&#x27;</span></span><br><span class="language-javascript">        &#125;</span><br><span class="language-javascript">	&#125;,</span><br><span class="language-javascript">	<span class="hljs-attr">methods</span>: &#123;</span><br><span class="language-javascript">		<span class="hljs-title function_">test</span>(<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">			<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">$data</span>.<span class="hljs-property">wuuconix</span>)</span><br><span class="language-javascript">		&#125;</span><br><span class="language-javascript">	&#125;</span><br><span class="language-javascript">	</span><br><span class="language-javascript">&#125;)</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
-<p><img src="https://upyun.wuuconix.link/image-20220114110027612.png" srcset="/img/loading.gif" lazyload alt="this.$data.wuuconix" /></p>
+<p><img src="https://r2.wuuconix.link/image-20220114110027612.png" srcset="/img/loading.gif" lazyload alt="this.$data.wuuconix" /></p>
 
     </div>
 </div>
@@ -674,7 +674,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://upyun.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a><br> <span>本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank""><img src="https://r2.wuuconix.link/upyun.png" srcset="/img/loading.gif" lazyload width="53" height="18" style="fill: currentColor;"/></a> 提供 CDN 加速/云存储服务</span> 
     </div>
   
   
